@@ -118,15 +118,32 @@ export const NODOS = [
     linea: "El taller que se lleva a cada territorio: donde el Arka toca tierra." },
 ];
 
-/* ── LAS ALIANZAS ──
-   "EL ARKA teje alianzas y apoya a otras causas e instituciones —ONGs,
-    cámaras, comunidad— para que más gente cruce."
-   [VALIDAR con Ed] la clasificación de cada una y su descripción. */
+/* ── DÓNDE PERTENECEMOS ──
+   Comunidades empresariales de las que El Arka y sus Arquitectos forman parte.
+   No son alianzas ni nodos: son la red donde ya estábamos antes de zarpar.
+   [VALIDAR con Ed] la redacción exacta de cada pertenencia. */
+export const PERTENENCIAS = [
+  { nombre: "Cluster Empresarial EXATEC", rol: "Miembros fundadores",
+    linea: "Parte del grupo que lo levantó desde el primer día." },
+  { nombre: "Comunidad EXATEC", rol: "Miembros",
+    linea: "La red de egresados del Tecnológico de Monterrey." },
+  { nombre: "Comunidad IPADE", rol: "Miembros",
+    linea: "La escuela de dirección de empresas del IPADE." },
+];
+
+/* ── CAUSAS Y ALIANZAS ──
+   Canon: "EL ARKA teje alianzas y apoya a otras causas e instituciones
+   —ONGs, cámaras, comunidad— para que más gente cruce. Las alianzas
+   acompañan al Arka, pero no son parte de la ciudadanía." */
 export const ALIANZAS = [
-  { nombre: "Club Conéctate", tipo: "Comunidad · encuentro", url: "https://clubconectate.elarka.ong",
-    linea: "Encuentros donde la comunidad se reconoce cara a cara.", externo: true },
+  { nombre: "Cumbre Global de Liderazgo", tipo: "Formación de líderes",
+    linea: "Acompañamos el encuentro que forma a quienes conducen a otros." },
   { nombre: "Techo Venezuela", tipo: "Causa social", url: "https://techovenezuela.elarka.ong",
     linea: "Un techo para quien cruza sin tenerlo.", externo: true },
+  { nombre: "Congreso El Cielo en mi Ciudad", tipo: "Comunidad",
+    linea: "Un congreso que reúne a la ciudad alrededor de lo que la sostiene." },
+  { nombre: "Club Conéctate", tipo: "Encuentro empresarial", url: "https://clubconectate.elarka.ong",
+    linea: "Donde emprendedores y empresarios se reconocen cara a cara.", externo: true },
 ];
 
 /* ── Territorio: habla hispana · LATAM y España ── */

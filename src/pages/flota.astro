@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import { WA_CTA, NODOS, ALIANZAS, PAISES } from "../config/arka.js";
+import { WA_CTA, NODOS, PERTENENCIAS, ALIANZAS, PAISES } from "../config/arka.js";
 
 const titulo = "La Flota · los nodos de EL ARKA";
 const descripcion =
@@ -54,11 +54,42 @@ const descripcion =
     <ul class="alianzas revelar d2">
       {ALIANZAS.map((a) => (
         <li>
-          <a href={a.url} target={a.externo ? "_blank" : undefined} rel={a.externo ? "noopener" : undefined}>
-            <p class="rotulo tipo">{a.tipo}</p>
-            <h3>{a.nombre}{a.externo && <span class="fuera" aria-hidden="true">↗</span>}</h3>
-            <p class="linea">{a.linea}</p>
-          </a>
+          {a.url ? (
+            <a href={a.url} target={a.externo ? "_blank" : undefined} rel={a.externo ? "noopener" : undefined}>
+              <p class="rotulo tipo">{a.tipo}</p>
+              <h3>{a.nombre}{a.externo && <span class="fuera" aria-hidden="true">↗</span>}</h3>
+              <p class="linea">{a.linea}</p>
+            </a>
+          ) : (
+            <div>
+              <p class="rotulo tipo">{a.tipo}</p>
+              <h3>{a.nombre}</h3>
+              <p class="linea">{a.linea}</p>
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- ░░░░ DÓNDE PERTENECEMOS · corte en positivo ░░░░
+     Credencial institucional: la red que existía antes de zarpar. -->
+<section class="mov positivo pertenencias-sec" aria-labelledby="h-pertenencias">
+  <div class="contenedor">
+    <p class="etiqueta revelar">Dónde pertenecemos</p>
+    <h2 class="titulo revelar d1" id="h-pertenencias">No zarpamos<br>
+      <span class="sentencia">desde cero.</span></h2>
+    <p class="guia lectura revelar d2">Antes de El Arka ya estábamos adentro de las comunidades
+      empresariales que forman y sostienen a quienes construyen en México. Esa red no es un adorno:
+      es de donde salen los primeros que suben.</p>
+
+    <ul class="pertenencias revelar d2">
+      {PERTENENCIAS.map((p) => (
+        <li>
+          <p class="rotulo rol-p">{p.rol}</p>
+          <h3>{p.nombre}</h3>
+          <p class="linea-p">{p.linea}</p>
         </li>
       ))}
     </ul>
@@ -76,9 +107,9 @@ const descripcion =
         srcset="/assets/comunidad/taller-recreacion-800.webp 800w, /assets/comunidad/taller-recreacion.webp 1600w"
         sizes="(max-width: 900px) 100vw, 1180px"
         width="1600" height="893" loading="lazy" decoding="async"
-        alt="Sala de taller en una casona de Mérida: filas de personas adultas sentadas de espaldas, tomando notas, frente a quien facilita." />
+        alt="Sala de juntas de un cowork contemporáneo en Mérida: cerca de veinte emprendedores y empresarios sentados alrededor de una mesa larga, vistos de espaldas, atendiendo a quien facilita." />
       <figcaption>
-        <span class="pie">Así se ve un taller del Arka: gente que dejó la intemperie y vino a construir.</span>
+        <span class="pie">Así se ve un encuentro del Arka: emprendedores y empresarios que dejaron la intemperie y vinieron a construir.</span>
         <span class="credito">Imagen de recreación · la fotografía documental llega con el próximo taller</span>
       </figcaption>
     </figure>
@@ -191,7 +222,8 @@ const descripcion =
 .alianzas{list-style:none;display:grid;gap:2px;margin-top:40px}
 @media(min-width:760px){.alianzas{grid-template-columns:1fr 1fr;gap:2px 48px}}
 .alianzas li{border-top:1px solid var(--linea-tenue)}
-.alianzas a{display:block;padding:26px 0;transition:opacity var(--dur-corta) var(--ease)}
+.alianzas a,.alianzas li > div{display:block;padding:26px 0;
+  transition:opacity var(--dur-corta) var(--ease)}
 .alianzas a:hover{opacity:.72}
 .alianzas .tipo{color:var(--arkadia-luz)}
 .alianzas h3{font-family:var(--sans);font-weight:var(--peso-aire);
@@ -199,6 +231,22 @@ const descripcion =
   color:var(--marfil);margin-top:8px}
 .alianzas .fuera{font-size:.5em;color:var(--tinta-tenue);margin-left:7px;vertical-align:super}
 .alianzas .linea{margin-top:9px;color:var(--tinta-suave);font-size:var(--t-menor);line-height:1.6}
+
+/* Pertenencias: credencial institucional, tratamiento de dato sobrio */
+.pertenencias-sec{background:var(--marfil)}
+.pertenencias{list-style:none;display:grid;gap:1px;margin-top:44px;
+  background:rgba(15,36,56,.1);border-top:1px solid rgba(15,36,56,.1);
+  border-bottom:1px solid rgba(15,36,56,.1)}
+@media(min-width:820px){.pertenencias{grid-template-columns:repeat(3,1fr)}}
+.pertenencias li{background:var(--marfil);padding:26px 22px 26px 0}
+@media(min-width:820px){.pertenencias li{padding:26px 22px}
+  .pertenencias li:first-child{padding-left:0}}
+.pertenencias .rol-p{color:var(--terra-hondo)}
+.pertenencias h3{font-family:var(--sans);font-weight:var(--peso-sentencia);
+  font-size:clamp(18px,1.1vw + 14px,23px);letter-spacing:-.02em;
+  color:var(--tinta-oscura);margin-top:9px;line-height:1.18}
+.pertenencias .linea-p{margin-top:8px;font-size:var(--t-menor);
+  color:var(--tinta-oscura-suave);line-height:1.55}
 
 .pilares-nodo{display:grid;gap:1px;margin-top:44px;background:rgba(15,36,56,.1);
   border-top:1px solid rgba(15,36,56,.1);border-bottom:1px solid rgba(15,36,56,.1)}
