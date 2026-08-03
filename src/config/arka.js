@@ -119,31 +119,37 @@ export const NODOS = [
 ];
 
 /* ── DÓNDE PERTENECEMOS ──
-   Comunidades empresariales de las que El Arka y sus Arquitectos forman parte.
-   No son alianzas ni nodos: son la red donde ya estábamos antes de zarpar.
-   [VALIDAR con Ed] la redacción exacta de cada pertenencia. */
+   Membresías de Ed y Val a título personal (no de la organización).
+   Es la red donde ya estaban antes de zarpar. */
 export const PERTENENCIAS = [
   { nombre: "Cluster Empresarial EXATEC", rol: "Miembros fundadores",
     linea: "Parte del grupo que lo levantó desde el primer día." },
-  { nombre: "Comunidad EXATEC", rol: "Miembros",
+  { nombre: "Comunidad EXATEC", rol: "Miembros activos",
     linea: "La red de egresados del Tecnológico de Monterrey." },
-  { nombre: "Comunidad IPADE", rol: "Miembros",
-    linea: "La escuela de dirección de empresas del IPADE." },
+  { nombre: "Comunidad IPADE", rol: "Miembros activos",
+    linea: "La comunidad de la escuela de dirección de empresas." },
 ];
 
-/* ── CAUSAS Y ALIANZAS ──
+/* ── CAUSAS E INSTITUCIONES QUE ACOMPAÑAMOS ──
    Canon: "EL ARKA teje alianzas y apoya a otras causas e instituciones
-   —ONGs, cámaras, comunidad— para que más gente cruce. Las alianzas
-   acompañan al Arka, pero no son parte de la ciudadanía." */
+   —ONGs, cámaras, comunidad— para que más gente cruce."
+   Aquí no solo se acompaña: se opera. Es la prueba de la tesis. */
 export const ALIANZAS = [
-  { nombre: "Cumbre Global de Liderazgo", tipo: "Formación de líderes",
-    linea: "Acompañamos el encuentro que forma a quienes conducen a otros." },
-  { nombre: "Techo Venezuela", tipo: "Causa social", url: "https://techovenezuela.elarka.ong",
-    linea: "Un techo para quien cruza sin tenerlo.", externo: true },
-  { nombre: "Congreso El Cielo en mi Ciudad", tipo: "Comunidad",
-    linea: "Un congreso que reúne a la ciudad alrededor de lo que la sostiene." },
+  { nombre: "Cumbre Global de Liderazgo", tipo: "Formación de líderes · México",
+    aporta: ["Tecnología, IA y agentes", "Contenido y marketing"],
+    linea: "El encuentro que forma a quienes conducen a otros." },
+  { nombre: "Cluster Empresarial EXATEC", tipo: "Cámara empresarial",
+    aporta: ["Tecnología, IA y agentes", "Contenido y marketing"],
+    linea: "La red de empresarios egresados del Tec de Monterrey." },
+  { nombre: "Congreso El Cielo en mi Ciudad", tipo: "Congreso · comunidad",
+    aporta: ["Tecnología, IA y agentes", "Contenido y marketing"],
+    linea: "Un congreso que reúne a la ciudad entera." },
   { nombre: "Club Conéctate", tipo: "Encuentro empresarial", url: "https://clubconectate.elarka.ong",
+    aporta: ["Ecosistema digital e IA"],
     linea: "Donde emprendedores y empresarios se reconocen cara a cara.", externo: true },
+  { nombre: "Techo Venezuela", tipo: "Causa social", url: "https://techovenezuela.elarka.ong",
+    aporta: ["Acompañamiento"],
+    linea: "Un techo para quien cruza sin tenerlo.", externo: true },
 ];
 
 /* ── Territorio: habla hispana · LATAM y España ── */

@@ -45,30 +45,34 @@ const descripcion =
 <section class="mov alianzas-sec" aria-labelledby="h-alianzas">
   <div class="contenedor">
     <p class="etiqueta revelar">Las alianzas</p>
-    <h2 class="titulo revelar d1" id="h-alianzas">Nadie cruza solo.<br>
-      <span class="sentencia">Tampoco nosotros.</span></h2>
-    <p class="guia lectura revelar d2">Más allá de su ciudadanía, El Arka teje alianzas con otras
-      causas e instituciones —ONGs, cámaras, comunidad— para que más gente cruce.
+    <h2 class="titulo revelar d1" id="h-alianzas">No enseñamos la IA<br>
+      <span class="sentencia">desde la teoría.</span></h2>
+    <p class="guia lectura revelar d2">El Arka acompaña a otras causas e instituciones para que más
+      gente cruce — y a varias de ellas les operamos la tecnología, la inteligencia artificial y la
+      comunicación con la que trabajan hoy. <span class="sentencia">Lo que formamos aquí, allá ya
+      está corriendo.</span>
       <span class="aparte-inline">Acompañan al Arka; no son parte de la ciudadanía.</span></p>
 
     <ul class="alianzas revelar d2">
-      {ALIANZAS.map((a) => (
-        <li>
-          {a.url ? (
-            <a href={a.url} target={a.externo ? "_blank" : undefined} rel={a.externo ? "noopener" : undefined}>
-              <p class="rotulo tipo">{a.tipo}</p>
-              <h3>{a.nombre}{a.externo && <span class="fuera" aria-hidden="true">↗</span>}</h3>
-              <p class="linea">{a.linea}</p>
-            </a>
-          ) : (
-            <div>
-              <p class="rotulo tipo">{a.tipo}</p>
-              <h3>{a.nombre}</h3>
-              <p class="linea">{a.linea}</p>
-            </div>
-          )}
-        </li>
-      ))}
+      {ALIANZAS.map((a) => {
+        const cuerpo = (
+          <>
+            <p class="rotulo tipo">{a.tipo}</p>
+            <h3>{a.nombre}{a.externo && <span class="fuera" aria-hidden="true">↗</span>}</h3>
+            <p class="linea">{a.linea}</p>
+            <ul class="aporta">
+              {a.aporta.map((x) => <li>{x}</li>)}
+            </ul>
+          </>
+        );
+        return (
+          <li>
+            {a.url
+              ? <a href={a.url} target={a.externo ? "_blank" : undefined} rel={a.externo ? "noopener" : undefined}>{cuerpo}</a>
+              : <div>{cuerpo}</div>}
+          </li>
+        );
+      })}
     </ul>
   </div>
 </section>
@@ -80,9 +84,10 @@ const descripcion =
     <p class="etiqueta revelar">Dónde pertenecemos</p>
     <h2 class="titulo revelar d1" id="h-pertenencias">No zarpamos<br>
       <span class="sentencia">desde cero.</span></h2>
-    <p class="guia lectura revelar d2">Antes de El Arka ya estábamos adentro de las comunidades
-      empresariales que forman y sostienen a quienes construyen en México. Esa red no es un adorno:
-      es de donde salen los primeros que suben.</p>
+    <p class="guia lectura revelar d2">Antes de El Arka, sus Arquitectos ya estaban dentro de las
+      comunidades empresariales que forman y sostienen a quienes construyen en México.
+      Esa red no es un adorno: es de donde salen los primeros que suben.
+      <span class="aparte-inline claro">Membresías de Ed Zam y Val Mosquera a título personal.</span></p>
 
     <ul class="pertenencias revelar d2">
       {PERTENENCIAS.map((p) => (
@@ -219,6 +224,7 @@ const descripcion =
 .alianzas-sec{background:var(--hondo)}
 .aparte-inline{display:block;margin-top:8px;font-style:italic;
   color:var(--tinta-tenue);font-size:var(--t-menor)}
+.positivo .aparte-inline.claro{color:var(--tinta-oscura-suave);opacity:.8}
 .alianzas{list-style:none;display:grid;gap:2px;margin-top:40px}
 @media(min-width:760px){.alianzas{grid-template-columns:1fr 1fr;gap:2px 48px}}
 .alianzas li{border-top:1px solid var(--linea-tenue)}
@@ -231,6 +237,12 @@ const descripcion =
   color:var(--marfil);margin-top:8px}
 .alianzas .fuera{font-size:.5em;color:var(--tinta-tenue);margin-left:7px;vertical-align:super}
 .alianzas .linea{margin-top:9px;color:var(--tinta-suave);font-size:var(--t-menor);line-height:1.6}
+/* Lo que aportamos: el dato que convierte "apoyamos" en "operamos" */
+.alianzas .aporta{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.alianzas .aporta li{border:0;border-radius:var(--borde);padding:5px 10px;
+  background:rgba(183,101,71,.14);
+  font-family:var(--sans);font-size:10.5px;font-weight:600;
+  letter-spacing:var(--track-inline);text-transform:uppercase;color:var(--terra-luz)}
 
 /* Pertenencias: credencial institucional, tratamiento de dato sobrio */
 .pertenencias-sec{background:var(--marfil)}
