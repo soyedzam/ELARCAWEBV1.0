@@ -1,0 +1,192 @@
+---
+import Base from "../layouts/Base.astro";
+import { WA_CTA, PILARES, BLOQUES } from "../config/arka.js";
+
+const titulo = "La Travesía · el método de EL ARKA";
+const descripcion =
+  "Siete pilares en estructura 3 + 3 + 1. El orden es la tesis: la IA llega en el cuarto pilar, nunca antes. Cada pilar vence un sabotaje nombrado.";
+
+const porBloque = BLOQUES.map((b) => ({
+  ...b,
+  pilares: PILARES.filter((p) => p.n >= b.rango[0] && p.n <= b.rango[1]),
+}));
+---
+<Base titulo={titulo} descripcion={descripcion} ruta="/travesia/">
+
+<Fragment slot="head">
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context":"https://schema.org","@type":"Course",
+    "name":"La Travesía","provider":{"@type":"NGO","name":"EL ARKA","url":"https://elarka.ong"},
+    "description":"Método de formación en siete pilares (3+3+1) que reprograma al operador antes de entregarle el poder de la IA, la comunicación y la venta.",
+    "inLanguage":"es",
+    "hasCourseInstance":{"@type":"CourseInstance","courseMode":"blended"},
+    "syllabusSections":PILARES.map(p=>({"@type":"Syllabus","name":`${p.nombre} · ${p.tema}`,"description":`Vence: ${p.sabotaje}`}))
+  })} />
+</Fragment>
+
+<header class="portada">
+  <div class="contenedor">
+    <p class="etiqueta">El método</p>
+    <h1 class="display">La Travesía</h1>
+    <p class="entrada lectura">Siete pilares en una sola ruta, en estructura <b>3 + 3 + 1</b>.
+      El orden no es preferencia: <span class="sentencia">es la tesis</span>. La IA llega en el
+      cuarto pilar, nunca antes.</p>
+    <p class="aparte" style="margin-top:20px">Cada persona arrastra tres capas que casi nadie eligió:
+      su biología, la programación que le instalaron antes de los siete años, y la cultura que le
+      dijo cuánto merece. Quien intenta construir por encima de esa programación, tarde o temprano
+      se sabotea solo.</p>
+  </div>
+</header>
+
+<!-- ░░░░ EL DESCENSO ░░░░
+     No es una rejilla: es un viaje que baja. El agua sube conforme
+     desciendes, y el pilar IV es el único que cambia de color porque
+     es el único donde entra la máquina. -->
+<section class="descenso" aria-label="Los siete pilares">
+  <div class="contenedor">
+    {porBloque.map((b, bi) => (
+      <div class={`bloque b-${b.id.toLowerCase()}`}>
+        <div class="bloque-cabeza revelar">
+          <span class="rotulo">Bloque {["I","II","III"][bi]}</span>
+          <h2>{b.titulo}</h2>
+          <p class="bloque-linea">{b.linea}</p>
+        </div>
+
+        <ol class="pilares">
+          {b.pilares.map((p) => (
+            <li class={`pilar revelar${p.esAgua ? " agua" : ""}`} style={`--sangria:${(p.n - 1) * 1.15}rem`}>
+              <span class="numeral" aria-hidden="true">{["I","II","III","IV","V","VI","VII"][p.n - 1]}</span>
+              <div class="pilar-cuerpo">
+                <h3>{p.nombre}</h3>
+                <p class="tema">{p.tema}</p>
+                <p class="sabotaje">
+                  <span class="rotulo">Vence</span>
+                  {p.sabotaje}
+                </p>
+                <p class="capa">{p.capa}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- ░░░░ LAS TRES CAPAS · el porqué del orden ░░░░ -->
+<section class="mov positivo" aria-labelledby="h-capas">
+  <div class="contenedor">
+    <p class="etiqueta revelar">Por qué en ese orden</p>
+    <h2 class="titulo revelar d1" id="h-capas">Primero el ser.<br>
+      <span class="sentencia">Después el poder.</span></h2>
+    <div class="capas">
+      <div class="revelar d1">
+        <p class="rotulo">Biología</p>
+        <p>El cuerpo que vive en alerta. Lo serena <b>El Casco</b>.</p>
+      </div>
+      <div class="revelar d2">
+        <p class="rotulo">Subconsciente y cultura</p>
+        <p>El techo invisible que te dijo cuánto mereces. Lo desinstala <b>El Timón</b>.</p>
+      </div>
+      <div class="revelar d3">
+        <p class="rotulo">Espíritu</p>
+        <p>No se hereda: es la capa soberana que gobierna. La devuelve <b>El Ancla</b> — por eso va primero.</p>
+      </div>
+    </div>
+    <p class="guia lectura revelar d3" style="margin-top:40px">Solo entonces te entregamos el poder
+      —la IA, la voz y la venta—: el <b>hacer</b>. Y todo apunta a lo único que permanece:
+      tu <b>estela</b>.</p>
+  </div>
+</section>
+
+<!-- ░░░░ LA DISTINCIÓN ░░░░ -->
+<section class="mov" aria-labelledby="h-dist">
+  <div class="contenedor">
+    <p class="etiqueta revelar">La distinción que no se rompe</p>
+    <h2 class="titulo revelar d1" id="h-dist">La Travesía te cambia a ti.<br>
+      <span class="sentencia">No a tu negocio.</span></h2>
+    <p class="guia lectura revelar d2">Primero te vuelves otro, luego construyes sostenible, y llegas
+      a tu libertad. No compiten: se encadenan. La Travesía trabaja sobre el operador —
+      la pregunta que responde es <i>¿quién eres?</i>, no <i>¿qué construyes?</i></p>
+  </div>
+</section>
+
+<section class="mov final" aria-labelledby="h-cta">
+  <div class="contenedor">
+    <h2 class="titulo revelar" id="h-cta">El diluvio ya empezó.<br>
+      <span class="sentencia">La brecha sigue abierta.</span></h2>
+    <div class="botones revelar d1">
+      <a href={WA_CTA} target="_blank" rel="noopener" class="boton principal">Solicitar abordar</a>
+      <a href="/ciudadania/" class="boton contorno">Qué pasa cuando subes</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.portada{padding:calc(var(--aire-vasto) + 60px) 0 var(--aire-base);
+  background:linear-gradient(180deg,var(--abismo),var(--hondo))}
+.display{font-size:var(--t-display);margin:22px 0 0;line-height:1}
+.entrada{margin-top:26px;font-size:var(--t-guia);color:var(--tinta-suave);line-height:1.6}
+.entrada b{font-weight:400;color:var(--marfil)}
+
+/* ══ El descenso ══ */
+.descenso{padding:0 0 var(--aire-base)}
+.bloque{padding:var(--aire-corto) 0}
+/* El agua sube: cada bloque desciende un escalón real, no una rampa difusa */
+.b-ser{background:var(--hondo)}
+.b-hacer{background:#0A1D2E}
+.b-trascender{background:#081724}
+.bloque-cabeza{padding-bottom:26px;margin-bottom:8px}
+.bloque-cabeza h2{font-size:var(--t-sub);margin-top:8px;
+  font-weight:var(--peso-sentencia);color:var(--marfil);letter-spacing:-.02em}
+.bloque-linea{margin-top:6px;color:var(--tinta-tenue);font-size:var(--t-menor);max-width:44ch}
+
+.pilares{list-style:none;display:grid;gap:2px}
+.pilar{display:grid;grid-template-columns:34px 1fr;gap:18px;align-items:start;
+  padding:26px 0 26px var(--sangria);
+  border-top:1px solid var(--linea-tenue);
+  transition:background var(--dur-corta) var(--ease)}
+@media(max-width:640px){.pilar{padding-left:0;grid-template-columns:26px 1fr;gap:14px}}
+.pilar:hover{background:rgba(244,240,232,.02)}
+.numeral{font-family:var(--sans);font-size:12px;font-weight:var(--peso-sentencia);
+  letter-spacing:.08em;color:var(--terra-luz);padding-top:.55em;line-height:1}
+.pilar h3{font-family:var(--sans);font-weight:var(--peso-aire);
+  font-size:clamp(26px,2.4vw + 18px,42px);letter-spacing:-.028em;color:var(--marfil);line-height:1.02}
+.tema{font-family:var(--sans);font-size:var(--t-micro);font-weight:600;
+  letter-spacing:var(--track-inline);text-transform:uppercase;
+  color:var(--tinta-tenue);margin-top:9px}
+.sabotaje{margin-top:16px;font-size:var(--t-cuerpo);color:var(--tinta-suave);max-width:46ch}
+.sabotaje .rotulo{display:block;color:var(--terra-luz);margin-bottom:4px}
+.capa{margin-top:10px;font-size:var(--t-menor);color:var(--tinta-tenue);
+  font-style:italic;max-width:46ch}
+
+/* El pilar IV: el único punto donde entra la máquina.
+   Único uso del cian fuera del agua en todo el sitio. */
+/* Marca el agua sin romper la progresión del descenso: el filete va por
+   dentro (box-shadow), así la sangría sigue siendo monótona pilar a pilar. */
+.pilar.agua{box-shadow:inset 2px 0 0 var(--lluvia);
+  background:linear-gradient(90deg,rgba(40,184,216,.07),transparent 62%)}
+.pilar.agua .numeral{color:var(--agua-luz)}
+.pilar.agua .sabotaje .rotulo{color:var(--agua-luz)}
+
+/* ══ Las tres capas ══ */
+.mov{padding:var(--aire-base) 0}
+.titulo{font-size:var(--t-titulo);margin-top:20px}
+.guia{font-size:var(--t-guia);color:var(--tinta-suave);line-height:1.6}
+.positivo .guia{color:var(--tinta-oscura-suave)}
+.guia b{font-weight:600;color:inherit}
+.capas{display:grid;gap:1px;margin-top:42px;background:rgba(15,36,56,.1);
+  border-top:1px solid rgba(15,36,56,.1);border-bottom:1px solid rgba(15,36,56,.1)}
+@media(min-width:820px){.capas{grid-template-columns:repeat(3,1fr)}}
+.capas > div{background:var(--marfil);padding:26px 24px 26px 0}
+@media(min-width:820px){.capas > div{padding:26px 24px}
+  .capas > div:first-child{padding-left:0}}
+.capas p{font-size:var(--t-menor);color:var(--tinta-oscura-suave);line-height:1.6;margin-top:8px}
+.capas b{font-weight:600;color:var(--tinta-oscura)}
+.capas .rotulo{color:var(--terra-hondo)}
+
+.final{background:linear-gradient(180deg,var(--hondo),var(--abismo));
+  padding:var(--aire-vasto) 0 var(--aire-base)}
+.botones{margin-top:32px;display:flex;gap:13px;flex-wrap:wrap}
+</style>
+</Base>

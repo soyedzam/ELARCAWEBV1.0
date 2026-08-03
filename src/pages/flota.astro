@@ -1,0 +1,157 @@
+---
+import Base from "../layouts/Base.astro";
+import { WA_CTA, FLOTA, PAISES } from "../config/arka.js";
+
+const titulo = "La Flota · los nodos de EL ARKA";
+const descripcion =
+  "Un Arka sola es un bote. Muchas son una flota. Los nodos vivos del ecosistema EL ARKA y el territorio de habla hispana que navegan: LATAM y España.";
+---
+<Base titulo={titulo} descripcion={descripcion} ruta="/flota/">
+
+<header class="portada">
+  <div class="contenedor">
+    <p class="etiqueta">La Flota</p>
+    <h1 class="display">Un Arka sola es un bote.<br>
+      Muchas son una <span class="sentencia">flota</span>.</h1>
+    <p class="entrada lectura">Y a una flota no la hunde nada. Por eso abrimos nodos, hasta cubrir
+      cada rincón donde alguien quiera cruzar.</p>
+  </div>
+</header>
+
+<!-- ░░░░ LOS NODOS VIVOS ░░░░ -->
+<section class="mov" aria-labelledby="h-nodos">
+  <div class="contenedor">
+    <p class="etiqueta revelar">Lo que ya navega</p>
+    <h2 class="titulo revelar d1" id="h-nodos">La flota no es una promesa.<br>
+      <span class="sentencia">Ya está en el agua.</span></h2>
+
+    <ul class="nodos">
+      {FLOTA.map((n, i) => (
+        <li class={`nodo${n.centro ? " centro" : ""} revelar d${Math.min(i, 3)}`}>
+          <a href={n.url} target={n.externo ? "_blank" : undefined} rel={n.externo ? "noopener" : undefined}>
+            <p class="rotulo rol">{n.rol}</p>
+            <h3>{n.nombre}{n.externo && <span class="fuera" aria-hidden="true">↗</span>}</h3>
+            <p class="linea">{n.linea}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- ░░░░ SOBERANÍA DE NODO · corte en positivo ░░░░ -->
+<section class="mov positivo corte" aria-labelledby="h-soberania">
+  <div class="contenedor">
+    <p class="etiqueta revelar">Soberanía de Nodo</p>
+    <h2 class="titulo revelar d1" id="h-soberania">Cada nodo está hecho para<br>
+      <span class="sentencia">sostenerse solo</span>.</h2>
+    <div class="pilares-nodo">
+      <div class="revelar d1"><p class="rotulo">Comunidad real</p><p>Gente que se conoce y se sostiene.</p></div>
+      <div class="revelar d1"><p class="rotulo">Encuentro presencial</p><p>Lo que no ocurre en pantalla.</p></div>
+      <div class="revelar d2"><p class="rotulo">Formación desde la raíz</p><p>Operadores, no usuarios.</p></div>
+      <div class="revelar d2"><p class="rotulo">Ingresos propios</p><p>Lo que lo mantiene a flote.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░ LA PRUEBA DE FUEGO ░░░░ -->
+<section class="mov" aria-labelledby="h-prueba">
+  <div class="contenedor">
+    <div class="dos-tercios">
+      <div>
+        <p class="etiqueta revelar">La prueba de fuego</p>
+        <h2 class="titulo revelar d1" id="h-prueba">El día que se apague la red.</h2>
+      </div>
+      <div class="revelar d2">
+        <p>Y se apagará — por crisis, por frontera o por privilegio. El que solo vendía atajos
+          digitales se hunde con su servidor.</p>
+        <p><span class="sentencia">Nosotros no.</span> Porque lo que enseñamos no vive en la nube:
+          vive en ti. Un Arka de verdad flota aunque se apague el mundo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░ EL TERRITORIO ░░░░ -->
+<section class="mov territorio" aria-labelledby="h-territorio">
+  <div class="contenedor">
+    <p class="etiqueta revelar">El territorio</p>
+    <h2 class="titulo revelar d1" id="h-territorio">Una sola lengua.<br>
+      <span class="sentencia">Veinte orillas.</span></h2>
+    <p class="guia lectura revelar d2">El Arka cruza en español — de México a la Patagonia, y de
+      vuelta a España. Donde haya alguien que quiera cruzar, ahí cabe un nodo.</p>
+    <ul class="banderas revelar d3" aria-label="Países de habla hispana">
+      {PAISES.map((p) => (
+        <li><span class="b" aria-hidden="true">{p.b}</span><span class="n">{p.n}</span></li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<section class="mov final" aria-labelledby="h-cta">
+  <div class="contenedor">
+    <h2 class="titulo revelar" id="h-cta">¿Y si el próximo nodo<br>
+      <span class="sentencia">fuera el tuyo?</span></h2>
+    <p class="guia revelar d1" style="max-width:50ch;margin-top:20px">Los Constructores no solo suben:
+      levantan. Escríbenos y hablamos de tu territorio.</p>
+    <div class="botones revelar d2">
+      <a href={WA_CTA} target="_blank" rel="noopener" class="boton principal">Solicitar abordar</a>
+      <a href="/arquitectos/" class="boton contorno">Quién traza el rumbo</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.portada{padding:calc(var(--aire-vasto) + 60px) 0 var(--aire-base);
+  background:linear-gradient(180deg,var(--abismo),var(--hondo))}
+.display{font-size:clamp(36px,5vw + 12px,80px);margin:22px 0 0;line-height:1.02}
+.entrada{margin-top:26px;font-size:var(--t-guia);color:var(--tinta-suave);line-height:1.6}
+.mov{padding:var(--aire-base) 0}
+.mov.corte{padding:var(--aire-vasto) 0;background:var(--marfil)}
+.titulo{font-size:var(--t-titulo);margin-top:20px}
+.guia{font-size:var(--t-guia);color:var(--tinta-suave);line-height:1.6;margin-top:22px}
+.positivo .guia{color:var(--tinta-oscura-suave)}
+.mov p + p{margin-top:16px}
+
+.nodos{list-style:none;display:grid;gap:1px;margin-top:48px;background:var(--linea-tenue);
+  border-top:1px solid var(--linea-tenue);border-bottom:1px solid var(--linea-tenue)}
+@media(min-width:760px){.nodos{grid-template-columns:1fr 1fr}}
+.nodo a{display:block;background:var(--abismo);padding:32px clamp(22px,3vw,36px);height:100%;
+  transition:background var(--dur-corta) var(--ease)}
+.nodo a:hover{background:#0A1D2E}
+.nodo.centro a{background:#0C2233;border-left:2px solid var(--terracota)}
+.nodo .rol{color:var(--tinta-tenue)}
+.nodo.centro .rol{color:var(--terra-luz)}
+.nodo h3{font-family:var(--sans);font-weight:var(--peso-aire);
+  font-size:clamp(26px,2vw + 18px,38px);letter-spacing:-.025em;color:var(--marfil);margin-top:9px}
+.nodo .fuera{font-size:.5em;color:var(--tinta-tenue);margin-left:8px;vertical-align:super}
+.nodo .linea{margin-top:12px;color:var(--tinta-suave);font-size:var(--t-menor);line-height:1.6}
+
+.pilares-nodo{display:grid;gap:1px;margin-top:44px;background:rgba(15,36,56,.1);
+  border-top:1px solid rgba(15,36,56,.1);border-bottom:1px solid rgba(15,36,56,.1)}
+@media(min-width:760px){.pilares-nodo{grid-template-columns:repeat(4,1fr)}}
+.pilares-nodo > div{background:var(--marfil);padding:24px 22px 24px 0}
+@media(min-width:760px){.pilares-nodo > div{padding:24px 20px}
+  .pilares-nodo > div:first-child{padding-left:0}}
+.pilares-nodo .rotulo{color:var(--terra-hondo);margin-bottom:7px}
+.pilares-nodo p:last-child{font-size:var(--t-menor);color:var(--tinta-oscura-suave);line-height:1.55}
+
+.dos-tercios{display:grid;gap:30px}
+@media(min-width:900px){.dos-tercios{grid-template-columns:2fr 3fr;gap:64px;align-items:start}}
+.dos-tercios p{color:var(--tinta-suave)}
+
+.territorio{background:var(--media-agua)}
+.banderas{list-style:none;display:flex;flex-wrap:wrap;gap:9px;margin-top:38px}
+.banderas li{display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--linea-tenue);border-radius:var(--borde);
+  padding:8px 13px 8px 10px;background:rgba(244,240,232,.03);
+  transition:border-color var(--dur-corta) var(--ease),background var(--dur-corta) var(--ease)}
+.banderas li:hover{border-color:rgba(183,101,71,.5);background:rgba(183,101,71,.08)}
+.banderas .b{font-size:17px;line-height:1}
+.banderas .n{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--tinta-suave);white-space:nowrap}
+
+.final{background:linear-gradient(180deg,var(--abismo),var(--hondo));
+  padding:var(--aire-vasto) 0 var(--aire-base)}
+.botones{margin-top:32px;display:flex;gap:13px;flex-wrap:wrap}
+</style>
+</Base>

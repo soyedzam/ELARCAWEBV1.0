@@ -1,0 +1,223 @@
+/* ══════════════════════════════════════════════════════════════════
+   EL ARKA · Sistema de diseño · v2.0
+   Fuente única de verdad visual. Nada de color, tipo o aire se declara
+   fuera de aquí.
+
+   REPARTO SEMÁNTICO DEL COLOR (sellado por Ed · 260803)
+   El giro: terracota al frente, lluvia reducida al agua.
+     Terracota  = lo HUMANO y la ACCIÓN. Estructural, no accento.
+                  Sentencias, llamados, la persona, el pacto.
+     Lluvia     = el AGUA, literalmente. Línea de flotación, horizonte,
+                  y el pilar IV — el único punto donde entra la máquina.
+     Tormenta   = protección. El fondo donde se cruza.
+     Marfil     = refugio y lectura. También el CORTE en positivo.
+     Arkadia    = el destino. Solo aparece al final del viaje.
+   ══════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* ── Paleta canon (Universo Maestro V1.0) ── */
+  --tormenta:#0B1F33;
+  --lluvia:#28B8D8;
+  --terracota:#B76547;
+  --arkadia:#5E7568;
+  --marfil:#F4F0E8;
+
+  /* ── Profundidades del mar: fondo según se desciende ── */
+  --abismo:#06141F;      /* superficie nocturna · hero */
+  --hondo:#0B1F33;       /* Tormenta · lecho base */
+  --media-agua:#0E2739;  /* un solo escalón, no una rampa de doce */
+
+  /* ── Tintes de trabajo (contraste verificado sobre --hondo) ── */
+  --terra-luz:#D08A66;   /* terracota legible sobre oscuro */
+  --terra-hondo:#8E4527; /* terracota sobre marfil */
+  --agua-luz:#5ED8F0;    /* solo para el agua, nunca para texto largo */
+  --agua-honda:#12718C;  /* cian legible sobre marfil (AA) */
+  --arkadia-luz:#9CB8A8;
+  --arkadia-honda:#3D5245;
+
+  /* ── Texto: un solo blanco roto, no cuatro ── */
+  --tinta:var(--marfil);
+  --tinta-suave:#CFC9BC;
+  --tinta-tenue:#8FA0AE;
+  --tinta-oscura:#0F2438;  /* sobre marfil */
+  --tinta-oscura-suave:#4A6076;
+
+  /* ── Líneas ── */
+  --linea:rgba(244,240,232,.14);
+  --linea-tenue:rgba(244,240,232,.07);
+  --linea-oscura:rgba(15,36,56,.14);
+
+  /* ── Tipografía · nombres correctos (antes estaban invertidos) ── */
+  --sans:"Sora",system-ui,-apple-system,sans-serif;   /* sistema y futuro */
+  --serif:"Source Serif 4",Georgia,serif;             /* humanidad y pensamiento */
+
+  /* Dos pesos. Solo dos. El contraste es el recurso. */
+  --peso-aire:300;
+  --peso-sentencia:600;
+
+  /* ── Escala con RANGO REAL: existe lo pequeño para que lo grande pese ── */
+  --t-nota:13px;
+  --t-micro:11px;
+  --t-menor:15px;
+  --t-cuerpo:clamp(17px,.55vw + 15.2px,19.5px);
+  --t-guia:clamp(19px,1vw + 16px,24px);
+  --t-sub:clamp(24px,1.9vw + 17px,34px);
+  --t-titulo:clamp(32px,3.6vw + 18px,58px);
+  --t-display:clamp(44px,7.4vw + 8px,116px);   /* uno por pantalla, jamás dos */
+
+  /* ── Dos estilos de etiqueta. No diecisiete. ── */
+  --track-estructural:.28em;   /* eyebrow de sección */
+  --track-inline:.12em;        /* roles, metadatos, botones */
+
+  /* ── Tres densidades de aire: el silencio se reparte, no se promedia ── */
+  --aire-corto:clamp(48px,6vh,68px);
+  --aire-base:clamp(88px,11vh,140px);
+  --aire-vasto:clamp(140px,20vh,260px);
+
+  /* ── Medidas ── */
+  --ancho-max:1180px;
+  --ancho-lectura:66ch;
+  --borde:2px;               /* nítido y deliberado; no se suaviza */
+
+  /* ── Movimiento: una sola firma ── */
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ease-suave:cubic-bezier(.2,.7,.2,1);
+  --dur-corta:.22s;
+  --dur-media:.55s;
+  --dur-larga:1s;
+}
+
+/* ══ Reset mínimo ══ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:auto}
+body{
+  background:var(--abismo);
+  color:var(--tinta);
+  font-family:var(--serif);
+  font-size:var(--t-cuerpo);
+  line-height:1.72;
+  font-weight:380;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+/* Eje óptico de Source Serif 4: casi nadie lo usa y es lo que separa
+   un serif variable bien puesto de "Google Fonts por defecto". */
+body{font-optical-sizing:auto}
+h1,h2,h3,h4{
+  font-family:var(--sans);
+  font-weight:var(--peso-aire);
+  line-height:1.04;
+  letter-spacing:-.028em;
+  text-wrap:balance;
+}
+p{text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+img,svg,video{max-width:100%;display:block}
+::selection{background:var(--terracota);color:var(--marfil)}
+
+/* Foco visible: obligación, no adorno */
+:focus-visible{
+  outline:2px solid var(--agua-luz);
+  outline-offset:3px;
+  border-radius:1px;
+}
+
+/* ══ Utilidades del sistema ══ */
+.contenedor{max-width:var(--ancho-max);margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+.lectura{max-width:var(--ancho-lectura)}
+
+/* La etiqueta estructural: eyebrow de sección. Terracota, no cian. */
+.etiqueta{
+  font-family:var(--sans);
+  font-size:var(--t-micro);
+  font-weight:var(--peso-sentencia);
+  letter-spacing:var(--track-estructural);
+  text-transform:uppercase;
+  color:var(--terra-luz);
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.etiqueta::before{content:"";width:28px;height:1px;background:var(--terracota);flex:none}
+.etiqueta.sin-filete::before{display:none}
+
+/* La etiqueta en línea: roles y metadatos */
+.rotulo{
+  font-family:var(--sans);
+  font-size:var(--t-micro);
+  font-weight:var(--peso-sentencia);
+  letter-spacing:var(--track-inline);
+  text-transform:uppercase;
+  color:var(--tinta-tenue);
+}
+
+/* La sentencia: el recurso de énfasis que reemplaza a la itálica cian.
+   Peso 600, marfil sólido, redonda. Se usa poco para que pese. */
+.sentencia{
+  font-family:var(--sans);
+  font-weight:var(--peso-sentencia);
+  color:var(--marfil);
+  letter-spacing:-.02em;
+}
+
+/* Aparte / voz interior: itálica, pero apagada y menor */
+.aparte{font-style:italic;color:var(--tinta-tenue);font-size:var(--t-guia)}
+
+/* ══ El corte en positivo: la única superficie marfil ══ */
+.positivo{
+  background:var(--marfil);
+  color:var(--tinta-oscura);
+}
+.positivo .etiqueta{color:var(--terra-hondo)}
+.positivo .etiqueta::before{background:var(--terra-hondo)}
+.positivo .rotulo{color:var(--tinta-oscura-suave)}
+.positivo .sentencia{color:var(--tinta-oscura)}
+.positivo p{color:var(--tinta-oscura-suave)}
+
+/* ══ Grano: la textura de la casa. Se conserva y se liga al agua. ══ */
+.grano{
+  position:fixed;inset:0;z-index:60;pointer-events:none;
+  opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ══ Botones ══ */
+.boton{
+  font-family:var(--sans);
+  font-size:12.5px;
+  font-weight:var(--peso-sentencia);
+  letter-spacing:var(--track-inline);
+  text-transform:uppercase;
+  padding:15px 26px;
+  border-radius:var(--borde);
+  border:1px solid transparent;
+  display:inline-block;
+  cursor:pointer;
+  transition:transform var(--dur-corta) var(--ease),
+             background var(--dur-corta) var(--ease),
+             border-color var(--dur-corta) var(--ease),
+             color var(--dur-corta) var(--ease);
+}
+/* Terracota = la única acción. Si aparece decorativa, pierde su fuerza. */
+.boton.principal{background:var(--terracota);color:var(--marfil);border-color:var(--terracota)}
+.boton.principal:hover{background:var(--terra-luz);border-color:var(--terra-luz);transform:translateY(-2px)}
+.boton.contorno{border-color:var(--linea);color:var(--tinta)}
+.boton.contorno:hover{border-color:var(--marfil);transform:translateY(-2px)}
+.positivo .boton.contorno{border-color:rgba(15,36,56,.28);color:var(--tinta-oscura)}
+.positivo .boton.contorno:hover{border-color:var(--tinta-oscura)}
+
+/* ══ Reveal por scroll — mejora progresiva: visible por defecto ══
+   El contenido NUNCA depende de JS para verse. Solo se anima si JS
+   marca el documento como capaz. Así se evitan pantallas en blanco. */
+.js .revelar{opacity:0;transform:translateY(24px);
+  transition:opacity var(--dur-larga) var(--ease),transform var(--dur-larga) var(--ease)}
+.js .revelar.dentro{opacity:1;transform:none}
+.js .revelar.d1{transition-delay:.09s}
+.js .revelar.d2{transition-delay:.18s}
+.js .revelar.d3{transition-delay:.27s}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .revelar{opacity:1!important;transform:none!important}
+}

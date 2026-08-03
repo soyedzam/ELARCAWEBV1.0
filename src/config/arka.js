@@ -1,0 +1,160 @@
+/* ══════════════════════════════════════════════════════════════════
+   EL ARKA · Configuración canónica
+   Nada de la instancia vive en código: textos, rutas, contactos y datos
+   se declaran aquí. Fuente rectora:
+   ADR_MKT_MAN_El-Arca-Carta-Fundacional_260627_v1.7
+   ══════════════════════════════════════════════════════════════════ */
+
+export const SITIO = {
+  origen: "https://elarka.ong",
+  nombre: "EL ARKA",
+  descriptor: "Formación humana para liderar la era de la IA.",
+  /* Frase-bandera principal (Carta · sección D) */
+  bandera: "El mundo entrena para usar la IA. EL ARKA te forma para liderarla.",
+  tagline: "Lidera esta era. Construye tu libertad.",
+};
+
+/* CTA de conversión. El mensaje lo envía el visitante: declara identidad,
+   ecoa el Juramento y pide el primer paso. */
+export const WA_CTA =
+  "https://wa.me/528181388108?text=" +
+  encodeURIComponent(
+    "Vi venir el diluvio y decido no quedarme a la intemperie. Quiero ser Constructor de EL ARKA. ¿Cuál es el primer paso para subir?"
+  );
+
+/* Arquitectura del ecosistema: cinco páginas, no un scroll infinito. */
+export const NAV = [
+  { numero: "I",   corto: "El diluvio",    titulo: "El diluvio",      ruta: "/diluvio/" },
+  { numero: "II",  corto: "La Travesía",   titulo: "La Travesía",     ruta: "/travesia/" },
+  { numero: "III", corto: "La ciudadanía", titulo: "La ciudadanía",   ruta: "/ciudadania/" },
+  { numero: "IV",  corto: "La Flota",      titulo: "La Flota",        ruta: "/flota/" },
+  { numero: "V",   corto: "Arquitectos",   titulo: "Los Arquitectos", ruta: "/arquitectos/" },
+];
+
+/* ── LOS DOS NICHOS (Carta · sección III) ──
+   "los emprendedores y empresarios que, viendo venir el diluvio,
+    decidieron no hundirse y se pusieron a construir" */
+export const NICHOS = [
+  {
+    id: "emprendedor",
+    titulo: "Emprendedores",
+    linea: "Tienes una idea, un oficio o un negocio joven — y ves que las reglas cambiaron antes de que terminaras de aprenderlas.",
+    dolor: "Que tu conocimiento se vuelva commodity antes de que llegue a sostenerte.",
+    orilla: "Un activo propio que produce aunque tú descanses.",
+  },
+  {
+    id: "empresario",
+    titulo: "Empresarios",
+    linea: "Ya levantaste algo que sostiene familias — y ahora ves que la IA puede volverlo prescindible en un año.",
+    dolor: "Que lo que costó una década se evapore, y no saber por dónde empezar sin romper lo que funciona.",
+    orilla: "Una empresa que cruza la era y sigue en pie cuando tú ya no estés.",
+  },
+];
+
+/* ── LA TRAVESÍA · 7 PILARES (Carta · sección B) ──
+   El orden ES la tesis: la IA (El Motor) llega en el pilar 4, nunca antes.
+   Cada pilar vence un sabotaje nombrado: esa columna es del canon. */
+export const PILARES = [
+  { n: 1, bloque: "SER", nombre: "El Ancla", tema: "Soberanía",
+    sabotaje: "Vivir sin propósito ni merecimiento",
+    capa: "Espíritu — no se hereda: es la capa soberana que gobierna. Por eso va primero." },
+  { n: 2, bloque: "SER", nombre: "El Timón", tema: "Reprogramación",
+    sabotaje: "El techo invisible heredado antes de los siete años",
+    capa: "Subconsciente y cultura — se desinstalan." },
+  { n: 3, bloque: "SER", nombre: "El Casco", tema: "Vitalidad",
+    sabotaje: "El sistema nervioso en alerta, sin energía",
+    capa: "Biología — se sana." },
+  { n: 4, bloque: "HACER", nombre: "El Motor", tema: "IA aplicada",
+    sabotaje: "El poder en manos de un operador no consciente",
+    capa: "Aquí, y no antes, entra la máquina.", esAgua: true },
+  { n: 5, bloque: "HACER", nombre: "La Voz", tema: "Comunicación",
+    sabotaje: "No saber hacer creer ni conectar",
+    capa: "La visión que no se comunica no existe." },
+  { n: 6, bloque: "HACER", nombre: "La Corriente", tema: "Ventas",
+    sabotaje: "La visión que no se vuelve libertad",
+    capa: "El músculo que vuelve sostenible todo lo demás." },
+  { n: 7, bloque: "TRASCENDER", nombre: "La Estela", tema: "Legado",
+    sabotaje: "Construir solo para uno mismo, sin dejar huella",
+    capa: "Lo único que permanece." },
+];
+
+export const BLOQUES = [
+  { id: "SER", titulo: "Ser", linea: "Primero se repara al operador.", rango: [1, 3] },
+  { id: "HACER", titulo: "Hacer", linea: "Solo entonces se entrega el poder.", rango: [4, 6] },
+  { id: "TRASCENDER", titulo: "Trascender", linea: "Y todo apunta a lo que permanece.", rango: [7, 7] },
+];
+
+/* ── LOS TRES NOMBRES (Carta · sección A) ── */
+export const NOMBRES = [
+  { nombre: "ARKA", raiz: "latín arca, de arcēre — guardar, proteger",
+    significado: "El cofre que resguarda lo más valioso y lo cruza a salvo.",
+    momento: "El refugio · el origen", color: "tormenta" },
+  { nombre: "ARKAI", raiz: "ARKA + IA · resonancia con el griego arkhḗ — origen y mando",
+    significado: "La única Arka, equipada y nombrada para cruzar la era de la Inteligencia Artificial.",
+    momento: "La nave que cruza esta era · la ciudadanía", color: "lluvia" },
+  { nombre: "ARKADIA", raiz: "griego Arkadía — el paraíso terrenal",
+    significado: "La orilla a la que esa misma Arka llega.",
+    momento: "El destino · la ofrenda", color: "arkadia" },
+];
+
+/* ── LAS DOS CASTAS (Carta · sección C) ── */
+export const CASTAS = [
+  { nombre: "Los Constructores", cuando: "Ahora — antes de que rompan las tempestades",
+    que: "Levantan el Arka por fe, antes de las pruebas.",
+    estatus: "Fundadores. Casta cerrada: se nombran una sola vez.", ahora: true },
+  { nombre: "Los Soberanos", cuando: "Después, cuando el Arka ya navega",
+    que: "Abordan lo ya construido.",
+    estatus: "Ciudadanos plenos, soberanos de su propia vida.", ahora: false },
+];
+
+/* ── LA FLOTA: nodos vivos del ecosistema ── */
+export const FLOTA = [
+  { nombre: "EL ARKA", rol: "Nodo cero", url: "/",
+    linea: "El punto de origen del que nace todo lo demás. La única que habrá.", centro: true },
+  { nombre: "Techo Venezuela", rol: "Nodo con causa", url: "https://techovenezuela.elarka.ong",
+    linea: "Un techo para quien cruza sin tenerlo. Alianza viva del Arka.", externo: true },
+  { nombre: "Club Conéctate", rol: "Encuentro presencial", url: "https://clubconectate.elarka.ong",
+    linea: "Donde la ciudadanía se reconoce cara a cara.", externo: true },
+  { nombre: "La Proa", rol: "Formación en campo", url: "/conectate/",
+    linea: "El taller que se lleva a cada territorio." },
+];
+
+/* ── Territorio: habla hispana · LATAM y España ── */
+export const PAISES = [
+  { b: "🇲🇽", n: "México" },      { b: "🇬🇹", n: "Guatemala" },
+  { b: "🇸🇻", n: "El Salvador" }, { b: "🇭🇳", n: "Honduras" },
+  { b: "🇳🇮", n: "Nicaragua" },   { b: "🇨🇷", n: "Costa Rica" },
+  { b: "🇵🇦", n: "Panamá" },      { b: "🇨🇺", n: "Cuba" },
+  { b: "🇩🇴", n: "R. Dominicana" },{ b: "🇵🇷", n: "Puerto Rico" },
+  { b: "🇨🇴", n: "Colombia" },    { b: "🇻🇪", n: "Venezuela" },
+  { b: "🇪🇨", n: "Ecuador" },     { b: "🇵🇪", n: "Perú" },
+  { b: "🇧🇴", n: "Bolivia" },     { b: "🇨🇱", n: "Chile" },
+  { b: "🇦🇷", n: "Argentina" },   { b: "🇺🇾", n: "Uruguay" },
+  { b: "🇵🇾", n: "Paraguay" },    { b: "🇪🇸", n: "España" },
+];
+
+/* ── Los Arquitectos ── */
+export const ARQUITECTOS = [
+  { nombre: "Ed Zam", rol: "El Arquitecto de Realidades",
+    voto: "Yo veo la Realidad antes de que exista, y trazo el plano hacia ella." },
+  { nombre: "Val Mosquera", rol: "La Arquitecta de Realidades",
+    voto: "Yo le doy voz, rostro y relato, y hago que el mundo la crea, la desee y la defienda." },
+];
+
+/* ── El Juramento del Constructor (Carta) ── */
+export const JURAMENTO = [
+  "Yo, que vi venir el diluvio, decido no hundirme.",
+  "Elijo construir antes de que rompan las tempestades, cuando todavía cuesta creer.",
+  "Me comprometo a reprogramarme antes de exigirle al mundo,",
+  "a remar por los que aún no suben,",
+  "y a no soltar jamás a quien suba después de mí.",
+  "No busco mi nombre: busco dejar huella.",
+];
+export const JURAMENTO_SELLO = "Subo al Arka. Soy Constructor.";
+
+/* Fundación: por instrucción de los Arquitectos, este dato vive
+   ÚNICAMENTE en /arquitectos. No se repite en el resto del sitio. */
+export const FUNDACION = {
+  fecha: "23 de julio de 2026",
+  lugar: "Mérida, Yucatán, México",
+};

@@ -1,0 +1,151 @@
+---
+import Base from "../layouts/Base.astro";
+import { WA_CTA, NOMBRES, CASTAS } from "../config/arka.js";
+
+const titulo = "La ciudadanía · ARKA, ARKAI y ARKADIA";
+const descripcion =
+  "Subir es el principio; lo que sigue es pertenecer. Una sola Arka en tres momentos de un viaje: ARKA el refugio, ARKAI la nave de la era de la IA, ARKADIA la orilla. Y las dos castas: Constructores y Soberanos.";
+---
+<Base titulo={titulo} descripcion={descripcion} ruta="/ciudadania/">
+
+<header class="portada">
+  <div class="contenedor">
+    <p class="etiqueta">ARKAI · la ciudadanía</p>
+    <h1 class="display">Subir es el principio.<br>
+      Lo que sigue es <span class="sentencia">pertenecer</span>.</h1>
+    <p class="entrada lectura">Dejas de cruzar solo y te vuelves parte de un cuerpo que avanza junto,
+      se sostiene y se multiplica.</p>
+  </div>
+</header>
+
+<!-- ░░░░ LOS TRES NOMBRES ░░░░ -->
+<section class="mov" aria-labelledby="h-nombres">
+  <div class="contenedor">
+    <p class="etiqueta revelar">Los tres nombres</p>
+    <h2 class="titulo revelar d1" id="h-nombres">No son tres arkas.<br>
+      Es <span class="sentencia">una sola</span>, en tres momentos.</h2>
+    <p class="guia lectura revelar d2">Subes al <b>ARKA</b> que te guarda → cruzas como ciudadano de
+      <b>ARKAI</b> la era de la IA → desembarcas en <b>ARKADIA</b>, la vida libre.</p>
+
+    <ol class="nombres">
+      {NOMBRES.map((n, i) => (
+        <li class={`nombre n-${n.color} revelar d${i + 1}`}>
+          <div class="palabra">
+            <h3>{n.nombre}</h3>
+            <p class="momento">{n.momento}</p>
+          </div>
+          <div class="cuerpo">
+            <p class="significado">{n.significado}</p>
+            <p class="raiz"><span class="rotulo">Raíz</span>{n.raiz}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+    <p class="aparte revelar d3" style="margin-top:34px;max-width:56ch">Una sola nave, y su travesía
+      entera dicha en tres palabras que comparten el mismo comienzo — porque el refugio que te salva
+      en la tormenta es la misma semilla de la tierra prometida.</p>
+  </div>
+</section>
+
+<!-- ░░░░ EL ARKADIANO · corte en positivo ░░░░ -->
+<section class="mov positivo corte" aria-labelledby="h-arkadiano">
+  <div class="contenedor">
+    <p class="etiqueta revelar">La identidad</p>
+    <h2 class="titulo revelar d1" id="h-arkadiano">Aquí nadie presume.<br>
+      Tomas <span class="sentencia">un nombre nuevo</span>.</h2>
+    <p class="guia lectura revelar d2">No se te reconoce por tus seguidores ni por tu título, sino por
+      lo que construyes. <span class="sentencia">Un Constructor solo es reconocido por otro Constructor.</span></p>
+    <div class="identidad revelar d2">
+      <p>Quien va hacia la tierra prometida y la construye desde hoy se llama <b>Arkadiano</b>.
+        Esa es la identidad de todos los de adentro. Dentro de ella, tu <b>casta</b> dice tu rol
+        y tu momento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░ LAS DOS CASTAS ░░░░ -->
+<section class="mov" aria-labelledby="h-castas">
+  <div class="contenedor">
+    <p class="etiqueta revelar">Las dos eras</p>
+    <h2 class="titulo revelar d1" id="h-castas">El Arka solo se construye una vez.</h2>
+    <div class="castas">
+      {CASTAS.map((c, i) => (
+        <article class={`casta${c.ahora ? " ahora" : ""} revelar d${i + 1}`}>
+          <p class="rotulo cuando">{c.cuando}</p>
+          <h3>{c.nombre}</h3>
+          <p class="que">{c.que}</p>
+          <p class="estatus">{c.estatus}</p>
+        </article>
+      ))}
+    </div>
+    <p class="guia lectura revelar d3" style="margin-top:36px">Hoy se forja al soberano de su propia
+      vida. Mañana, los que lleguen solo podrán abordar lo ya construido.</p>
+  </div>
+</section>
+
+<section class="mov final" aria-labelledby="h-cta">
+  <div class="contenedor">
+    <h2 class="titulo revelar" id="h-cta">Hoy puedes ser <span class="sentencia">Constructor</span>.</h2>
+    <div class="botones revelar d1">
+      <a href={WA_CTA} target="_blank" rel="noopener" class="boton principal">Solicitar abordar</a>
+      <a href="/flota/" class="boton contorno">Ver La Flota</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.portada{padding:calc(var(--aire-vasto) + 60px) 0 var(--aire-base);
+  background:linear-gradient(180deg,var(--abismo),var(--hondo))}
+.display{font-size:clamp(36px,5.2vw + 12px,84px);margin:22px 0 0;line-height:1.02}
+.entrada{margin-top:26px;font-size:var(--t-guia);color:var(--tinta-suave);line-height:1.6}
+.mov{padding:var(--aire-base) 0}
+.mov.corte{padding:var(--aire-vasto) 0;background:var(--marfil)}
+.titulo{font-size:var(--t-titulo);margin-top:20px}
+.guia{font-size:var(--t-guia);color:var(--tinta-suave);line-height:1.6;margin-top:22px}
+.positivo .guia{color:var(--tinta-oscura-suave)}
+.guia b{font-weight:600;color:var(--marfil)}
+.positivo .guia b{color:var(--tinta-oscura)}
+
+/* ══ Los tres nombres: progresión, no rejilla ══ */
+.nombres{list-style:none;margin-top:52px;display:grid;gap:2px}
+.nombre{display:grid;gap:16px;padding:34px 0;border-top:1px solid var(--linea-tenue)}
+@media(min-width:820px){.nombre{grid-template-columns:2fr 3fr;gap:56px;align-items:baseline}}
+.nombre h3{font-family:var(--sans);font-weight:var(--peso-aire);
+  font-size:clamp(38px,4.4vw + 16px,72px);letter-spacing:.02em;line-height:1;color:var(--marfil)}
+.momento{margin-top:10px;font-family:var(--sans);font-size:var(--t-micro);font-weight:600;
+  letter-spacing:var(--track-inline);text-transform:uppercase;color:var(--tinta-tenue)}
+.significado{font-size:var(--t-guia);color:var(--tinta-suave);line-height:1.5}
+.raiz{margin-top:14px;font-size:var(--t-menor);color:var(--tinta-tenue);font-style:italic}
+.raiz .rotulo{display:block;margin-bottom:3px;font-style:normal}
+/* El color marca el momento del viaje: refugio → agua → orilla */
+.n-tormenta h3{color:var(--marfil)}
+.n-lluvia h3{color:var(--agua-luz)}
+.n-arkadia h3{color:var(--arkadia-luz)}
+.n-tormenta .momento{color:var(--tinta-tenue)}
+.n-lluvia .momento{color:rgba(94,216,240,.72)}
+.n-arkadia .momento{color:rgba(156,184,168,.8)}
+
+.identidad{margin-top:34px;max-width:58ch}
+.identidad p{color:var(--tinta-oscura-suave)}
+.identidad b{font-weight:600;color:var(--tinta-oscura)}
+
+/* ══ Las castas: la de ahora pesa más ══ */
+.castas{display:grid;gap:1px;margin-top:48px;background:var(--linea-tenue);
+  border-top:1px solid var(--linea-tenue);border-bottom:1px solid var(--linea-tenue)}
+@media(min-width:820px){.castas{grid-template-columns:1.25fr 1fr}}
+.casta{background:var(--abismo);padding:34px clamp(22px,3vw,38px)}
+.casta.ahora{background:#0C2233;border-top:2px solid var(--terracota)}
+.casta .cuando{color:var(--tinta-tenue)}
+.casta.ahora .cuando{color:var(--terra-luz)}
+.casta h3{font-family:var(--sans);font-weight:var(--peso-aire);
+  font-size:clamp(28px,2.4vw + 18px,42px);letter-spacing:-.025em;
+  color:var(--marfil);margin-top:10px;line-height:1.04}
+.casta .que{margin-top:14px;color:var(--tinta-suave);font-size:var(--t-cuerpo)}
+.casta .estatus{margin-top:12px;color:var(--tinta-tenue);font-size:var(--t-menor);line-height:1.6}
+.casta.ahora .estatus{color:var(--terra-luz)}
+
+.final{background:linear-gradient(180deg,var(--abismo),var(--hondo));
+  padding:var(--aire-vasto) 0 var(--aire-base)}
+.botones{margin-top:32px;display:flex;gap:13px;flex-wrap:wrap}
+</style>
+</Base>
