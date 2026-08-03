@@ -107,16 +107,25 @@ export const CASTAS = [
     estatus: "Ciudadanos plenos, soberanos de su propia vida.", ahora: false },
 ];
 
-/* ── LA FLOTA: nodos vivos del ecosistema ── */
-export const FLOTA = [
+/* ── LA FLOTA · nodos ──
+   Canon (Carta · sección C): los nodos son parte del Arka; las alianzas
+   la acompañan pero NO son parte de la ciudadanía. Se muestran aparte. */
+export const NODOS = [
   { nombre: "EL ARKA", rol: "Nodo cero", url: "/",
     linea: "El punto de origen del que nace todo lo demás. La única que habrá.", centro: true },
-  { nombre: "Techo Venezuela", rol: "Nodo con causa", url: "https://techovenezuela.elarka.ong",
-    linea: "Un techo para quien cruza sin tenerlo. Alianza viva del Arka.", externo: true },
-  { nombre: "Club Conéctate", rol: "Encuentro presencial", url: "https://clubconectate.elarka.ong",
-    linea: "Donde la ciudadanía se reconoce cara a cara.", externo: true },
   { nombre: "La Proa", rol: "Formación en campo", url: "/conectate/",
-    linea: "El taller que se lleva a cada territorio." },
+    linea: "El taller que se lleva a cada territorio: donde el Arka toca tierra." },
+];
+
+/* ── LAS ALIANZAS ──
+   "EL ARKA teje alianzas y apoya a otras causas e instituciones —ONGs,
+    cámaras, comunidad— para que más gente cruce."
+   [VALIDAR con Ed] la clasificación de cada una y su descripción. */
+export const ALIANZAS = [
+  { nombre: "Club Conéctate", tipo: "Comunidad · encuentro", url: "https://clubconectate.elarka.ong",
+    linea: "Encuentros donde la comunidad se reconoce cara a cara.", externo: true },
+  { nombre: "Techo Venezuela", tipo: "Causa social", url: "https://techovenezuela.elarka.ong",
+    linea: "Un techo para quien cruza sin tenerlo.", externo: true },
 ];
 
 /* ── Territorio: habla hispana · LATAM y España ── */

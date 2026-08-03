@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import { WA_CTA, FLOTA, PAISES } from "../config/arka.js";
+import { WA_CTA, NODOS, ALIANZAS, PAISES } from "../config/arka.js";
 
 const titulo = "La Flota · los nodos de EL ARKA";
 const descripcion =
@@ -26,12 +26,38 @@ const descripcion =
       <span class="sentencia">Ya está en el agua.</span></h2>
 
     <ul class="nodos">
-      {FLOTA.map((n, i) => (
+      {NODOS.map((n, i) => (
         <li class={`nodo${n.centro ? " centro" : ""} revelar d${Math.min(i, 3)}`}>
           <a href={n.url} target={n.externo ? "_blank" : undefined} rel={n.externo ? "noopener" : undefined}>
             <p class="rotulo rol">{n.rol}</p>
             <h3>{n.nombre}{n.externo && <span class="fuera" aria-hidden="true">↗</span>}</h3>
             <p class="linea">{n.linea}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- ░░░░ LAS ALIANZAS ░░░░
+     Canon: acompañan al Arka, pero no son parte de la ciudadanía.
+     Por eso viven en su propia sección y con otro tratamiento visual. -->
+<section class="mov alianzas-sec" aria-labelledby="h-alianzas">
+  <div class="contenedor">
+    <p class="etiqueta revelar">Las alianzas</p>
+    <h2 class="titulo revelar d1" id="h-alianzas">Nadie cruza solo.<br>
+      <span class="sentencia">Tampoco nosotros.</span></h2>
+    <p class="guia lectura revelar d2">Más allá de su ciudadanía, El Arka teje alianzas con otras
+      causas e instituciones —ONGs, cámaras, comunidad— para que más gente cruce.
+      <span class="aparte-inline">Acompañan al Arka; no son parte de la ciudadanía.</span></p>
+
+    <ul class="alianzas revelar d2">
+      {ALIANZAS.map((a) => (
+        <li>
+          <a href={a.url} target={a.externo ? "_blank" : undefined} rel={a.externo ? "noopener" : undefined}>
+            <p class="rotulo tipo">{a.tipo}</p>
+            <h3>{a.nombre}{a.externo && <span class="fuera" aria-hidden="true">↗</span>}</h3>
+            <p class="linea">{a.linea}</p>
           </a>
         </li>
       ))}
@@ -126,6 +152,23 @@ const descripcion =
   font-size:clamp(26px,2vw + 18px,38px);letter-spacing:-.025em;color:var(--marfil);margin-top:9px}
 .nodo .fuera{font-size:.5em;color:var(--tinta-tenue);margin-left:8px;vertical-align:super}
 .nodo .linea{margin-top:12px;color:var(--tinta-suave);font-size:var(--t-menor);line-height:1.6}
+
+/* Las alianzas: acompañan, no pertenecen. Tratamiento más ligero
+   que los nodos — sin fondo propio, solo filete. */
+.alianzas-sec{background:var(--hondo)}
+.aparte-inline{display:block;margin-top:8px;font-style:italic;
+  color:var(--tinta-tenue);font-size:var(--t-menor)}
+.alianzas{list-style:none;display:grid;gap:2px;margin-top:40px}
+@media(min-width:760px){.alianzas{grid-template-columns:1fr 1fr;gap:2px 48px}}
+.alianzas li{border-top:1px solid var(--linea-tenue)}
+.alianzas a{display:block;padding:26px 0;transition:opacity var(--dur-corta) var(--ease)}
+.alianzas a:hover{opacity:.72}
+.alianzas .tipo{color:var(--arkadia-luz)}
+.alianzas h3{font-family:var(--sans);font-weight:var(--peso-aire);
+  font-size:clamp(23px,1.6vw + 16px,32px);letter-spacing:-.022em;
+  color:var(--marfil);margin-top:8px}
+.alianzas .fuera{font-size:.5em;color:var(--tinta-tenue);margin-left:7px;vertical-align:super}
+.alianzas .linea{margin-top:9px;color:var(--tinta-suave);font-size:var(--t-menor);line-height:1.6}
 
 .pilares-nodo{display:grid;gap:1px;margin-top:44px;background:rgba(15,36,56,.1);
   border-top:1px solid rgba(15,36,56,.1);border-bottom:1px solid rgba(15,36,56,.1)}
