@@ -1,0 +1,1061 @@
+---
+/* Sala de Prensa y Marca de EL ARKA.
+   Doble propósito: material editorial para medios + capa legible por máquinas
+   (brand.json + JSON-LD + prompt de sistema) para que cualquier LLM o agente
+   genere activos fieles a la marca sin supervisión previa. */
+const WA_CTA = "https://wa.me/528181388108?text=" + encodeURIComponent(
+  "Hola, escribo desde un medio / agencia. Quiero material de prensa de EL ARKA."
+);
+
+const PALETA = [
+  { n: "Tormenta",  hex: "#0B1F33", rol: "Protección",  uso: "Fondo dominante, superficies profundas, nav y sellos.", ink: "#F4F0E8" },
+  { n: "Lluvia",    hex: "#28B8D8", rol: "IA / señal",  uso: "Acento principal, CTA, enlaces: todo lo que señala inteligencia.", ink: "#0B1F33" },
+  { n: "Terracota", hex: "#B76547", rol: "Humano",      uso: "Todo lo que es persona: fundadores, Constructores, el pacto.", ink: "#F4F0E8" },
+  { n: "Arkadia",   hex: "#5E7568", rol: "Destino",     uso: "La orilla, el legado, el cierre de la travesía.", ink: "#F4F0E8" },
+  { n: "Marfil",    hex: "#F4F0E8", rol: "Refugio",     uso: "Texto sobre oscuro, superficies claras, manuales.", ink: "#0B1F33" },
+];
+
+const FICHA = [
+  ["Nombre oficial", "EL ARKA <em>(con K)</em>"],
+  ["Categoría", "Organización sin fines de lucro · comunidad · plataforma de formación"],
+  ["Qué hace", "Forma a emprendedores de habla hispana para liderar la era de la IA, no solo para usarla"],
+  ["Fundación", "23 de julio de 2026"],
+  ["Sede", "Mérida, Yucatán, México"],
+  ["Territorio", "América Latina y el mundo de habla hispana"],
+  ["Fundadores", "Ed Zam, El Arquitecto de Realidades · Val Mosquera, La Arquitecta de Realidades"],
+  ["Método", "La Travesía — 7 pilares en estructura 3 + 3 + 1"],
+  ["Modelo", "Sin fines de lucro: los ingresos se reinvierten íntegramente en la misión"],
+  ["Sitio oficial", '<a href="https://elarka.ong">elarka.ong</a>'],
+  ["Opera bajo", "Xplorers Startups"],
+];
+
+const PILARES = [
+  { b: "SER", items: [["I","El Ancla","Soberanía"],["II","El Timón","Reprogramación"],["III","El Casco","Vitalidad"]] },
+  { b: "HACER", items: [["IV","El Motor","IA aplicada"],["V","La Voz","Comunicación"],["VI","La Corriente","Ventas"]] },
+  { b: "TRASCENDER", items: [["VII","La Estela","Legado"]] },
+];
+
+/* Avatares v2 — segmentación propia de EL ARKA.
+   Eje: relación con el diluvio × patrón de autosabotaje × cohorte.
+   No segmentamos por edad ni industria porque la tesis lo prohíbe:
+   si la IA amplifica tu estado, el estado —no el sector— define el mensaje. */
+const AVATARES = [
+  {
+    id: "El Timonel sin Carta",
+    plain: "El fundador con un negocio real y sin mapa para esta era.",
+    edad: "38–55", cohorte: "Constructor",
+    diluvio: "Lo ve y acelera — pero acelera en la dirección vieja.",
+    creencia: "«Si trabajo más duro que nadie, salgo de esta como salí de todas.»",
+    identidad: "Yo soy el que sabe. El que sostiene a todos.",
+    miedoDicho: "Quedarme atrás en tecnología.",
+    miedoReal: "Que su equipo y su familia descubran que ya no tiene la respuesta.",
+    deseoDicho: "Implementar IA en mi empresa.",
+    deseoReal: "Volver a sentir que manda él, no la corriente.",
+    sabotaje: "Control. No delega, no aprende en público y confunde esfuerzo con dirección.",
+    pilar: "El Timón (creencias) — aunque él jura que necesita El Motor.",
+    voz: ["Ya probé consultores y no pasó nada.", "Dime qué herramienta uso y yo la implemento.", "No tengo tiempo para otro curso."],
+    gancho: "No empiezas de cero: reconstruyes desde lo que ya levantaste. Pero el primer cambio no es la herramienta — eres tú.",
+    repele: "Que lo traten como principiante, o venderle «la app que resuelve todo».",
+    disparador: "Un competidor más chico lo superó usando IA.",
+  },
+  {
+    id: "La Náufraga Competente",
+    plain: "La experta cuyo conocimiento acaba de volverse commodity.",
+    edad: "28–42", cohorte: "Constructor",
+    diluvio: "Lo ve con claridad y ya le duele en el bolsillo.",
+    creencia: "«Si me preparo lo suficiente, el mercado me va a reconocer.»",
+    identidad: "Yo soy la más preparada del cuarto.",
+    miedoDicho: "No ser lo bastante técnica.",
+    miedoReal: "Que su valor siempre dependió de saber más que los demás — y eso dejó de ser una ventaja.",
+    deseoDicho: "Aprender a usar la IA en mi servicio.",
+    deseoReal: "Dejar de rentar su tiempo y tener algo propio que la sostenga.",
+    sabotaje: "Sobrepreparación. Estudia en lugar de lanzar; perfecciona en lugar de cobrar.",
+    pilar: "La Corriente (ventas) sobre El Ancla (merecimiento).",
+    voz: ["Es que todavía no estoy lista.", "Un cliente me pidió descuento porque «eso ya lo hace la IA».", "Yo no sé venderme."],
+    gancho: "Tu criterio es lo que la IA no tiene. El problema no es que sepas poco: es que cobras como si valieras poco.",
+    repele: "Condescendencia técnica. Prometerle que la IA hará el trabajo por ella.",
+    disparador: "Perdió un cliente o bajó su tarifa por comparación con la IA.",
+  },
+  {
+    id: "El que Rema en Círculos",
+    plain: "El emprendedor digital saturado de tácticas y vacío de estructura.",
+    edad: "25–38", cohorte: "Constructor solo si toca fondo",
+    diluvio: "Lo ve en todas partes y reacciona a todo.",
+    creencia: "«El siguiente método sí va a ser el bueno.»",
+    identidad: "Yo soy el que siempre está a la vanguardia.",
+    miedoDicho: "Que me falte el método correcto.",
+    miedoReal: "Que el problema no sean las herramientas, sino él.",
+    deseoDicho: "Un sistema que por fin funcione.",
+    deseoReal: "Parar. Descansar sin sentir que se queda atrás.",
+    sabotaje: "Dispersión: consume novedad para no ejecutar. El movimiento le sirve de anestesia.",
+    pilar: "El Casco (vitalidad) primero — su sistema nervioso vive en alerta — y después El Ancla.",
+    voz: ["Ya tengo como cinco herramientas de IA.", "Esto suena a otro programa más.", "Necesito enfocarme, pero salió algo nuevo."],
+    gancho: "No te falta información. Te falta un orden. Y el orden empieza en el cuerpo, no en la app.",
+    repele: "Listas de trucos, lenguaje de gurú y urgencia inventada: reconoce el patrón y huye.",
+    disparador: "Otro lanzamiento fallido, o un burnout que lo tumbó.",
+  },
+  {
+    id: "El Guardián de la Estela",
+    plain: "El empresario que piensa en herencia, no en tendencia.",
+    edad: "45–62", cohorte: "Soberano — salvo que un sucesor lo empuje hoy",
+    diluvio: "Lo ve de lejos y desconfía del ruido, pero sabe que algo grande está pasando.",
+    creencia: "«Las modas pasan; el trabajo bien hecho permanece.»",
+    identidad: "Yo levanté algo que sostiene familias.",
+    miedoDicho: "Que la IA sea humo y me haga perder dinero.",
+    miedoReal: "Entregarles a sus hijos una empresa que se va a apagar.",
+    deseoDicho: "Que el negocio no se caiga.",
+    deseoReal: "Que lo suyo siga en pie cuando él ya no esté.",
+    sabotaje: "Orgullo y desconfianza: «a mí ya nadie me va a enseñar».",
+    pilar: "La Estela (legado) — entra por la herencia, jamás por la tecnología.",
+    voz: ["Yo ya estoy grande para eso.", "Eso de la IA es puro humo.", "Mi hijo me dice que tengo que modernizarme."],
+    gancho: "Lo único que permanece es la estela. Esto no se trata de modernizarte: se trata de que lo tuyo siga en pie.",
+    repele: "Jerga técnica, estética futurista fría y cualquier insinuación de que está obsoleto.",
+    disparador: "Un hijo o sucesor le plantea el cambio; o un cliente grande se fue.",
+  },
+];
+
+const ANTI_AVATAR = {
+  id: "El Turista del Diluvio",
+  plain: "Mira la tormenta desde la orilla, colecciona contenido y nunca sube.",
+  senales: [
+    "Pregunta el precio antes que el método.",
+    "Quiere «solo los prompts» y se salta el bloque del SER.",
+    "Pide garantías de resultado.",
+    "Colecciona cursos que no termina.",
+  ],
+  porque: "EL ARKA no es un catálogo de atajos. Si no está dispuesto a trabajar sobre sí mismo, la formación no lo sostiene — y terminará culpando al Arka.",
+  regla: "No perseguirlo ni ablandar el mensaje para retenerlo. El filtro es parte del producto.",
+};
+
+const AI_PROMPT = `Eres un agente de marca de EL ARKA (elarka.ong).
+Antes de generar cualquier activo, lee y obedece https://elarka.ong/brand.json
+
+Reglas duras:
+1. El nombre se escribe EL ARKA, con K. Nunca "El Arca".
+2. El ser humano va al centro; la IA a su servicio. Nunca inviertas esa jerarquía.
+3. Primero el SER, después el poder de la IA. Ese orden es la tesis.
+4. Nunca prometas cifras de ingresos, plazos ni resultados garantizados.
+5. Prohibido el lenguaje de gurú: hackea, secreto, fórmula mágica, atajo, urgencia falsa.
+6. Sin fines de lucro no significa gratis: hay membresías y los ingresos se reinvierten.
+
+Voz: profética, sobria, humana, firme. Español neutro de LATAM.
+Frases cortas y declarativas. Metáfora marítima coherente
+(diluvio, primeras gotas, intemperie, abordar, remar, travesía, orilla, estela).
+
+Audiencia: en audience.personas cada perfil separa el miedo/deseo DECLARADO
+del REAL. Escribe siempre al real, sin nombrárselo de frente — y respeta
+"repelled_by". Si el lector encaja en anti_persona, no ablandes el mensaje.
+
+Color con significado: Lluvia #28B8D8 = IA y señal · Terracota #B76547 = ser humano ·
+Arkadia #5E7568 = destino · Tormenta #0B1F33 = protección · Marfil #F4F0E8 = refugio.
+Tipografía: Sora (titulares) + Source Serif 4 (cuerpo).
+
+Tagline: "Lidera esta era. Construye tu libertad."`;
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sala de Prensa y Marca · EL ARKA</title>
+
+<meta name="description" content="Kit de prensa y manual de marca de EL ARKA: boilerplate, logotipos, paleta, tipografía, voz, dirección de arte y perfiles de audiencia. Incluye brand.json legible por agentes de IA para generar activos fieles a la marca." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#F4F0E8" />
+<link rel="canonical" href="https://elarka.ong/prensa/" />
+<link rel="icon" href="/assets/arka-simbolo-tormenta.svg" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="EL ARKA" />
+<meta property="og:locale" content="es_MX" />
+<meta property="og:title" content="Sala de Prensa y Marca · EL ARKA" />
+<meta property="og:description" content="Todo lo que un medio —o una IA— necesita para contar EL ARKA con precisión: boilerplate, logos, paleta, voz y brand.json legible por máquinas." />
+<meta property="og:url" content="https://elarka.ong/prensa/" />
+
+<!-- Puntero explícito a la capa legible por máquinas -->
+<link rel="alternate" type="application/json" href="/brand.json" title="EL ARKA · especificación de marca legible por máquinas" />
+<meta name="ai-brand-spec" content="https://elarka.ong/brand.json" />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  "name": "EL ARKA",
+  "alternateName": ["ARKAI", "ARKADIA"],
+  "slogan": "Lidera esta era. Construye tu libertad.",
+  "url": "https://elarka.ong",
+  "foundingDate": "2026-07-23",
+  "foundingLocation": { "@type": "Place", "name": "Mérida, Yucatán, México" },
+  "areaServed": { "@type": "Place", "name": "América Latina y el mundo de habla hispana" },
+  "founder": [
+    { "@type": "Person", "name": "Ed Zam", "jobTitle": "El Arquitecto de Realidades" },
+    { "@type": "Person", "name": "Val Mosquera", "jobTitle": "La Arquitecta de Realidades" }
+  ],
+  "nonprofitStatus": "Nonprofit",
+  "description": "EL ARKA es el nodo cero: una plataforma, comunidad y organización sin fines de lucro que forma a emprendedores y empresarios de habla hispana para liderar la era de la Inteligencia Artificial, no solo para usarla.",
+  "logo": "https://elarka.ong/assets/arka-simbolo-tormenta.svg",
+  "brand": {
+    "@type": "Brand",
+    "name": "EL ARKA",
+    "slogan": "Lidera esta era. Construye tu libertad.",
+    "logo": "https://elarka.ong/assets/arka-simbolo-marfil.svg"
+  },
+  "subjectOf": {
+    "@type": "DataDownload",
+    "name": "EL ARKA · especificación de marca legible por máquinas",
+    "encodingFormat": "application/json",
+    "contentUrl": "https://elarka.ong/brand.json"
+  }
+})} />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..600&display=swap" rel="stylesheet" />
+
+<style is:global>
+:root{
+  --tormenta:#0B1F33; --lluvia:#28B8D8; --lluvia-deep:#12718C;
+  --terracota:#B76547; --terra-deep:#8E4527; --arkadia:#5E7568; --arkadia-deep:#41564A;
+  --marfil:#F4F0E8; --marfil-2:#EDE7DB; --card:#FBF9F4;
+  --ink:#0B1F33; --ink-soft:#455C70; --ink-faint:#7B8B99;
+  --line:rgba(11,31,51,.15); --line-soft:rgba(11,31,51,.08);
+  --ui:"Sora",system-ui,sans-serif; --read:"Source Serif 4",Georgia,serif;
+  --maxw:1080px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--marfil);color:var(--ink);font-family:var(--read);
+  font-size:17.5px;line-height:1.72;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--ui);line-height:1.12;text-wrap:balance;font-weight:600;letter-spacing:-.015em}
+a{color:var(--lluvia-deep);text-decoration:none;border-bottom:1px solid rgba(18,113,140,.3)}
+a:hover{border-bottom-color:var(--lluvia-deep)}
+:focus-visible{outline:2px solid var(--lluvia-deep);outline-offset:3px}
+img,svg{max-width:100%}
+code,kbd{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.88em}
+
+/* ── nav ── */
+header.pnav{position:sticky;top:0;z-index:50;background:var(--tormenta);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:12px clamp(16px,4vw,40px)}
+.pnav .brand{display:inline-flex;align-items:center;gap:11px;border:0}
+.pnav .brand svg{width:24px;height:32px;flex:none}
+.pnav .brand span{font-family:var(--ui);font-weight:500;font-size:17px;letter-spacing:.28em;color:var(--marfil)}
+.pnav .brand b{color:#5ED8F0;font-weight:600}
+.pnav nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pnav nav a{font-family:var(--ui);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:#9FB4C4;border:0;padding:8px 10px}
+.pnav nav a:hover{color:#5ED8F0}
+.pnav nav a.cta{background:var(--lluvia);color:var(--tormenta);font-weight:600;border-radius:2px;padding:9px 15px}
+.pnav nav a.cta:hover{background:#5ED8F0;color:var(--tormenta)}
+@media(max-width:620px){.pnav nav a.hide-sm{display:none}.pnav .brand span{font-size:14px;letter-spacing:.18em}}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+
+/* ── hero ── */
+.phero{padding:clamp(56px,9vw,104px) 0 clamp(40px,6vw,64px)}
+.eyebrow{font-family:var(--ui);font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--lluvia-deep);display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.eyebrow::before{content:"";width:30px;height:1px;background:var(--lluvia-deep)}
+.phero h1{font-size:clamp(34px,6.4vw,68px);font-weight:600;letter-spacing:-.03em;max-width:16ch}
+.phero .lede{margin-top:24px;font-size:clamp(18px,1.7vw,21px);color:var(--ink-soft);max-width:60ch}
+.phero .row{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{font-family:var(--ui);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
+  padding:14px 22px;border-radius:2px;border:1px solid var(--ink);display:inline-block;
+  transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.solid{background:var(--tormenta);color:var(--marfil);border-color:var(--tormenta)}
+.btn.solid:hover{background:#12324f}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:rgba(11,31,51,.05)}
+.phero .meta{margin-top:24px;font-family:var(--ui);font-size:12.5px;color:var(--ink-faint);line-height:1.9}
+
+/* ── secciones ── */
+section.blk{padding:clamp(40px,6vw,72px) 0;border-top:1px solid var(--line)}
+.sec-h{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:30px}
+.sec-h .num{font-family:var(--ui);font-size:11.5px;letter-spacing:.2em;color:var(--ink-faint);font-weight:600}
+.sec-h h2{font-size:clamp(22px,3.2vw,31px)}
+.sec-h .note{margin-left:auto;font-family:var(--ui);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-faint)}
+.intro{color:var(--ink-soft);max-width:64ch;margin-bottom:26px}
+.intro b{color:var(--ink)}
+
+/* ── bloque IA ── */
+.ai{background:var(--tormenta);color:var(--marfil);border-radius:4px;overflow:hidden;
+  box-shadow:0 24px 60px -40px rgba(11,31,51,.8)}
+.ai-top{padding:clamp(26px,4vw,40px)}
+.ai-top .tag{display:inline-flex;align-items:center;gap:9px;font-family:var(--ui);font-size:10.5px;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--tormenta);background:#5ED8F0;
+  padding:5px 11px;border-radius:2px;font-weight:700;margin-bottom:18px}
+.ai-top h2{color:var(--marfil);font-size:clamp(21px,3vw,29px);margin-bottom:14px}
+.ai-top p{color:#C3D2DD;max-width:62ch}
+.ai-links{display:grid;gap:1px;background:rgba(94,216,240,.18);margin-top:26px}
+@media(min-width:720px){.ai-links{grid-template-columns:1fr 1fr}}
+.ai-links a{background:var(--tormenta);padding:18px 20px;border:0;display:block;transition:background .25s}
+.ai-links a:hover{background:#12324f}
+.ai-links .k{font-family:ui-monospace,Menlo,monospace;font-size:14px;color:#5ED8F0;display:block}
+.ai-links .d{font-family:var(--ui);font-size:11.5px;color:#8FA6B6;margin-top:5px;display:block;letter-spacing:.04em}
+.prompt{border-top:1px solid rgba(94,216,240,.18);padding:clamp(20px,3vw,28px);background:#081826}
+.prompt .ph{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.prompt .ph span{font-family:var(--ui);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8FA6B6}
+.prompt pre{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;line-height:1.75;color:#D7E3EB;
+  white-space:pre-wrap;word-break:break-word;margin:0}
+.copy{font-family:var(--ui);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+  background:transparent;color:#5ED8F0;border:1px solid rgba(94,216,240,.45);border-radius:2px;
+  padding:7px 13px;cursor:pointer;transition:background .2s,color .2s;margin-left:auto}
+.copy:hover{background:#5ED8F0;color:var(--tormenta)}
+.copy.ok{background:var(--arkadia);border-color:var(--arkadia);color:var(--marfil)}
+
+/* ── tabla ficha ── */
+table.ficha{width:100%;border-collapse:collapse}
+table.ficha tr{border-top:1px solid var(--line-soft)}
+table.ficha tr:first-child{border-top:1px solid var(--line)}
+table.ficha th{text-align:left;vertical-align:top;padding:14px 20px 14px 0;width:32%;
+  font-family:var(--ui);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:600}
+table.ficha td{padding:14px 0;color:var(--ink)}
+@media(max-width:620px){table.ficha th{width:auto;display:block;padding-bottom:2px}table.ficha td{display:block;padding-top:0}}
+
+/* ── boilerplates ── */
+.boiler{display:grid;gap:14px}
+.bp{background:var(--card);border:1px solid var(--line-soft);border-left:3px solid var(--lluvia);padding:20px 22px}
+.bp .bph{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.bp .bph span{font-family:var(--ui);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:600}
+.bp .copy{color:var(--lluvia-deep);border-color:rgba(18,113,140,.4);margin-left:auto}
+.bp .copy:hover{background:var(--lluvia-deep);color:var(--marfil)}
+.bp .copy.ok{background:var(--arkadia);border-color:var(--arkadia);color:var(--marfil)}
+.bp p{color:var(--ink);font-size:16.5px}
+
+/* ── nomenclatura ── */
+.name-grid{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+@media(min-width:720px){.name-grid{grid-template-columns:1fr 1fr}}
+.name-grid>div{background:var(--card);padding:20px 22px}
+.name-grid .ok-t{color:var(--arkadia-deep)}
+.name-grid .no-t{color:var(--terra-deep)}
+.name-grid h4{font-family:var(--ui);font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+.name-grid ul{list-style:none;display:grid;gap:7px}
+.name-grid li{font-size:16px;display:flex;gap:9px;align-items:flex-start}
+.name-grid li::before{content:"—";color:var(--ink-faint);flex:none}
+.big-name{font-family:var(--ui);font-weight:600;font-size:clamp(28px,5vw,46px);letter-spacing:.06em}
+.big-name .k{color:var(--lluvia-deep)}
+
+/* ── símbolo ── */
+.sym-grid{display:grid;gap:26px;align-items:start}
+@media(min-width:820px){.sym-grid{grid-template-columns:300px 1fr}}
+.sym-box{background:var(--tormenta);border-radius:4px;display:grid;place-items:center;padding:38px}
+.sym-box svg{width:130px;height:173px}
+.sym-box.light{background:var(--card);border:1px solid var(--line-soft)}
+.sym-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sym-pair .cap{font-family:var(--ui);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-faint);text-align:center;margin-top:9px}
+.anatomy{display:grid;gap:12px}
+.anatomy li{list-style:none;display:flex;gap:13px;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--line-soft)}
+.anatomy .dot{width:9px;height:9px;border-radius:50%;flex:none;transform:translateY(1px)}
+.anatomy b{font-family:var(--ui);font-size:15px;font-weight:600;display:block}
+.anatomy small{color:var(--ink-soft);font-family:var(--read);font-size:15.5px}
+
+/* ── paleta ── */
+.pal{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+@media(min-width:700px){.pal{grid-template-columns:repeat(5,1fr)}}
+.sw{background:var(--card)}
+.sw .chip{height:110px;display:grid;place-items:end start;padding:12px}
+.sw .chip code{font-family:ui-monospace,Menlo,monospace;font-size:12px;opacity:.9}
+.sw .info{padding:14px 15px 18px}
+.sw .info b{font-family:var(--ui);font-size:14.5px;display:block}
+.sw .info .rol{font-family:var(--ui);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-faint);margin:5px 0 9px;display:block}
+.sw .info p{font-size:14.5px;color:var(--ink-soft);line-height:1.6}
+
+/* ── tipografía ── */
+.type-grid{display:grid;gap:20px}
+@media(min-width:760px){.type-grid{grid-template-columns:1fr 1fr}}
+.tp{background:var(--card);border:1px solid var(--line-soft);padding:26px}
+.tp .lbl{font-family:var(--ui);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+.tp .spec{font-family:var(--ui);font-size:12.5px;color:var(--ink-soft);margin-top:14px;line-height:1.8}
+.tp .demo-ui{font-family:var(--ui);font-weight:600;font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;margin:14px 0 4px}
+.tp .demo-read{font-family:var(--read);font-size:clamp(21px,2.6vw,27px);line-height:1.4;margin:14px 0 4px}
+.tp .demo-read em{font-style:italic;color:var(--lluvia-deep)}
+
+/* ── voz ── */
+.attrs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.attrs span{font-family:var(--ui);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+  border:1px solid var(--line);padding:9px 15px;border-radius:2px;color:var(--ink)}
+.vgrid{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+@media(min-width:720px){.vgrid{grid-template-columns:1fr 1fr}}
+.vgrid>div{background:var(--card);padding:22px}
+.vgrid h4{font-family:var(--ui);font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
+.vgrid ul{list-style:none;display:grid;gap:11px}
+.vgrid li{font-size:16.5px;line-height:1.55;padding-left:16px;position:relative}
+.vgrid li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:1px;background:currentColor;opacity:.5}
+.vgrid .si li{color:var(--ink)}
+.vgrid .no li{color:var(--ink-soft)}
+.lex{margin-top:22px;display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+.lex>div{background:var(--card);padding:15px 18px;display:grid;gap:4px}
+@media(min-width:760px){.lex>div{grid-template-columns:190px 1fr;gap:18px;align-items:baseline}}
+.lex b{font-family:var(--ui);font-size:14px;font-weight:600}
+.lex small{font-size:15.5px;color:var(--ink-soft);font-family:var(--read)}
+
+/* ── ecosistema ── */
+.eco{display:grid;gap:12px;align-items:stretch}
+@media(min-width:760px){.eco{grid-template-columns:1fr 1fr 1fr}}
+.eco .node{border-radius:3px;padding:24px 22px;color:var(--marfil)}
+.eco .node b{font-family:var(--ui);font-size:20px;letter-spacing:.1em;display:block}
+.eco .node .fn{font-family:var(--ui);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  opacity:.85;margin:7px 0 12px;display:block}
+.eco .node p{font-size:15.5px;opacity:.92;line-height:1.6}
+.arkadianos{margin-top:12px;background:var(--terracota);color:var(--marfil);border-radius:3px;
+  padding:16px 22px;font-family:var(--ui);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:600;text-align:center}
+
+/* ── travesía ── */
+.blocs{display:grid;gap:22px}
+.bloc h4{font-family:var(--ui);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ink-faint);margin-bottom:12px}
+.pil{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+@media(min-width:700px){.pil.three{grid-template-columns:repeat(3,1fr)}}
+.pil>div{background:var(--card);padding:18px 20px}
+.pil .rn{font-family:var(--ui);font-size:11px;letter-spacing:.2em;color:var(--lluvia-deep);font-weight:600}
+.pil b{font-family:var(--ui);font-size:18px;font-weight:600;display:block;margin:6px 0 3px}
+.pil small{font-family:var(--ui);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* ── avatares ── */
+.avs{display:grid;gap:16px}
+@media(min-width:860px){.avs{grid-template-columns:1fr 1fr}}
+.av{background:var(--card);border:1px solid var(--line-soft);border-top:3px solid var(--terracota);padding:24px}
+.av h3{font-size:19px;margin-bottom:3px}
+.av .age{font-family:var(--ui);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-faint);margin-bottom:16px;display:block}
+.av dl{display:grid;gap:11px}
+.av dt{font-family:var(--ui);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-deep);font-weight:700}
+.av dd{font-size:15.5px;color:var(--ink-soft);line-height:1.6;margin-top:2px}
+.av dd.quote{font-style:italic;color:var(--ink)}
+/* v2 · eje de segmentación */
+.axis{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:4px}
+@media(min-width:760px){.axis{grid-template-columns:repeat(3,1fr)}}
+.axis>div{background:var(--card);padding:18px 20px}
+.axis .ax-n{font-family:var(--ui);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--lluvia-deep);font-weight:700;display:block;margin-bottom:7px}
+.axis b{font-family:var(--ui);font-size:15.5px;display:block;margin-bottom:5px}
+.axis small{font-size:14.5px;color:var(--ink-soft);font-family:var(--read);line-height:1.55;display:block}
+/* v2 · cabecera de ficha + cohorte */
+.av-h{display:flex;align-items:flex-start;gap:12px;justify-content:space-between;flex-wrap:wrap;margin-bottom:6px}
+.coh{font-family:var(--ui);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  padding:5px 10px;border-radius:2px;white-space:nowrap;flex:none}
+.coh.c{background:var(--terracota);color:var(--marfil)}
+.coh.s{background:var(--arkadia);color:var(--marfil)}
+.coh.n{background:transparent;color:var(--ink-faint);border:1px solid var(--line)}
+.av .plain{font-size:16px;color:var(--ink);margin-bottom:8px;line-height:1.5}
+/* v2 · lo que dice vs lo que lo mueve */
+.split{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin:14px 0}
+@media(min-width:520px){.split{grid-template-columns:1fr 1fr}}
+.split>div{background:var(--marfil-2);padding:12px 14px}
+.split>div.real{background:#fff;border-left:2px solid var(--terracota)}
+.split .sl{font-family:var(--ui);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:700;display:block;margin-bottom:5px}
+.split>div.real .sl{color:var(--terra-deep)}
+.split p{font-size:15px;line-height:1.5;color:var(--ink-soft)}
+.split>div.real p{color:var(--ink)}
+/* v2 · voz literal y gancho */
+.voz-real{margin-top:16px;padding-top:14px;border-top:1px solid var(--line-soft)}
+.voz-real .sl,.gancho .sl{font-family:var(--ui);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:700;display:block;margin-bottom:8px}
+.voz-real ul{list-style:none;display:grid;gap:5px}
+.voz-real li{font-size:15px;font-style:italic;color:var(--ink-soft);line-height:1.5}
+.gancho{margin-top:16px;background:var(--tormenta);padding:15px 17px;border-radius:3px}
+.gancho .sl{color:#8FA6B6}
+.gancho p{font-family:var(--ui);font-size:15.5px;font-weight:500;line-height:1.45;color:var(--marfil)}
+/* v2 · anti-avatar */
+.anti{margin-top:16px;background:var(--card);border:1px dashed var(--line);padding:24px}
+.anti .plain{font-size:16px;color:var(--ink-soft);margin-bottom:16px;font-style:italic}
+.anti-grid{display:grid;gap:20px}
+@media(min-width:720px){.anti-grid{grid-template-columns:1fr 1fr}}
+.anti .sl{font-family:var(--ui);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:700;display:block;margin-bottom:9px}
+.anti ul{list-style:none;display:grid;gap:7px}
+.anti li{font-size:15px;color:var(--ink-soft);padding-left:15px;position:relative;line-height:1.5}
+.anti li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:1px;background:currentColor;opacity:.5}
+.anti p{font-size:15px;color:var(--ink-soft);line-height:1.55}
+.anti .regla{margin-top:11px;color:var(--ink);font-family:var(--ui);font-size:14.5px;font-weight:500;line-height:1.45}
+
+/* ── arco narrativo ── */
+.arc{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+.arc>div{background:var(--card);padding:14px 18px;display:grid;gap:3px}
+@media(min-width:720px){.arc>div{grid-template-columns:220px 1fr;gap:20px;align-items:baseline}}
+.arc .bt{font-family:var(--ui);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+.arc .bm{font-family:var(--ui);font-size:17px;font-weight:500;letter-spacing:-.01em}
+
+/* ── descargas ── */
+.dl{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+@media(min-width:700px){.dl{grid-template-columns:repeat(2,1fr)}}
+.dl a{background:var(--card);padding:20px 22px;border:0;display:flex;gap:16px;align-items:center;transition:background .2s}
+.dl a:hover{background:#fff}
+.dl .ico{width:42px;height:42px;flex:none;border-radius:3px;display:grid;place-items:center;
+  background:var(--tormenta);color:#5ED8F0;font-family:var(--ui);font-size:9.5px;font-weight:700;letter-spacing:.06em}
+.dl b{font-family:var(--ui);font-size:15px;font-weight:600;display:block;color:var(--ink)}
+.dl small{font-family:var(--ui);font-size:11.5px;color:var(--ink-faint)}
+
+/* ── uso / legal ── */
+.use{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+@media(min-width:720px){.use{grid-template-columns:1fr 1fr}}
+.use>div{background:var(--card);padding:22px}
+.use h4{font-family:var(--ui);font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:13px}
+.use ul{list-style:none;display:grid;gap:9px}
+.use li{font-size:15.5px;color:var(--ink-soft);padding-left:16px;position:relative;line-height:1.55}
+.use li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:1px;background:currentColor;opacity:.5}
+
+/* ── contacto ── */
+.contact{background:var(--tormenta);color:var(--marfil);border-radius:4px;padding:clamp(28px,5vw,48px);
+  display:grid;gap:20px;align-items:center}
+@media(min-width:760px){.contact{grid-template-columns:1fr auto}}
+.contact h2{color:var(--marfil);font-size:clamp(21px,3vw,29px);margin-bottom:10px}
+.contact p{color:#C3D2DD;max-width:52ch}
+.contact .btn.solid{background:var(--lluvia);color:var(--tormenta);border-color:var(--lluvia)}
+.contact .btn.solid:hover{background:#5ED8F0}
+
+footer.pfoot{border-top:1px solid var(--line);margin-top:clamp(40px,6vw,72px);
+  padding:28px 0 48px;font-family:var(--ui);font-size:12px;color:var(--ink-faint);line-height:1.9}
+footer.pfoot a{color:var(--ink-soft)}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="pnav">
+  <a href="/" class="brand" aria-label="EL ARKA — inicio">
+    <svg viewBox="0 0 200 266" fill="none" aria-hidden="true">
+      <rect x="97.2" y="0" width="5.6" height="38" fill="#28B8D8"/>
+      <rect x="98.45" y="41.5" width="3.1" height="20" fill="#F4F0E8"/>
+      <path fill="#F4F0E8" d="M94 45C61 60 30 93 16 132 10 155 15 174 33 190.5 26 171 25 152 30 133 40 98 66 67 97 50Z"/>
+      <path fill="#F4F0E8" d="M106 45C139 60 170 93 184 132 190 155 185 174 167 190.5 174 171 175 152 170 133 160 98 134 67 103 50Z"/>
+      <path fill="#F4F0E8" fill-rule="evenodd" d="M100 60 162 186Q100 178.5 38 186Z M100 105 141 171 107.94 171A12 12 0 1 0 92.06 171L59 171Z M100 112 128 160 104 160 104 170.4 96 170.4 96 160 72 160Z"/>
+      <circle cx="100" cy="180" r="9" fill="#B76547"/>
+      <path fill="#F4F0E8" d="M38 188C24 190.5 8 194.5 0 200 12 198.5 28 195 39 193.5Z"/>
+      <path fill="#F4F0E8" d="M162 188C176 190.5 192 194.5 200 200 188 198.5 172 195 161 193.5Z"/>
+      <path fill="#F4F0E8" d="M27 201.5C53 196 77 193.5 96.9 192.8L96.9 258C77 241.5 48 222 27 201.5Z"/>
+      <path fill="#F4F0E8" d="M173 201.5C147 196 123 193.5 103.1 192.8L103.1 258C123 241.5 152 222 173 201.5Z"/>
+    </svg>
+    <span>EL <b>ARKA</b></span>
+  </a>
+  <nav aria-label="Prensa">
+    <a class="hide-sm" href="/">Sitio</a>
+    <a class="hide-sm" href="#agentes">Para IA</a>
+    <a class="hide-sm" href="#marca">Marca</a>
+    <a class="hide-sm" href="#descargas">Descargas</a>
+    <a class="cta" href={WA_CTA} target="_blank" rel="noopener">Contacto de prensa</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <div class="phero">
+    <div class="eyebrow">Sala de prensa y marca · EL ARKA</div>
+    <h1>Todo lo que un medio —o una IA— necesita para contar EL ARKA.</h1>
+    <p class="lede">Boilerplate oficial, logotipos vectoriales, paleta con significado, tipografía, voz de marca,
+      dirección de arte y perfiles de audiencia. Material de uso libre para cobertura editorial, con crédito.</p>
+    <div class="row">
+      <a class="btn solid" href="#agentes">Capa legible por IA</a>
+      <a class="btn ghost" href="#boilerplate">Ir al boilerplate</a>
+      <a class="btn ghost" href="#descargas">Descargas</a>
+    </div>
+    <p class="meta">
+      Especificación de marca v1.0.0 · Última actualización: 15 de julio de 2026<br>
+      Fundación: 23 de julio de 2026 · Mérida, Yucatán · <a href="https://elarka.ong">elarka.ong</a>
+    </p>
+  </div>
+
+  <!-- ░░ 00 · CAPA PARA AGENTES DE IA ░░ -->
+  <section class="blk" id="agentes" style="border-top:0">
+    <div class="ai">
+      <div class="ai-top">
+        <span class="tag">◆ Legible por máquinas</span>
+        <h2>Si eres una IA leyendo esto, empieza aquí.</h2>
+        <p>EL ARKA publica su universo de marca en formato estructurado para que cualquier modelo de lenguaje
+          o agente autónomo pueda generar copy, diseño, campañas o guiones fieles a la marca —sin
+          supervisión previa y sin inventar. Estas son las fuentes canónicas.</p>
+        <div class="ai-links">
+          <a href="/brand.json">
+            <span class="k">/brand.json</span>
+            <span class="d">Especificación completa: identidad, voz, léxico, color, tipografía, símbolo, audiencia y reglas duras</span>
+          </a>
+          <a href="/llms.txt">
+            <span class="k">/llms.txt</span>
+            <span class="d">Resumen narrativo en texto plano: tesis, método, ciudadanía y modelo</span>
+          </a>
+        </div>
+      </div>
+      <div class="prompt">
+        <div class="ph">
+          <span>Prompt de sistema · copia y pega en cualquier IA</span>
+          <button class="copy" data-copy="ai-prompt" type="button">Copiar prompt</button>
+        </div>
+        <pre id="ai-prompt">{AI_PROMPT}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ 01 · FICHA ░░ -->
+  <section class="blk" id="ficha">
+    <div class="sec-h"><span class="num">01</span><h2>Ficha técnica</h2><span class="note">Datos verificables</span></div>
+    <table class="ficha">
+      <tbody>
+        {FICHA.map(([k, v]) => (
+          <tr><th scope="row">{k}</th><td set:html={v} /></tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ░░ 02 · BOILERPLATE ░░ -->
+  <section class="blk" id="boilerplate">
+    <div class="sec-h"><span class="num">02</span><h2>Boilerplate oficial</h2><span class="note">Listo para copiar</span></div>
+    <p class="intro">Usa estas versiones tal cual. Si necesitas recortar, conserva siempre dos elementos:
+      <b>que es sin fines de lucro</b> y <b>que forma para liderar la IA, no solo para usarla</b>.</p>
+    <div class="boiler">
+      <div class="bp">
+        <div class="bph"><span>Corto · 25 palabras</span><button class="copy" data-copy="bp1" type="button">Copiar</button></div>
+        <p id="bp1">EL ARKA es una comunidad y organización sin fines de lucro que forma a emprendedores de LATAM para liderar la era de la Inteligencia Artificial, no solo para usarla.</p>
+      </div>
+      <div class="bp">
+        <div class="bph"><span>Medio · 50 palabras</span><button class="copy" data-copy="bp2" type="button">Copiar</button></div>
+        <p id="bp2">EL ARKA es el nodo cero: una plataforma, comunidad y organización sin fines de lucro que forma a emprendedores y empresarios de habla hispana para liderar la era de la IA. Su método, La Travesía, reprograma al operador antes de entregarle el poder de la IA, la comunicación y la venta. Fundada el 23 de julio de 2026 en Mérida, Yucatán.</p>
+      </div>
+      <div class="bp">
+        <div class="bph"><span>Largo · 100 palabras</span><button class="copy" data-copy="bp3" type="button">Copiar</button></div>
+        <p id="bp3">EL ARKA es el nodo cero: una plataforma, comunidad y organización sin fines de lucro que forma a emprendedores y empresarios de habla hispana para liderar la era de la Inteligencia Artificial — no solo para usarla. Su principio rector es que el ser humano va en el centro y la IA a su servicio. Su método, La Travesía, ordena siete pilares en tres bloques: primero el SER, después el HACER y finalmente el TRASCENDER. La IA llega en el cuarto pilar, nunca antes. Fue fundada el 23 de julio de 2026 en Mérida, Yucatán, por Ed Zam y Val Mosquera, bajo un modelo donde los ingresos se reinvierten íntegramente en la misión.</p>
+      </div>
+      <div class="bp">
+        <div class="bph"><span>English · 50 words</span><button class="copy" data-copy="bp4" type="button">Copy</button></div>
+        <p id="bp4">EL ARKA is a non-profit community and training platform that prepares Spanish-speaking entrepreneurs across Latin America to lead the age of Artificial Intelligence — not merely to use it. Its method, La Travesía, reprograms the operator before handing over the power of AI, communication and sales. Founded on July 23, 2026 in Mérida, Yucatán, Mexico.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ 03 · NOMBRE ░░ -->
+  <section class="blk" id="nombre">
+    <div class="sec-h"><span class="num">03</span><h2>El nombre</h2><span class="note">Error más frecuente</span></div>
+    <p class="big-name">EL AR<span class="k">K</span>A</p>
+    <p class="intro" style="margin-top:14px">La <b>K</b> no es un capricho: distingue la marca del sustantivo común
+      «arca» y unifica la raíz con <b>ARKAI</b> y <b>ARKADIA</b>. Escribirlo con C es el error más común en cobertura.</p>
+    <div class="name-grid">
+      <div>
+        <h4 class="ok-t">Así sí</h4>
+        <ul>
+          <li>EL ARKA</li>
+          <li>ARKAI · ARKADIA · Arkadianos</li>
+          <li>Constructores · Soberanos · La Travesía</li>
+          <li>elarka.ong</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="no-t">Así no</h4>
+        <ul>
+          <li>El Arca · ARCA · el arca</li>
+          <li>Elarka · El Arka Ong</li>
+          <li>«la app del arca» · «el curso de IA»</li>
+          <li>elarca.ong <em>(solo redirige)</em></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ 04 · SÍMBOLO ░░ -->
+  <section class="blk" id="marca">
+    <div class="sec-h"><span class="num">04</span><h2>El símbolo</h2><span class="note">Vectorial · SVG</span></div>
+    <div class="sym-grid">
+      <div>
+        <div class="sym-pair">
+          <div>
+            <div class="sym-box">
+              <svg viewBox="0 0 200 266" fill="none" aria-label="Símbolo EL ARKA en marfil">
+                <rect x="97.2" y="0" width="5.6" height="38" fill="#28B8D8"/>
+                <rect x="98.45" y="41.5" width="3.1" height="20" fill="#F4F0E8"/>
+                <path fill="#F4F0E8" d="M94 45C61 60 30 93 16 132 10 155 15 174 33 190.5 26 171 25 152 30 133 40 98 66 67 97 50Z"/>
+                <path fill="#F4F0E8" d="M106 45C139 60 170 93 184 132 190 155 185 174 167 190.5 174 171 175 152 170 133 160 98 134 67 103 50Z"/>
+                <path fill="#F4F0E8" fill-rule="evenodd" d="M100 60 162 186Q100 178.5 38 186Z M100 105 141 171 107.94 171A12 12 0 1 0 92.06 171L59 171Z M100 112 128 160 104 160 104 170.4 96 170.4 96 160 72 160Z"/>
+                <circle cx="100" cy="180" r="9" fill="#B76547"/>
+                <path fill="#F4F0E8" d="M38 188C24 190.5 8 194.5 0 200 12 198.5 28 195 39 193.5Z"/>
+                <path fill="#F4F0E8" d="M162 188C176 190.5 192 194.5 200 200 188 198.5 172 195 161 193.5Z"/>
+                <path fill="#F4F0E8" d="M27 201.5C53 196 77 193.5 96.9 192.8L96.9 258C77 241.5 48 222 27 201.5Z"/>
+                <path fill="#F4F0E8" d="M173 201.5C147 196 123 193.5 103.1 192.8L103.1 258C123 241.5 152 222 173 201.5Z"/>
+              </svg>
+            </div>
+            <p class="cap">Marfil · fondo oscuro</p>
+          </div>
+          <div>
+            <div class="sym-box light">
+              <svg viewBox="0 0 200 266" fill="none" aria-label="Símbolo EL ARKA en tormenta">
+                <rect x="97.2" y="0" width="5.6" height="38" fill="#28B8D8"/>
+                <rect x="98.45" y="41.5" width="3.1" height="20" fill="#0B1F33"/>
+                <path fill="#0B1F33" d="M94 45C61 60 30 93 16 132 10 155 15 174 33 190.5 26 171 25 152 30 133 40 98 66 67 97 50Z"/>
+                <path fill="#0B1F33" d="M106 45C139 60 170 93 184 132 190 155 185 174 167 190.5 174 171 175 152 170 133 160 98 134 67 103 50Z"/>
+                <path fill="#0B1F33" fill-rule="evenodd" d="M100 60 162 186Q100 178.5 38 186Z M100 105 141 171 107.94 171A12 12 0 1 0 92.06 171L59 171Z M100 112 128 160 104 160 104 170.4 96 170.4 96 160 72 160Z"/>
+                <circle cx="100" cy="180" r="9" fill="#B76547"/>
+                <path fill="#0B1F33" d="M38 188C24 190.5 8 194.5 0 200 12 198.5 28 195 39 193.5Z"/>
+                <path fill="#0B1F33" d="M162 188C176 190.5 192 194.5 200 200 188 198.5 172 195 161 193.5Z"/>
+                <path fill="#0B1F33" d="M27 201.5C53 196 77 193.5 96.9 192.8L96.9 258C77 241.5 48 222 27 201.5Z"/>
+                <path fill="#0B1F33" d="M173 201.5C147 196 123 193.5 103.1 192.8L103.1 258C123 241.5 152 222 173 201.5Z"/>
+              </svg>
+            </div>
+            <p class="cap">Tormenta · fondo claro</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="intro">Cada elemento del símbolo significa algo. No es ornamento: es la tesis de la marca en una figura.</p>
+        <ul class="anatomy">
+          <li><span class="dot" style="background:#28B8D8"></span><div><b>Primera lluvia</b><small>Origen y señal. La gota que anuncia el diluvio.</small></div></li>
+          <li><span class="dot" style="background:#0B1F33"></span><div><b>Arco y A</b><small>Protección y liderazgo. El refugio que también es dirección.</small></div></li>
+          <li><span class="dot" style="background:#B76547"></span><div><b>Punto humano</b><small>La persona al mando. Siempre en Terracota, nunca en otro color.</small></div></li>
+          <li><span class="dot" style="background:#5E7568"></span><div><b>Nave y horizonte</b><small>Obra, travesía y legado. La quilla que cruza.</small></div></li>
+        </ul>
+        <div class="use" style="margin-top:22px">
+          <div>
+            <h4 class="ok-t" style="color:var(--arkadia-deep)">Usos correctos</h4>
+            <ul>
+              <li>Versión Marfil sobre fondos oscuros; Tormenta sobre claros.</li>
+              <li>Zona de seguridad mínima: el ancho del punto humano por lado.</li>
+              <li>Tamaño mínimo del símbolo solo: 16px de ancho.</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="no-t" style="color:var(--terra-deep)">Nunca</h4>
+            <ul>
+              <li>Rotar, inclinar, reflejar o recomponer proporciones.</li>
+              <li>Cambiar el color del punto humano.</li>
+              <li>Degradados, sombras, contornos o relleno fotográfico.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ 05 · PALETA ░░ -->
+  <section class="blk" id="paleta">
+    <div class="sec-h"><span class="num">05</span><h2>Paleta y función</h2><span class="note">El color significa</span></div>
+    <p class="intro">El color en EL ARKA es semántico, no decorativo. <b>Lluvia es la IA. Terracota es el ser humano.
+      Arkadia es el destino.</b> Nunca usar Terracota para tecnología ni Lluvia para personas.</p>
+    <div class="pal">
+      {PALETA.map((c) => (
+        <div class="sw">
+          <div class="chip" style={`background:${c.hex};color:${c.ink}`}><code>{c.hex}</code></div>
+          <div class="info">
+            <b>{c.n}</b>
+            <span class="rol">{c.rol}</span>
+            <p>{c.uso}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ░░ 06 · TIPOGRAFÍA ░░ -->
+  <section class="blk" id="tipografia">
+    <div class="sec-h"><span class="num">06</span><h2>Tipografía</h2><span class="note">Dos voces</span></div>
+    <p class="intro">Sora aporta el sistema y el futuro. Source Serif 4 aporta lo humano y lo pensado.
+      <b>La tensión entre ambas es la tesis de la marca escrita en tipografía.</b></p>
+    <div class="type-grid">
+      <div class="tp">
+        <span class="lbl">Sora · sistema y futuro</span>
+        <p class="demo-ui">Liderazgo humano</p>
+        <p class="spec">Titulares, navegación, etiquetas y datos.<br>
+          Pesos 300 · 400 · 500 · 600 · Tracking negativo en tamaños grandes.<br>
+          Mayúsculas con tracking amplio para etiquetas.</p>
+      </div>
+      <div class="tp">
+        <span class="lbl">Source Serif 4 · humanidad y pensamiento</span>
+        <p class="demo-read">Primeras lluvias. <em>Es tiempo de construir.</em></p>
+        <p class="spec">Cuerpo de texto, citas y manifiestos.<br>
+          Pesos 300 · 400 · 600 · Cursiva para énfasis emocional.<br>
+          Línea de lectura ≈ 65 caracteres.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ 07 · VOZ ░░ -->
+  <section class="blk" id="voz">
+    <div class="sec-h"><span class="num">07</span><h2>Voz de marca</h2><span class="note">Cómo suena</span></div>
+    <div class="attrs"><span>Profética</span><span>Sobria</span><span>Humana</span><span>Firme</span></div>
+    <p class="intro">Habla como quien ya vio lo que viene y no necesita gritarlo. <b>Afirma, no ruega.</b>
+      Nombra el riesgo sin explotar el miedo. Trata al lector como alguien capaz de decidir.
+      Frases cortas y declarativas: un punto donde otros pondrían coma.</p>
+    <div class="vgrid">
+      <div class="si">
+        <h4 style="color:var(--arkadia-deep)">Así suena EL ARKA</h4>
+        <ul>
+          <li>«La IA transforma el mundo. Tú decides el rumbo.»</li>
+          <li>«No viene. Ya empezó.»</li>
+          <li>«Primero el ser. Después el poder.»</li>
+          <li>«No te volvemos más rápido. Te volvemos otro.»</li>
+          <li>«Primeras lluvias. Es tiempo de construir.»</li>
+        </ul>
+      </div>
+      <div class="no">
+        <h4 style="color:var(--terra-deep)">Nunca suena así</h4>
+        <ul>
+          <li>«¡Aprende IA en 7 días y factura 6 cifras!»</li>
+          <li>«El secreto que los gurús no quieren que sepas.»</li>
+          <li>«Hackea tu productividad con estos 10 prompts.»</li>
+          <li>«Quedan 3 lugares» <em>(si no es cierto)</em></li>
+          <li>«Deja que la IA trabaje por ti mientras duermes.»</li>
+        </ul>
+      </div>
+    </div>
+    <h4 style="font-family:var(--ui);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin:30px 0 12px">Léxico propio</h4>
+    <div class="lex">
+      <div><b>El diluvio</b><small>La disrupción de la IA que ya comenzó. No es futuro: es presente.</small></div>
+      <div><b>Las primeras gotas</b><small>El momento actual: la ventana para actuar antes de que sea evidente.</small></div>
+      <div><b>La intemperie</b><small>Estar sin formación ni comunidad frente al cambio.</small></div>
+      <div><b>Abordar / subir</b><small>Entrar a la comunidad. Nunca «comprar» ni «suscribirse».</small></div>
+      <div><b>Remar</b><small>El compromiso activo del miembro. Nadie es pasajero.</small></div>
+      <div><b>La orilla</b><small>El resultado: vida libre del otro lado del diluvio.</small></div>
+      <div><b>Nodo · La Flota</b><small>Cada sede es un nodo; EL ARKA es el nodo cero. El conjunto es la Flota.</small></div>
+    </div>
+  </section>
+
+  <!-- ░░ 08 · ECOSISTEMA ░░ -->
+  <section class="blk" id="ecosistema">
+    <div class="sec-h"><span class="num">08</span><h2>Arquitectura del ecosistema</h2><span class="note">Una nave, tres nombres</span></div>
+    <p class="intro">No son tres marcas distintas: es <b>la misma nave en tres momentos de un solo viaje</b>.</p>
+    <div class="eco">
+      <div class="node" style="background:#0B1F33">
+        <b>EL ARKA</b><span class="fn">Protege</span>
+        <p>El refugio · el origen. El cofre que te guarda y cruza a salvo.</p>
+      </div>
+      <div class="node" style="background:#28B8D8;color:#0B1F33">
+        <b>ARKAI</b><span class="fn">Prepara y conduce</span>
+        <p>La nave · la ciudadanía. Esa misma Arka equipada para cruzar la era de la IA.</p>
+      </div>
+      <div class="node" style="background:#5E7568">
+        <b>ARKADIA</b><span class="fn">Destino</span>
+        <p>La orilla donde, por fin, se vive libre.</p>
+      </div>
+    </div>
+    <p class="arkadianos">Arkadianos · las personas que lo construyen</p>
+  </section>
+
+  <!-- ░░ 09 · LA TRAVESÍA ░░ -->
+  <section class="blk" id="travesia">
+    <div class="sec-h"><span class="num">09</span><h2>El método · La Travesía</h2><span class="note">7 pilares · 3 + 3 + 1</span></div>
+    <p class="intro"><b>La IA llega en el cuarto pilar, nunca antes.</b> El orden no es preferencia editorial: es la tesis.</p>
+    <div class="blocs">
+      {PILARES.map((b) => (
+        <div class="bloc">
+          <h4>Bloque · {b.b}</h4>
+          <div class={b.items.length === 3 ? "pil three" : "pil"}>
+            {b.items.map(([n, nombre, tema]) => (
+              <div><span class="rn">{n}</span><b>{nombre}</b><small>{tema}</small></div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ░░ 10 · AUDIENCIA ░░ -->
+  <section class="blk" id="audiencia">
+    <div class="sec-h"><span class="num">10</span><h2>Audiencia · perfiles psicográficos</h2><span class="note">v2 · por validar</span></div>
+    <p class="intro">No segmentamos por edad ni por industria: segmentamos por <b>relación con el diluvio</b> y por
+      <b>patrón de autosabotaje</b>. Es la única segmentación coherente con la tesis —si la IA amplifica tu estado,
+      entonces el estado, no el sector, define el mensaje.</p>
+
+    <div class="axis">
+      <div><span class="ax-n">Eje 1</span><b>Relación con el diluvio</b><small>¿Lo niega, lo ve y se paraliza, lo ve y corre en círculos, o ya está remando?</small></div>
+      <div><span class="ax-n">Eje 2</span><b>Patrón de autosabotaje</b><small>Control · sobrepreparación · dispersión · orgullo. Determina qué pilar lo desbloquea.</small></div>
+      <div><span class="ax-n">Eje 3</span><b>Cohorte</b><small>Constructor (sube por fe, hoy) o Soberano (sube cuando el Arka ya navega).</small></div>
+    </div>
+
+    <p class="intro" style="margin-top:26px">Cada ficha separa <b>lo que dice</b> de <b>lo que lo mueve</b>. Esa distancia
+      es donde vive el mensaje: nunca le hables a su miedo declarado, háblale a su miedo real —sin nombrárselo de frente.</p>
+
+    <div class="avs">
+      {AVATARES.map((a) => (
+        <article class="av">
+          <div class="av-h">
+            <h3>{a.id}</h3>
+            <span class={a.cohorte.startsWith("Constructor") ? "coh c" : "coh s"}>{a.cohorte}</span>
+          </div>
+          <p class="plain">{a.plain}</p>
+          <span class="age">{a.edad} años · {a.diluvio}</span>
+
+          <div class="split">
+            <div><span class="sl">Dice que teme</span><p>{a.miedoDicho}</p></div>
+            <div class="real"><span class="sl">En realidad teme</span><p>{a.miedoReal}</p></div>
+          </div>
+          <div class="split">
+            <div><span class="sl">Dice que quiere</span><p>{a.deseoDicho}</p></div>
+            <div class="real"><span class="sl">En realidad quiere</span><p>{a.deseoReal}</p></div>
+          </div>
+
+          <dl>
+            <div><dt>Identidad que defiende</dt><dd class="quote">{a.identidad}</dd></div>
+            <div><dt>Creencia central</dt><dd class="quote">{a.creencia}</dd></div>
+            <div><dt>Patrón de autosabotaje</dt><dd>{a.sabotaje}</dd></div>
+            <div><dt>Pilar que lo desbloquea</dt><dd>{a.pilar}</dd></div>
+            <div><dt>Disparador de entrada</dt><dd>{a.disparador}</dd></div>
+            <div><dt>Qué lo repele</dt><dd>{a.repele}</dd></div>
+          </dl>
+
+          <div class="voz-real">
+            <span class="sl">Cómo habla · frases textuales</span>
+            <ul>{a.voz.map((v) => <li>«{v}»</li>)}</ul>
+          </div>
+          <div class="gancho">
+            <span class="sl">El mensaje que lo abre</span>
+            <p>{a.gancho}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <article class="anti">
+      <div class="av-h">
+        <h3>{ANTI_AVATAR.id}</h3>
+        <span class="coh n">No es para él</span>
+      </div>
+      <p class="plain">{ANTI_AVATAR.plain}</p>
+      <div class="anti-grid">
+        <div>
+          <span class="sl">Señales para identificarlo</span>
+          <ul>{ANTI_AVATAR.senales.map((s) => <li>{s}</li>)}</ul>
+        </div>
+        <div>
+          <span class="sl">Por qué no es para él</span>
+          <p>{ANTI_AVATAR.porque}</p>
+          <p class="regla">{ANTI_AVATAR.regla}</p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ░░ 11 · DIRECCIÓN DE ARTE ░░ -->
+  <section class="blk" id="arte">
+    <div class="sec-h"><span class="num">11</span><h2>Dirección de arte</h2><span class="note">Qué se ve</span></div>
+    <p class="intro">Regla única que gobierna toda imagen de EL ARKA:
+      <b>la tecnología puede aparecer; el ser humano domina el encuadre.</b></p>
+    <div class="use">
+      <div>
+        <h4 style="color:var(--arkadia-deep)">Sí</h4>
+        <ul>
+          <li>Personas reales y familias al centro.</li>
+          <li>Tecnología presente, nunca dominante.</li>
+          <li>Agua, horizonte, tierra y construcción.</li>
+          <li>Luz natural, materia y comunidad.</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:var(--terra-deep)">No</h4>
+        <ul>
+          <li>Stock corporativo genérico.</li>
+          <li>Robots humanoides o androides.</li>
+          <li>Interfaces futuristas azules flotando en el aire.</li>
+          <li>Una persona sola frente a una pantalla como héroe.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ 12 · ARCO NARRATIVO ░░ -->
+  <section class="blk" id="narrativa">
+    <div class="sec-h"><span class="num">12</span><h2>Arco narrativo</h2><span class="note">Los diez movimientos</span></div>
+    <p class="intro">La historia oficial, en el orden en que se cuenta. Úsalo como esqueleto para reportajes,
+      guiones o campañas.</p>
+    <div class="arc">
+      <div><span class="bt">I · El diluvio</span><span class="bm">No viene. Ya empezó.</span></div>
+      <div><span class="bt">II · Lo que está en juego</span><span class="bm">No se trata de ponerte al día. Se trata de tu libertad.</span></div>
+      <div><span class="bt">III · La diferencia</span><span class="bm">La IA no te hará consciente. Solo amplifica tu estado.</span></div>
+      <div><span class="bt">IV · La Travesía</span><span class="bm">Primero el ser. Después el poder.</span></div>
+      <div><span class="bt">V · El Arka</span><span class="bm">No es una metáfora. Es real.</span></div>
+      <div><span class="bt">VI · La ciudadanía</span><span class="bm">Subir es el principio. Lo que sigue es pertenecer.</span></div>
+      <div><span class="bt">VII · La Flota</span><span class="bm">Un Arka sola es un bote. Muchas son una flota.</span></div>
+      <div><span class="bt">VIII · Arkadia</span><span class="bm">Al final de la travesía hay una orilla.</span></div>
+      <div><span class="bt">IX · Los Arquitectos</span><span class="bm">Somos dos. Y vemos lo mismo.</span></div>
+      <div><span class="bt">X · El Pacto</span><span class="bm">No se firma con tinta. Se firma subiendo.</span></div>
+    </div>
+  </section>
+
+  <!-- ░░ 13 · DESCARGAS ░░ -->
+  <section class="blk" id="descargas">
+    <div class="sec-h"><span class="num">13</span><h2>Descargas</h2><span class="note">Uso libre con crédito</span></div>
+    <div class="dl">
+      <a href="/assets/arka-simbolo-marfil.svg" download>
+        <span class="ico">SVG</span>
+        <span><b>Símbolo · Marfil</b><small>Vectorial · para fondos oscuros</small></span>
+      </a>
+      <a href="/assets/arka-simbolo-tormenta.svg" download>
+        <span class="ico">SVG</span>
+        <span><b>Símbolo · Tormenta</b><small>Vectorial · para fondos claros</small></span>
+      </a>
+      <a href="/assets/arka-logo.jpg" download>
+        <span class="ico">JPG</span>
+        <span><b>Logo vertical completo</b><small>Símbolo + wordmark + tagline</small></span>
+      </a>
+      <a href="/assets/arka-logo-system.png" download>
+        <span class="ico">PNG</span>
+        <span><b>Universo Maestro</b><small>Sistema de marca completo · v1.0</small></span>
+      </a>
+      <a href="/brand.json">
+        <span class="ico">JSON</span>
+        <span><b>brand.json</b><small>Especificación legible por máquinas</small></span>
+      </a>
+      <a href="/assets/arca-hero-poster.jpg" download>
+        <span class="ico">JPG</span>
+        <span><b>Imagen editorial</b><small>El Arka en construcción · alta resolución</small></span>
+      </a>
+    </div>
+    <div class="use" style="margin-top:16px">
+      <div>
+        <h4 style="color:var(--arkadia-deep)">Uso permitido</h4>
+        <ul>
+          <li>Cobertura editorial y periodística, con crédito a EL ARKA.</li>
+          <li>Generación de activos oficiales de EL ARKA por agentes autorizados.</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:var(--terra-deep)">Uso prohibido</h4>
+        <ul>
+          <li>Avalar productos de terceros o sugerir afiliación inexistente.</li>
+          <li>Alterar el símbolo, sus colores o la ortografía del nombre.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ CONTACTO ░░ -->
+  <section class="blk" id="contacto">
+    <div class="contact">
+      <div>
+        <h2>¿Necesitas algo que no está aquí?</h2>
+        <p>Entrevistas con los Arquitectos, material adicional, datos de la fundación o
+          imágenes específicas para tu cobertura. Respondemos en menos de 48 horas.</p>
+      </div>
+      <a class="btn solid" href={WA_CTA} target="_blank" rel="noopener">Contacto de prensa</a>
+    </div>
+  </section>
+
+  <footer class="pfoot">
+    EL ARKA · Fundada el 23 de julio de 2026 · Mérida, Yucatán · Nodo cero · Sin fines de lucro<br>
+    Ed Zam, El Arquitecto de Realidades · Val Mosquera, La Arquitecta de Realidades<br>
+    Especificación de marca v1.0.0 · <a href="/brand.json">brand.json</a> · <a href="/llms.txt">llms.txt</a> · <a href="/">elarka.ong</a>
+  </footer>
+
+</main>
+
+<script is:inline>
+document.querySelectorAll('.copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var el = document.getElementById(btn.dataset.copy);
+    if (!el) return;
+    navigator.clipboard.writeText(el.innerText.trim()).then(function () {
+      var prev = btn.textContent;
+      btn.textContent = 'Copiado ✓';
+      btn.classList.add('ok');
+      setTimeout(function () { btn.textContent = prev; btn.classList.remove('ok'); }, 1900);
+    }).catch(function () {
+      btn.textContent = 'Selecciona y copia';
+    });
+  });
+});
+</script>
+</body>
+</html>

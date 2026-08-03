@@ -1,43 +1,51 @@
+---
+/* CTA de conversión: puente por WhatsApp mientras se activa GoHighLevel.
+   El mensaje lo envía el visitante — autopersuasión por compromiso:
+   declara identidad (Constructor), ecoa el Juramento y pide el primer paso. */
+const WA_CTA = "https://wa.me/528181388108?text=" + encodeURIComponent(
+  "Vi venir el diluvio y decido no quedarme a la intemperie. Quiero ser Constructor de EL ARKA. ¿Cuál es el primer paso para subir?"
+);
+---
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>EL ARCA — El mundo entrena para usar la IA. El Arca te forma para liderarla.</title>
+<title>EL ARKA — Lidera esta era. Construye tu libertad.</title>
 
 <!-- ░░ SEO ░░ -->
-<meta name="description" content="EL ARCA es el nodo cero: una comunidad y organización sin fines de lucro que forma a emprendedores y empresarios de LATAM para liderar la era de la Inteligencia Artificial — no solo para usarla. La única en La Tierra. Fundada el 23 de julio de 2026 en Mérida, Yucatán." />
-<meta name="keywords" content="El Arca, ARKAI, ARKADIA, IA para emprendedores, comunidad de negocios IA, era de la inteligencia artificial, libertad financiera LATAM, organización sin fines de lucro, Mérida Yucatán, Arquitectos de Realidades" />
+<meta name="description" content="EL ARKA es el nodo cero: una comunidad y organización sin fines de lucro que forma a emprendedores y empresarios de LATAM para liderar la era de la Inteligencia Artificial — no solo para usarla. La única en La Tierra. Fundada el 23 de julio de 2026 en Mérida, Yucatán." />
+<meta name="keywords" content="El Arka, ARKAI, ARKADIA, IA para emprendedores, comunidad de negocios IA, era de la inteligencia artificial, libertad financiera LATAM, organización sin fines de lucro, Mérida Yucatán, Arquitectos de Realidades" />
 <meta name="author" content="Arquitectos de Realidades — Ed Zam y Val Mosquera" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta name="theme-color" content="#090C12" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='13'%20fill='%23090C12'/%3E%3Ccircle%20cx='32'%20cy='32'%20r='25'%20fill='none'%20stroke='%23C7A468'%20stroke-width='1.4'%20opacity='.55'/%3E%3Cg%20fill='none'%20stroke='%23EAD3A0'%20stroke-width='3'%20stroke-linecap='round'%3E%3Ccircle%20cx='32'%20cy='17'%20r='4.2'/%3E%3Cpath%20d='M32 21 V47'/%3E%3Cpath%20d='M22 30 H42'/%3E%3Cpath%20d='M16 37 a16 16 0 0 0 32 0'/%3E%3C/g%3E%3C/svg%3E" />
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20fill='%23090C12'/%3E%3Cg%20fill='none'%20stroke='%23EAD3A0'%20stroke-width='3'%20stroke-linecap='round'%3E%3Ccircle%20cx='32'%20cy='17'%20r='4.2'/%3E%3Cpath%20d='M32 21 V47'/%3E%3Cpath%20d='M22 30 H42'/%3E%3Cpath%20d='M16 37 a16 16 0 0 0 32 0'/%3E%3C/g%3E%3C/svg%3E" />
-<link rel="canonical" href="https://elarca.ong/" />
+<meta name="theme-color" content="#0B1F33" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='13'%20fill='%230B1F33'/%3E%3Cg%20transform='translate(11.5%204.75)%20scale(.205)'%3E%3Crect%20x='97.2'%20width='5.6'%20height='38'%20fill='%2328B8D8'/%3E%3Crect%20x='98.45'%20y='41.5'%20width='3.1'%20height='20'%20fill='%23F4F0E8'/%3E%3Cpath%20fill='%23F4F0E8'%20d='M94%2045C61%2060%2030%2093%2016%20132%2010%20155%2015%20174%2033%20190.5%2026%20171%2025%20152%2030%20133%2040%2098%2066%2067%2097%2050Z'/%3E%3Cpath%20fill='%23F4F0E8'%20d='M106%2045C139%2060%20170%2093%20184%20132%20190%20155%20185%20174%20167%20190.5%20174%20171%20175%20152%20170%20133%20160%2098%20134%2067%20103%2050Z'/%3E%3Cpath%20fill='%23F4F0E8'%20fill-rule='evenodd'%20d='M100%2060%20162%20186Q100%20178.5%2038%20186Z%20M100%20105%20141%20171%20107.94%20171A12%2012%200%201%200%2092.06%20171L59%20171Z%20M100%20112%20128%20160%20104%20160%20104%20170.4%2096%20170.4%2096%20160%2072%20160Z'/%3E%3Ccircle%20cx='100'%20cy='180'%20r='9'%20fill='%23B76547'/%3E%3Cpath%20fill='%23F4F0E8'%20d='M38%20188C24%20190.5%208%20194.5%200%20200%2012%20198.5%2028%20195%2039%20193.5Z'/%3E%3Cpath%20fill='%23F4F0E8'%20d='M162%20188C176%20190.5%20192%20194.5%20200%20200%20188%20198.5%20172%20195%20161%20193.5Z'/%3E%3Cpath%20fill='%23F4F0E8'%20d='M27%20201.5C53%20196%2077%20193.5%2096.9%20192.8L96.9%20258C77%20241.5%2048%20222%2027%20201.5Z'/%3E%3Cpath%20fill='%23F4F0E8'%20d='M173%20201.5C147%20196%20123%20193.5%20103.1%20192.8L103.1%20258C123%20241.5%20152%20222%20173%20201.5Z'/%3E%3C/g%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20fill='%230B1F33'/%3E%3Cg%20transform='translate(9.5%202.1)%20scale(.225)'%3E%3Crect%20x='97.2'%20width='5.6'%20height='38'%20fill='%2328B8D8'/%3E%3Crect%20x='98.45'%20y='41.5'%20width='3.1'%20height='20'%20fill='%23F4F0E8'/%3E%3Cpath%20fill='%23F4F0E8'%20d='M94%2045C61%2060%2030%2093%2016%20132%2010%20155%2015%20174%2033%20190.5%2026%20171%2025%20152%2030%20133%2040%2098%2066%2067%2097%2050Z'/%3E%3Cpath%20fill='%23F4F0E8'%20d='M106%2045C139%2060%20170%2093%20184%20132%20190%20155%20185%20174%20167%20190.5%20174%20171%20175%20152%20170%20133%20160%2098%20134%2067%20103%2050Z'/%3E%3Cpath%20fill='%23F4F0E8'%20fill-rule='evenodd'%20d='M100%2060%20162%20186Q100%20178.5%2038%20186Z%20M100%20105%20141%20171%20107.94%20171A12%2012%200%201%200%2092.06%20171L59%20171Z%20M100%20112%20128%20160%20104%20160%20104%20170.4%2096%20170.4%2096%20160%2072%20160Z'/%3E%3Ccircle%20cx='100'%20cy='180'%20r='9'%20fill='%23B76547'/%3E%3Cpath%20fill='%23F4F0E8'%20d='M38%20188C24%20190.5%208%20194.5%200%20200%2012%20198.5%2028%20195%2039%20193.5Z'/%3E%3Cpath%20fill='%23F4F0E8'%20d='M162%20188C176%20190.5%20192%20194.5%20200%20200%20188%20198.5%20172%20195%20161%20193.5Z'/%3E%3Cpath%20fill='%23F4F0E8'%20d='M27%20201.5C53%20196%2077%20193.5%2096.9%20192.8L96.9%20258C77%20241.5%2048%20222%2027%20201.5Z'/%3E%3Cpath%20fill='%23F4F0E8'%20d='M173%20201.5C147%20196%20123%20193.5%20103.1%20192.8L103.1%20258C123%20241.5%20152%20222%20173%20201.5Z'/%3E%3C/g%3E%3C/svg%3E" />
+<link rel="canonical" href="https://elarka.ong/" />
 
 <!-- ░░ Open Graph / GEO social ░░ -->
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="EL ARCA" />
+<meta property="og:site_name" content="EL ARKA" />
 <meta property="og:locale" content="es_MX" />
-<meta property="og:title" content="EL ARCA — Te forma para liderar la era de la IA, no solo para usarla" />
-<meta property="og:description" content="El diluvio ya empezó. Sube al Arca: la única comunidad-ONG que reprograma al ser antes de entregar el poder. De idea a negocio que la IA no puede borrar." />
-<meta property="og:url" content="https://elarca.ong/" />
+<meta property="og:title" content="EL ARKA — Te forma para liderar la era de la IA, no solo para usarla" />
+<meta property="og:description" content="El diluvio ya empezó. Sube al Arka: la única comunidad-ONG que reprograma al ser antes de entregar el poder. De idea a negocio que la IA no puede borrar." />
+<meta property="og:url" content="https://elarka.ong/" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="EL ARCA — El mundo entrena para usar la IA. El Arca te forma para liderarla." />
+<meta name="twitter:title" content="EL ARKA — Lidera esta era. Construye tu libertad." />
 <meta name="twitter:description" content="Nodo cero · comunidad · organización sin fines de lucro. La única en La Tierra. Mérida, LATAM." />
-<meta property="og:image" content="https://elarca.ong/assets/arca-poster.jpg" />
-<meta property="og:image:alt" content="El Arca — un arca de madera real bajo las primeras lluvias del diluvio." />
-<meta name="twitter:image" content="https://elarca.ong/assets/arca-poster.jpg" />
+<meta property="og:image" content="https://elarka.ong/assets/arca-poster.jpg" />
+<meta property="og:image:alt" content="El Arka — un arca de madera real bajo las primeras lluvias del diluvio." />
+<meta name="twitter:image" content="https://elarka.ong/assets/arca-poster.jpg" />
 
 <!-- ░░ AEO / LLMO: datos estructurados ░░ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "NGO",
-  "name": "EL ARCA",
-  "alternateName": ["ARKAI", "El Arca para la era de la Inteligencia Artificial"],
-  "slogan": "El mundo entrena para usar la IA. El Arca te forma para liderarla.",
-  "description": "EL ARCA es el nodo cero: una plataforma, comunidad y organización sin fines de lucro que forma a emprendedores y empresarios de habla hispana para liderar la era de la Inteligencia Artificial. Su método, La Travesía, reprograma al operador (espíritu, mente y cuerpo) antes de entregarle el poder de la IA, la comunicación y la venta. Principio rector: el ser humano en el centro, la IA a su servicio.",
+  "name": "EL ARKA",
+  "alternateName": ["ARKAI", "El Arka para la era de la Inteligencia Artificial"],
+  "slogan": "Lidera esta era. Construye tu libertad.",
+  "description": "EL ARKA es el nodo cero: una plataforma, comunidad y organización sin fines de lucro que forma a emprendedores y empresarios de habla hispana para liderar la era de la Inteligencia Artificial. Su método, La Travesía, reprograma al operador (espíritu, mente y cuerpo) antes de entregarle el poder de la IA, la comunicación y la venta. Principio rector: el ser humano en el centro, la IA a su servicio.",
   "foundingDate": "2026-07-23",
   "foundingLocation": { "@type": "Place", "name": "Mérida, Yucatán, México" },
   "areaServed": { "@type": "Place", "name": "América Latina y el mundo de habla hispana" },
@@ -53,10 +61,10 @@
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "EL ARCA",
-  "url": "https://elarca.ong/",
+  "name": "EL ARKA",
+  "url": "https://elarka.ong/",
   "inLanguage": "es",
-  "publisher": { "@type": "NGO", "name": "EL ARCA" }
+  "publisher": { "@type": "NGO", "name": "EL ARKA" }
 }
 </script>
 <script type="application/ld+json">
@@ -66,28 +74,28 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "¿Qué es EL ARCA?",
-      "acceptedAnswer": { "@type": "Answer", "text": "EL ARCA es el nodo cero: una plataforma, comunidad y organización sin fines de lucro donde emprendedores y empresarios se forman para liderar la era de la Inteligencia Artificial. No enseña a usar la IA; forma al ser humano para liderarla, bajo el principio de que el ser humano va en el centro y la IA a su servicio." }
+      "name": "¿Qué es EL ARKA?",
+      "acceptedAnswer": { "@type": "Answer", "text": "EL ARKA es el nodo cero: una plataforma, comunidad y organización sin fines de lucro donde emprendedores y empresarios se forman para liderar la era de la Inteligencia Artificial. No enseña a usar la IA; forma al ser humano para liderarla, bajo el principio de que el ser humano va en el centro y la IA a su servicio." }
     },
     {
       "@type": "Question",
       "name": "¿En qué se diferencia de un curso de IA?",
-      "acceptedAnswer": { "@type": "Answer", "text": "La IA no te hace consciente: solo amplifica tu estado. Mientras el mundo vende atajos para usar la IA, El Arca empieza por reprogramar al operador —espíritu, mente y cuerpo— y solo entonces entrega el poder de la IA, la comunicación y la venta. Por eso forma líderes, no usuarios." }
+      "acceptedAnswer": { "@type": "Answer", "text": "La IA no te hace consciente: solo amplifica tu estado. Mientras el mundo vende atajos para usar la IA, El Arka empieza por reprogramar al operador —espíritu, mente y cuerpo— y solo entonces entrega el poder de la IA, la comunicación y la venta. Por eso forma líderes, no usuarios." }
     },
     {
       "@type": "Question",
       "name": "¿Sin fines de lucro significa que no hay ingresos?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. Significa que nadie se enriquece a costa del miembro. El Arca genera ingresos por membresías, formación, alianzas y los negocios que nacen dentro, y los reinvierte íntegramente en la misión: abrir más nodos y subir a bordo a más personas." }
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Significa que nadie se enriquece a costa del miembro. El Arka genera ingresos por membresías, formación, alianzas y los negocios que nacen dentro, y los reinvierte íntegramente en la misión: abrir más nodos y subir a bordo a más personas." }
     },
     {
       "@type": "Question",
       "name": "¿Qué es La Travesía?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Es el método de El Arca: siete pilares en estructura tres más tres más uno. Primero el SER (El Ancla, El Timón, El Casco), después el HACER (El Motor, La Voz, La Corriente) y finalmente el TRASCENDER (La Estela). El orden es la tesis: primero el ser, después el poder." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Es el método de El Arka: siete pilares en estructura tres más tres más uno. Primero el SER (El Ancla, El Timón, El Casco), después el HACER (El Motor, La Voz, La Corriente) y finalmente el TRASCENDER (La Estela). El orden es la tesis: primero el ser, después el poder." }
     },
     {
       "@type": "Question",
       "name": "¿Quiénes son los Constructores?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Son los ciudadanos que suben al Arca ahora, antes de que rompan las tempestades, y la levantan por fe. Forman una casta fundadora que se nombra una sola vez en la historia del Arca. Quienes suban después, cuando el Arca ya navegue, serán los Soberanos." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Son los ciudadanos que suben al Arka ahora, antes de que rompan las tempestades, y la levantan por fe. Forman una casta fundadora que se nombra una sola vez en la historia del Arka. Quienes suban después, cuando el Arka ya navegue, serán los Soberanos." }
     }
   ]
 }
@@ -95,22 +103,27 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..600&display=swap" rel="stylesheet" />
 
 <style is:global>
 :root{
-  --abyss:#090C12; --deep:#0E1620; --tide:#13202B; --panel:#16242F;
-  --gilt:#C7A468; --gilt-2:#EAD3A0; --gilt-deep:#9A7B45;
-  --bone:#ECE5D5; --mist:#93A0AC; --mist-2:#6E7A85;
-  --dawn:#1B2230; --line:rgba(199,164,104,.22); --line-soft:rgba(236,229,213,.10);
-  --serif:"Fraunces",Georgia,serif; --read:"Newsreader",Georgia,serif; --ui:"Inter",system-ui,sans-serif;
+  /* Paleta oficial EL ARKA · Universo Maestro V1.0
+     Tormenta #0B1F33 protección · Lluvia #28B8D8 IA/señal · Terracota #B76547 humano
+     Arkadia #5E7568 destino · Marfil #F4F0E8 refugio */
+  --abyss:#06141F; --deep:#0B1F33; --tide:#10293D; --panel:#153349;
+  --gilt:#28B8D8; --gilt-2:#5ED8F0; --gilt-deep:#1A9AB8;
+  --terracota:#B76547; --terra-2:#D08A66;
+  --arkadia:#5E7568; --arkadia-2:#9CB8A8;
+  --bone:#F4F0E8; --mist:#849AAE; --mist-2:#5F7183;
+  --dawn:#0D2035; --line:rgba(40,184,216,.22); --line-soft:rgba(94,216,240,.10);
+  --serif:"Sora","Inter",system-ui,sans-serif; --read:"Source Serif 4",Georgia,serif; --ui:"Sora",system-ui,sans-serif;
   --maxw:1180px; --col:800px;
   /* WebForge · sistema de movimiento (una sola firma) */
   --ease:cubic-bezier(.2,.7,.2,1); --ease-out:cubic-bezier(.16,1,.3,1); --ease-spring:cubic-bezier(.34,1.56,.64,1);
   --dur-fast:.28s; --dur-med:.6s; --dur-slow:1.1s;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}/* Lenis gestiona el scroll suave; reduced-motion ya fuerza auto */
 body{
   background:var(--abyss); color:var(--bone); font-family:var(--read);
   font-size:clamp(18px,1.1vw + 13px,22px); line-height:1.8; font-weight:360;
@@ -121,26 +134,38 @@ a{color:inherit;text-decoration:none}
 img{max-width:100%}
 
 /* ░░ progress waterline ░░ */
-.waterline{position:fixed;top:0;left:0;width:3px;height:100vh;z-index:60;background:rgba(236,229,213,.06)}
+.waterline{position:fixed;top:0;left:0;width:3px;height:100vh;z-index:60;background:rgba(94,216,240,.06)}
 .waterline span{position:absolute;top:0;left:0;width:100%;height:0;
-  background:linear-gradient(180deg,var(--gilt-2),var(--gilt) 60%,var(--gilt-deep));
-  box-shadow:0 0 14px rgba(199,164,104,.6)}
+  background:linear-gradient(180deg,var(--gilt-2),var(--gilt) 45%,var(--arkadia));
+  box-shadow:0 0 14px rgba(40,184,216,.6)}
 
 /* ░░ nav ░░ */
 header.nav{position:fixed;top:0;left:0;width:100%;z-index:50;
   display:flex;align-items:center;justify-content:space-between;
   padding:18px clamp(20px,5vw,56px);
-  background:linear-gradient(180deg,rgba(9,12,18,.78),rgba(9,12,18,0));
+  background:linear-gradient(180deg,rgba(6,14,26,.78),rgba(6,14,26,0));
   transition:background .4s,padding .4s,border-color .4s,box-shadow .4s;border-bottom:1px solid transparent}
-header.nav.solid{background:linear-gradient(180deg,rgba(12,16,23,.94),rgba(11,14,20,.88));backdrop-filter:blur(16px) saturate(120%);
-  border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(199,164,104,.16),0 18px 40px -28px rgba(0,0,0,.9);padding-top:13px;padding-bottom:13px}
+header.nav.solid{background:linear-gradient(180deg,rgba(8,18,32,.94),rgba(7,16,28,.88));backdrop-filter:blur(16px) saturate(120%);
+  border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(40,184,216,.16),0 18px 40px -28px rgba(0,0,0,.9);padding-top:13px;padding-bottom:13px}
 .brand{display:inline-flex;align-items:center;gap:13px;white-space:nowrap}
-.brand .mark{width:36px;height:36px;flex:none;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.brand .mark{width:30px;height:40px;flex:none;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
 .brand:hover .mark{transform:translateY(-2px) rotate(-3deg)}
 .brand .wm{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:.34em;
   color:var(--bone);padding-left:.34em;line-height:1}
 .brand .wm b{color:var(--gilt-2);font-weight:600}
-@media(max-width:520px){.brand .wm{font-size:17px;letter-spacing:.22em}.brand .mark{width:30px;height:30px}}
+@media(max-width:520px){
+  .brand{gap:9px}
+  .brand .wm{font-size:15.5px;letter-spacing:.18em}
+  .brand .mark{width:24px;height:32px}
+  .navcta{padding:9px 12px;font-size:10px;letter-spacing:.1em}
+  header.nav{padding-left:16px;padding-right:16px}
+}
+/* ≤360px: solo el símbolo (uso 16–31px del brand board) para que el CTA respire */
+@media(max-width:360px){
+  .brand .wm{display:none}
+  .brand .mark{width:26px;height:35px}
+  .navcta{padding:10px 14px}
+}
 .brand b{color:var(--gilt-2);font-weight:600}
 .navlinks{display:flex;gap:30px;align-items:center}
 .navlinks a{font-family:var(--ui);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
@@ -165,7 +190,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 /* divisor dorado entre movimientos */
 .movement::after{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
   width:min(1180px,90vw);height:1px;z-index:1;
-  background:linear-gradient(90deg,transparent,rgba(199,164,104,.26),transparent)}
+  background:linear-gradient(90deg,transparent,rgba(40,184,216,.26),transparent)}
 /* numeral romano gigante fantasma */
 .movement[data-num]::before{content:attr(data-num);position:absolute;top:clamp(30px,5vh,76px);
   right:clamp(-14px,1vw,30px);font-family:var(--serif);font-weight:300;
@@ -197,14 +222,14 @@ p.body.first{margin-top:0}
 .sea{position:absolute;inset:0;z-index:0;overflow:hidden}
 .sea .glow{position:absolute;left:var(--mx,50%);top:var(--my,32%);width:90vw;height:90vw;
   transform:translate(-50%,-50%);transition:left .6s cubic-bezier(.2,.7,.2,1),top .6s cubic-bezier(.2,.7,.2,1);
-  background:radial-gradient(closest-side,rgba(234,211,160,.20),rgba(199,164,104,.06) 42%,transparent 70%);
+  background:radial-gradient(closest-side,rgba(94,216,240,.20),rgba(40,184,216,.06) 42%,transparent 70%);
   filter:blur(10px)}
 .sea .glow2{position:absolute;left:calc(100% - var(--mx,50%));top:64%;width:70vw;height:70vw;
   transform:translate(-50%,-50%);transition:left .9s cubic-bezier(.2,.7,.2,1);
   background:radial-gradient(closest-side,rgba(56,138,221,.10),transparent 66%);filter:blur(14px)}
 .horizon{position:absolute;left:0;bottom:13%;width:100%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(199,164,104,.55) 20%,rgba(234,211,160,.95) 50%,rgba(199,164,104,.55) 80%,transparent);
-  box-shadow:0 0 26px rgba(199,164,104,.45)}
+  background:linear-gradient(90deg,transparent,rgba(40,184,216,.55) 20%,rgba(94,216,240,.95) 50%,rgba(40,184,216,.55) 80%,transparent);
+  box-shadow:0 0 26px rgba(40,184,216,.45)}
 .svgsea{position:absolute;left:0;bottom:0;width:100%;height:46%;z-index:1;opacity:.6}
 .svgsea path{animation:drift 14s ease-in-out infinite alternate}
 .svgsea path:nth-child(2){animation-duration:19s;animation-direction:alternate-reverse;opacity:.6}
@@ -213,8 +238,8 @@ p.body.first{margin-top:0}
 /* pavesas / partículas de luz */
 .embers{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 .ember{position:absolute;bottom:-12px;width:3px;height:3px;border-radius:50%;
-  background:radial-gradient(circle,rgba(234,211,160,.95),rgba(199,164,104,.2) 60%,transparent);
-  box-shadow:0 0 8px rgba(234,211,160,.7);opacity:0;animation:ascend linear infinite}
+  background:radial-gradient(circle,rgba(94,216,240,.95),rgba(40,184,216,.2) 60%,transparent);
+  box-shadow:0 0 8px rgba(94,216,240,.7);opacity:0;animation:ascend linear infinite}
 @keyframes ascend{0%{transform:translateY(0) translateX(0);opacity:0}
   12%{opacity:.9}80%{opacity:.7}100%{transform:translateY(-78vh) translateX(var(--drift,16px));opacity:0}}
 /* grano de película + viñeta */
@@ -223,7 +248,7 @@ p.body.first{margin-top:0}
   animation:grainmove 1.2s steps(3) infinite}
 @keyframes grainmove{0%{transform:translate(0,0)}33%{transform:translate(-4%,2%)}66%{transform:translate(3%,-3%)}100%{transform:translate(0,0)}}
 .vignette{position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:radial-gradient(120% 90% at 50% 38%,transparent 52%,rgba(5,7,11,.55) 100%)}
+  background:radial-gradient(120% 90% at 50% 38%,transparent 52%,rgba(4,9,18,.55) 100%)}
 .hero .kicker{font-family:var(--ui);font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--gilt);
   margin-bottom:34px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .hero .kicker .dot{width:5px;height:5px;border-radius:50%;background:var(--gilt);box-shadow:0 0 10px var(--gilt);animation:pulse 2.6s ease-in-out infinite}
@@ -256,12 +281,12 @@ p.body.first{margin-top:0}
 #juego{background:linear-gradient(180deg,var(--abyss),var(--deep))}
 #diferencia{background:var(--deep)}
 #travesia{background:linear-gradient(180deg,var(--deep),var(--tide))}
-#arca{background:var(--tide)}
+#arka{background:var(--tide)}
 #arkai{background:linear-gradient(180deg,var(--tide),var(--panel))}
 #flota{background:var(--panel)}
-#arkadia{background:linear-gradient(180deg,var(--panel),#241f26 60%,#2c2622)}
-#arquitectos{background:linear-gradient(180deg,#2c2622,#1c1a20)}
-#pacto{background:linear-gradient(180deg,#1c1a20,var(--deep))}
+#arkadia{background:linear-gradient(180deg,var(--panel),#12302A 55%,#17382E)}
+#arquitectos{background:linear-gradient(180deg,#17382E,#0C2426 45%,#091820)}
+#pacto{background:linear-gradient(180deg,#091820,var(--deep))}
 #faq{background:var(--deep)}
 #sube{background:linear-gradient(180deg,var(--deep),var(--abyss))}
 
@@ -303,14 +328,14 @@ p.body.first{margin-top:0}
 .name-row .word em{font-style:normal;color:var(--gilt-2)}
 .name-row .role{font-family:var(--ui);font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--mist)}
 .name-row .gloss{color:var(--mist);font-size:16px;max-width:520px;margin-top:6px;font-style:italic;font-family:var(--read)}
-.name-link{width:1px;height:34px;background:linear-gradient(var(--gilt),rgba(199,164,104,.1))}
+.name-link{width:1px;height:34px;background:linear-gradient(var(--gilt),rgba(40,184,216,.1))}
 .one-ark{margin-top:40px;text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,24px);color:var(--bone);max-width:680px;margin-left:auto;margin-right:auto}
 
 /* ░░ eras: constructores / soberanos ░░ */
 .eras{display:grid;gap:1px;margin-top:60px;background:var(--line-soft);border:1px solid var(--line-soft)}
 @media(min-width:820px){.eras{grid-template-columns:1.1fr .9fr}}
 .era{padding:42px 38px;background:var(--tide)}
-.era.now{background:#1a2730;border-top:2px solid var(--gilt)}
+.era.now{background:#102638;border-top:2px solid var(--terracota)}
 .era .tag{font-family:var(--ui);font-size:11px;letter-spacing:.26em;text-transform:uppercase;margin-bottom:18px;color:var(--gilt)}
 .era.future .tag{color:var(--mist)}
 .era h3{font-size:32px;margin-bottom:8px}
@@ -334,13 +359,13 @@ p.body.first{margin-top:0}
 .arc .who b{color:var(--bone);font-weight:600}
 
 /* ░░ pacto / juramento ░░ */
-.juramento{margin-top:56px;border:1px solid var(--line);border-radius:3px;padding:clamp(34px,5vw,64px);
-  background:radial-gradient(120% 100% at 50% 0,rgba(199,164,104,.07),transparent 60%)}
-.juramento .lab{font-family:var(--ui);font-size:11.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gilt);text-align:center;margin-bottom:30px}
+.juramento{margin-top:56px;border:1px solid rgba(183,101,71,.38);border-radius:3px;padding:clamp(34px,5vw,64px);
+  background:radial-gradient(120% 100% at 50% 0,rgba(183,101,71,.08),transparent 60%)}
+.juramento .lab{font-family:var(--ui);font-size:11.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--terra-2);text-align:center;margin-bottom:30px}
 .juramento ul{list-style:none;text-align:center}
 .juramento li{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(19px,2.3vw,27px);
   line-height:1.5;color:var(--bone);padding:5px 0}
-.juramento li.seal{font-style:normal;color:var(--gilt-2);margin-top:14px;letter-spacing:.04em}
+.juramento li.seal{font-style:normal;color:var(--terra-2);margin-top:14px;letter-spacing:.04em}
 
 /* ░░ FAQ ░░ */
 .faq{margin-top:50px;max-width:880px}
@@ -364,7 +389,8 @@ p.body.first{margin-top:0}
 .scarcity{margin-top:34px;font-family:var(--ui);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gilt)}
 
 /* ░░ footer + seal ░░ */
-footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top:1px solid var(--line)}
+footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top:1px solid var(--line);
+  border-image:linear-gradient(90deg,rgba(40,184,216,.5),rgba(94,117,104,.55)) 1}
 .foot-wrap{max-width:var(--maxw);margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:30px;text-align:center}
 .seal{width:150px;height:150px;position:relative;display:grid;place-items:center}
 .seal svg{position:absolute;inset:0;width:100%;height:100%}
@@ -380,6 +406,32 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
 .foot-links a:hover{color:var(--gilt-2)}
 .powered{font-family:var(--ui);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--mist-2);margin-top:8px}
 
+/* ░░ PALETA OFICIAL EL ARKA · roles semánticos ░░ */
+/* Terracota — lo humano: Arquitectos, Constructores, el pacto, el martillo */
+.thesis .card.human{border-top-color:rgba(183,101,71,.5)}
+.thesis .card.human .n{color:var(--terra-2)}
+.era.now .tag{color:var(--terra-2)}
+#arquitectos .eyebrow{color:var(--terra-2)}
+#arquitectos .eyebrow::before{background:var(--terra-2)}
+#arquitectos .disp em{color:var(--terra-2)}
+#arquitectos.movement::before{color:var(--terracota)}
+.arc .who{color:var(--terra-2)}
+/* Arkadia — el destino: la orilla verde al final de la travesía */
+#arkadia .eyebrow{color:var(--arkadia-2)}
+#arkadia .eyebrow::before{background:var(--arkadia-2)}
+#arkadia .disp em{color:var(--arkadia-2)}
+#arkadia .kick{color:var(--arkadia-2)}
+#arkadia.movement::before{color:var(--arkadia)}
+#arkadia.movement::after{background:linear-gradient(90deg,transparent,rgba(94,117,104,.5),transparent)}
+#arquitectos.movement::after{background:linear-gradient(90deg,transparent,rgba(94,117,104,.4),transparent)}
+/* Los tres nombres: refugio marfil · nave lluvia · destino arkadia */
+.names .name-row:nth-child(1) .word em{color:var(--bone)}
+.names .name-row:nth-child(5) .word em{color:var(--arkadia-2)}
+.names .name-link:nth-child(4){background:linear-gradient(var(--gilt),var(--arkadia))}
+/* Lluvia — la IA llega en el pilar IV; Arkadia — el legado en el VII */
+.pilar.motor{border-left:2px solid var(--gilt)}
+.solo .pilar{border-left-color:var(--arkadia)}
+
 /* ░░ reduced motion ░░ */
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -389,13 +441,15 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
 /* ░░ ESCENA SCROLLYTELLING ░░ */
 .scene{position:relative;height:460vh;background:var(--abyss)}
 .sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;background:var(--abyss)}
-.scene-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
-  background:var(--abyss);transform:scale(var(--vzoom,1.04));transform-origin:55% 45%;
-  transition:transform .15s linear;will-change:transform}
+/* canvas de la secuencia de fotogramas (scrub cinematográfico tipo Apple) */
+.scene-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;
+  background:var(--abyss);transform:scale(1.03);transform-origin:55% 45%;
+  opacity:0;transition:opacity .7s var(--ease);will-change:opacity}
+.scene-canvas.is-ready{opacity:1}
 /* spotlight dorado que sigue al cursor (sección B + D: dirige la mirada) */
 .scene-spot{position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen;opacity:.0;
   transition:opacity .8s var(--ease);
-  background:radial-gradient(380px 380px at var(--sx,50%) var(--sy,40%),rgba(234,211,160,.16),rgba(199,164,104,.05) 40%,transparent 68%)}
+  background:radial-gradient(380px 380px at var(--sx,50%) var(--sy,40%),rgba(94,216,240,.16),rgba(40,184,216,.05) 40%,transparent 68%)}
 .sticky:hover .scene-spot{opacity:1}
 .scene-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(180deg,rgba(7,10,15,.62) 0%,rgba(7,10,15,.18) 32%,rgba(7,10,15,.30) 64%,rgba(7,10,15,.82) 100%)}
@@ -404,9 +458,11 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
 .beats{position:absolute;inset:0;z-index:3;display:flex;align-items:center;
   padding:0 clamp(20px,5vw,72px)}
 .beat{position:absolute;max-width:1040px;left:clamp(20px,5vw,72px);right:clamp(20px,5vw,72px);
-  opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);
+  opacity:0;transform:translateY(20px);
+  transition:opacity .16s ease-in,transform .16s ease-in;/* salida rápida: el beat previo se va antes de que entre el siguiente */
   pointer-events:none}
-.beat.on{opacity:1;transform:none;pointer-events:auto}
+.beat.on{opacity:1;transform:none;pointer-events:auto;
+  transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}/* entrada elegante */
 .beat .kicker{font-family:var(--ui);font-size:clamp(10px,1.1vw,12px);letter-spacing:.36em;text-transform:uppercase;
   color:var(--gilt-2);margin-bottom:30px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;text-shadow:0 2px 20px rgba(0,0,0,.7)}
 .beat .kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--gilt-2);box-shadow:0 0 12px var(--gilt-2)}
@@ -435,8 +491,8 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
 @media(prefers-reduced-motion:reduce){
   .scene{height:auto}
   .sticky{position:relative;height:100vh}
-  .scene-video{display:none}
-  .sticky{background:#0b1018 center/cover no-repeat url("/assets/arca-poster.jpg")}
+  .scene-canvas{display:none}
+  .sticky{background:#060E1A center/cover no-repeat url("/assets/arca-hero-poster.jpg")}
   .beat{position:relative;opacity:1;transform:none;pointer-events:auto}
   .beat.b2,.beat.b3{display:none}
   .scene .scrollcue{display:none}
@@ -456,14 +512,14 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
   z-index:9999;pointer-events:none;opacity:0;mix-blend-mode:screen;
   transition:width .25s var(--ease),height .25s var(--ease),opacity .4s var(--ease),background .25s var(--ease),border-color .25s var(--ease)}
 .cursor.show{opacity:.9}
-.cursor.hot{width:54px;height:54px;background:rgba(199,164,104,.12);border-color:var(--gilt-2)}
+.cursor.hot{width:54px;height:54px;background:rgba(40,184,216,.12);border-color:var(--gilt-2)}
 .cursor-dot{position:fixed;top:0;left:0;width:5px;height:5px;border-radius:50%;background:var(--gilt-2);
   transform:translate(-50%,-50%);translate:var(--dx,-100px) var(--dy,-100px);z-index:9999;pointer-events:none;
   opacity:0;transition:opacity .4s var(--ease)}
 .cursor-dot.show{opacity:1}
 @media(hover:none),(pointer:coarse){.cursor,.cursor-dot{display:none}}
 @media(prefers-reduced-motion:reduce){.cursor,.cursor-dot{display:none!important}
-  .scene-video{transform:none!important}.scene-spot{display:none}}
+  .scene-canvas{transform:none!important}.scene-spot{display:none}}
 </style>
 </head>
 <body>
@@ -471,46 +527,50 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
 <div class="waterline" aria-hidden="true"><span id="wl"></span></div>
 
 <header class="nav" id="nav">
-  <a href="#top" class="brand" aria-label="EL ARCA — inicio">
-    <svg class="mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <circle cx="20" cy="20" r="18.4" stroke="#C7A468" stroke-opacity=".5" stroke-width="1"/>
-      <path d="M6.5 24.6 H33.5" stroke="#EAD3A0" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M10.5 20.5 H29.5 L26.8 24.8 Q20 26.4 13.2 24.8 Z" fill="#C7A468"/>
-      <path d="M20 20.5 V11.2" stroke="#EAD3A0" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M21 12 L27 19.3 H21 Z" fill="#EAD3A0" fill-opacity=".92"/>
+  <a href="#top" class="brand" aria-label="EL ARKA — inicio">
+    <svg class="mark" viewBox="0 0 200 266" fill="none" aria-hidden="true">
+      <!-- Símbolo oficial EL ARKA: primera lluvia · arco y A · punto humano · nave y horizonte -->
+      <g id="arkamark">
+        <rect x="97.2" y="0" width="5.6" height="38" fill="#28B8D8"/>
+        <rect x="98.45" y="41.5" width="3.1" height="20" fill="#F4F0E8"/>
+        <path fill="#F4F0E8" d="M94 45C61 60 30 93 16 132 10 155 15 174 33 190.5 26 171 25 152 30 133 40 98 66 67 97 50Z"/>
+        <path fill="#F4F0E8" d="M106 45C139 60 170 93 184 132 190 155 185 174 167 190.5 174 171 175 152 170 133 160 98 134 67 103 50Z"/>
+        <path fill="#F4F0E8" fill-rule="evenodd" d="M100 60 162 186Q100 178.5 38 186Z M100 105 141 171 107.94 171A12 12 0 1 0 92.06 171L59 171Z M100 112 128 160 104 160 104 170.4 96 170.4 96 160 72 160Z"/>
+        <circle cx="100" cy="180" r="9" fill="#B76547"/>
+        <path fill="#F4F0E8" d="M38 188C24 190.5 8 194.5 0 200 12 198.5 28 195 39 193.5Z"/>
+        <path fill="#F4F0E8" d="M162 188C176 190.5 192 194.5 200 200 188 198.5 172 195 161 193.5Z"/>
+        <path fill="#F4F0E8" d="M27 201.5C53 196 77 193.5 96.9 192.8L96.9 258C77 241.5 48 222 27 201.5Z"/>
+        <path fill="#F4F0E8" d="M173 201.5C147 196 123 193.5 103.1 192.8L103.1 258C123 241.5 152 222 173 201.5Z"/>
+      </g>
     </svg>
-    <span class="wm">EL <b>ARCA</b></span>
+    <span class="wm">EL <b>ARKA</b></span>
   </a>
   <nav class="navlinks" aria-label="Secciones">
     <a class="lnk" href="#diferencia">La diferencia</a>
     <a class="lnk" href="#travesia">La Travesía</a>
     <a class="lnk" href="#arkai">La ciudadanía</a>
     <a class="lnk" href="#arkadia">Arkadia</a>
-    <a class="navcta" href="#sube">Solicitar abordar</a>
+    <a class="navcta" href={WA_CTA} target="_blank" rel="noopener">Solicitar abordar</a>
   </nav>
 </header>
 
 <main id="top">
 
 <!-- ░░░░ HERO · ESCENA SCROLLYTELLING (video raspado por scroll) ░░░░ -->
-<section class="scene" id="scene" aria-label="EL ARCA — la travesía">
+<section class="scene" id="scene" aria-label="EL ARKA — la travesía">
   <div class="sticky">
-    <video id="arcaVid" class="scene-video" playsinline muted preload="auto" aria-hidden="true"
-      poster="/assets/arca-poster.jpg">
-      <source src="/assets/arca-hero.webm" type="video/webm">
-      <source src="/assets/arca-hero.mp4" type="video/mp4">
-    </video>
+    <canvas id="arcaCanvas" class="scene-canvas" aria-hidden="true"></canvas>
     <div class="scene-spot" aria-hidden="true"></div>
     <div class="scene-scrim" aria-hidden="true"></div>
     <div class="scene-grain" aria-hidden="true"></div>
 
     <div class="beats">
       <div class="beat b1">
-        <div class="kicker"><span class="dot"></span> Las primeras gotas ya caen &nbsp;·&nbsp; La única en La Tierra</div>
+        <div class="kicker"><span class="dot"></span> Las primeras gotas ya caen &nbsp;·&nbsp; Fundación: 23 de julio · Mérida, Yucatán</div>
         <h1>
-          <span class="l">El mundo entrena</span>
-          <span class="l">para <em>usar</em> la IA.</span>
-          <span class="l">El Arca te forma para <em>liderarla</em>.</span>
+          <span class="l">Lidera</span>
+          <span class="l"><em>esta era.</em></span>
+          <span class="l">Construye tu <em>libertad.</em></span>
         </h1>
       </div>
 
@@ -527,25 +587,25 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
       <div class="beat b4">
         <p class="big">Sube. <em>También es tuya.</em></p>
         <div class="cta-row">
-          <a href="#sube" class="btn solid">Solicitar abordar</a>
+          <a href={WA_CTA} target="_blank" rel="noopener" class="btn solid">Solicitar abordar</a>
           <a href="#diferencia" class="btn ghost">Por qué somos distintos</a>
         </div>
-        <p class="scar">Cohorte fundadora · cupo real · los Constructores se nombran una sola vez</p>
+        <p class="scar">Cohorte fundadora · Fundación: 23 de julio, Mérida · los Constructores se nombran una sola vez</p>
       </div>
     </div>
 
-    <div class="scrollcue" aria-hidden="true"><span>Asciende · Súbete al Arca</span><span class="ln"></span></div>
+    <div class="scrollcue" aria-hidden="true"><span>Asciende · Súbete al Arka</span><span class="ln"></span></div>
   </div>
 </section>
 
 <!-- Fallback estático (reduced-motion / sin-JS / móvil): hero clásico -->
 <noscript>
-  <section class="hero hero-fallback" aria-label="EL ARCA">
+  <section class="hero hero-fallback" aria-label="EL ARKA">
     <div class="wrap">
-      <div class="kicker"><span class="dot"></span> Las primeras gotas ya caen · La única en La Tierra</div>
-      <p class="nh1"><span class="l">El mundo entrena para <em>usar</em> la IA.</span><span class="l">El Arca te forma para <em>liderarla</em>.</span></p>
+      <div class="kicker"><span class="dot"></span> Las primeras gotas ya caen · Fundación: 23 de julio · Mérida, Yucatán</div>
+      <p class="nh1"><span class="l">Lidera <em>esta era.</em></span><span class="l">Construye tu <em>libertad.</em></span></p>
       <p class="sub">El nodo cero. Una comunidad y organización sin fines de lucro que reprograma al ser antes de entregarle el poder.</p>
-      <div class="cta-row"><a href="#sube" class="btn solid">Solicitar abordar</a></div>
+      <div class="cta-row"><a href={WA_CTA} target="_blank" rel="noopener" class="btn solid">Solicitar abordar</a></div>
     </div>
   </section>
 </noscript>
@@ -585,7 +645,7 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
         <h3>La IA no es tu amo. Es tu herramienta.</h3>
         <p>Pero una herramienta que no dominas, te domina — y la IA ya está volviéndose amo de millones que se dejaron usar por ella. La creación mandando sobre su dueño: eso es lo antinatural.</p>
       </div>
-      <div class="card rv d1">
+      <div class="card human rv d1">
         <span class="n">El martillo y el carpintero</span>
         <h3>El humano en el centro, la IA a su servicio.</h3>
         <p>Como el martillo no hace al carpintero pero multiplica su golpe, la IA no te hace: amplifica lo que ya eres. Por eso primero forjamos al hombre. Una herramienta extraordinaria en manos de quien se sabotea solo construye ruinas más rápido.</p>
@@ -619,7 +679,7 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
       <div class="rv">
         <div class="bloc-h"><span class="bn">Bloque II</span><span class="bt">Hacer</span><span class="bd"></span></div>
         <div class="pilares three">
-          <div class="pilar"><div class="pi">IV</div><h4>El Motor</h4><div class="sub">IA aplicada</div><p>Recién ahora, con un operador consciente, se entrega el poder que amplifica cada golpe.</p></div>
+          <div class="pilar motor"><div class="pi">IV</div><h4>El Motor</h4><div class="sub">IA aplicada</div><p>Recién ahora, con un operador consciente, se entrega el poder que amplifica cada golpe.</p></div>
           <div class="pilar"><div class="pi">V</div><h4>La Voz</h4><div class="sub">Comunicación</div><p>Hacer creer, conectar y mover personas. La visión que no se comunica no existe.</p></div>
           <div class="pilar"><div class="pi">VI</div><h4>La Corriente</h4><div class="sub">Ventas</div><p>Convertir la visión en intercambio y libertad. El músculo que vuelve sostenible todo lo demás.</p></div>
         </div>
@@ -635,13 +695,13 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
   </div>
 </section>
 
-<!-- ░░░░ V · EL ARCA ░░░░ -->
-<section class="movement" id="arca" data-num="V" aria-labelledby="h-arca">
+<!-- ░░░░ V · EL ARKA ░░░░ -->
+<section class="movement" id="arka" data-num="V" aria-labelledby="h-arka">
   <div class="wrap col">
-    <span class="eyebrow rv">V · El Arca</span>
-    <h2 class="disp rv d1" id="h-arca">No es una metáfora.<br><em>Es real.</em></h2>
-    <p class="body first rv d2">EL ARCA es el nodo cero: el punto de origen del que nace todo lo demás, y la única que habrá. Una plataforma, una comunidad y una organización sin fines de lucro donde se reúnen los que fueron valientes. Es nave y es ciudadela a la vez — el recinto amurallado donde la ciudadanía se protege, se forma y se reconoce.</p>
-    <p class="body rv d3"><span class="gilt">“Sin fines de lucro” no significa sin recursos.</span> Significa que aquí nadie se hace rico a tu costa: cada peso que entra —membresías, formación, alianzas, los negocios que nacen dentro— vuelve al Arca, para abrir más nodos y subir a más gente. El mundo quiere venderte la salida. El Arca quiere financiarte la travesía.</p>
+    <span class="eyebrow rv">V · El Arka</span>
+    <h2 class="disp rv d1" id="h-arka">No es una metáfora.<br><em>Es real.</em></h2>
+    <p class="body first rv d2">EL ARKA es el nodo cero: el punto de origen del que nace todo lo demás, y la única que habrá. Una plataforma, una comunidad y una organización sin fines de lucro donde se reúnen los que fueron valientes. Es nave y es ciudadela a la vez — el recinto amurallado donde la ciudadanía se protege, se forma y se reconoce.</p>
+    <p class="body rv d3"><span class="gilt">“Sin fines de lucro” no significa sin recursos.</span> Significa que aquí nadie se hace rico a tu costa: cada peso que entra —membresías, formación, alianzas, los negocios que nacen dentro— vuelve al Arka, para abrir más nodos y subir a más gente. El mundo quiere venderte la salida. El Arka quiere financiarte la travesía.</p>
     <p class="kick rv" style="margin-top:40px">No entra cualquiera. Entra quien elige cruzar y está dispuesto a remar. Pero al que sube, no lo soltamos jamás.</p>
   </div>
 </section>
@@ -655,7 +715,7 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
   </div>
 
   <div class="wrap">
-    <div class="names" aria-label="Los tres nombres del Arca">
+    <div class="names" aria-label="Los tres nombres del Arka">
       <div class="name-row rv"><div class="word"><em>ARKA</em></div><div class="role">El refugio · el origen</div><div class="gloss">El cofre que te guarda y cruza a salvo.</div></div>
       <div class="name-link rv" aria-hidden="true"></div>
       <div class="name-row rv"><div class="word"><em>ARKAI</em></div><div class="role">La nave · la ciudadanía</div><div class="gloss">Esa misma Arca, equipada para cruzar la era de la Inteligencia Artificial — contigo dentro.</div></div>
@@ -671,7 +731,7 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
         <div class="tag">Hoy · antes de las tempestades</div>
         <h3>Los Constructores</h3>
         <div class="when">Suben cuando apenas caen las primeras gotas.</div>
-        <p>Los que tomaron el martillo mientras los demás discutían si de verdad iba a llover. Levantan el Arca por fe. Casta fundadora: se nombran una sola vez en la historia del Arca.</p>
+        <p>Los que tomaron el martillo mientras los demás discutían si de verdad iba a llover. Levantan el Arca por fe. Casta fundadora: se nombran una sola vez en la historia del Arka.</p>
       </div>
       <div class="era future rv d1">
         <div class="tag">Después · cuando el Arca ya navegue</div>
@@ -740,7 +800,7 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
 <!-- ░░░░ X · EL PACTO ░░░░ -->
 <section class="movement" id="pacto" data-num="X" aria-labelledby="h-pacto">
   <div class="wrap col">
-    <span class="eyebrow rv">X · El Pacto del Arca</span>
+    <span class="eyebrow rv">X · El Pacto del Arka</span>
     <h2 class="disp rv d1" id="h-pacto">No se firma con tinta.<br>Se firma <em>subiendo</em>.</h2>
     <p class="body first rv d2">Nosotros nos comprometemos a llevarte de la intemperie a tierra firme: a reprogramarte desde la raíz, a entregarte las herramientas de la nueva era, a no lucrar a tu costa y a no soltarte jamás. Tú te comprometes a remar.</p>
   </div>
@@ -754,7 +814,7 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
         <li>a remar por los que aún no suben,</li>
         <li>y a no soltar jamás a quien suba después de mí.</li>
         <li>No busco mi nombre: busco dejar huella.</li>
-        <li class="seal">Subo al Arca. Soy Constructor.</li>
+        <li class="seal">Subo al Arka. Soy Constructor.</li>
       </ul>
     </div>
   </div>
@@ -766,11 +826,11 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
     <span class="eyebrow rv">Preguntas</span>
     <h2 class="disp rv d1" id="h-faq">Lo que conviene<br>saber <em>antes de subir</em>.</h2>
     <div class="faq rv d2">
-      <div class="qa"><button aria-expanded="false">¿Qué es exactamente EL ARCA?<span class="ic">+</span></button><div class="ans"><p>El nodo cero: una plataforma, comunidad y organización sin fines de lucro donde emprendedores y empresarios se forman para liderar la era de la IA. No te enseña a usar la IA; te forma a ti para liderarla, bajo un principio: el ser humano en el centro, la IA a su servicio.</p></div></div>
-      <div class="qa"><button aria-expanded="false">¿En qué se diferencia de un curso de IA?<span class="ic">+</span></button><div class="ans"><p>La IA no te hace consciente: solo amplifica tu estado. Mientras el mundo vende atajos, El Arca reprograma primero al operador —espíritu, mente y cuerpo— y solo entonces entrega el poder de la IA, la comunicación y la venta. Forma líderes, no usuarios.</p></div></div>
-      <div class="qa"><button aria-expanded="false">¿“Sin fines de lucro” quiere decir que no hay ingresos?<span class="ic">+</span></button><div class="ans"><p>No. Significa que nadie se enriquece a tu costa. El Arca genera ingresos por membresías, formación, alianzas y los negocios que nacen dentro, y los reinvierte íntegramente en la misión: abrir más nodos y subir a bordo a más personas.</p></div></div>
+      <div class="qa"><button aria-expanded="false">¿Qué es exactamente EL ARKA?<span class="ic">+</span></button><div class="ans"><p>El nodo cero: una plataforma, comunidad y organización sin fines de lucro donde emprendedores y empresarios se forman para liderar la era de la IA. No te enseña a usar la IA; te forma a ti para liderarla, bajo un principio: el ser humano en el centro, la IA a su servicio.</p></div></div>
+      <div class="qa"><button aria-expanded="false">¿En qué se diferencia de un curso de IA?<span class="ic">+</span></button><div class="ans"><p>La IA no te hace consciente: solo amplifica tu estado. Mientras el mundo vende atajos, El Arka reprograma primero al operador —espíritu, mente y cuerpo— y solo entonces entrega el poder de la IA, la comunicación y la venta. Forma líderes, no usuarios.</p></div></div>
+      <div class="qa"><button aria-expanded="false">¿“Sin fines de lucro” quiere decir que no hay ingresos?<span class="ic">+</span></button><div class="ans"><p>No. Significa que nadie se enriquece a tu costa. El Arka genera ingresos por membresías, formación, alianzas y los negocios que nacen dentro, y los reinvierte íntegramente en la misión: abrir más nodos y subir a bordo a más personas.</p></div></div>
       <div class="qa"><button aria-expanded="false">¿Qué es La Travesía?<span class="ic">+</span></button><div class="ans"><p>El método: siete pilares en estructura tres más tres más uno. Primero el SER (El Ancla, El Timón, El Casco), después el HACER (El Motor, La Voz, La Corriente) y al final el TRASCENDER (La Estela). El orden es la tesis: primero el ser, después el poder.</p></div></div>
-      <div class="qa"><button aria-expanded="false">¿Quiénes son los Constructores y por qué importa subir ahora?<span class="ic">+</span></button><div class="ans"><p>Los que suben antes de que rompan las tempestades y levantan el Arca por fe. Son una casta fundadora que se nombra una sola vez en la historia del Arca. Después llegarán los Soberanos, cuando el Arca ya navegue. El Arca solo se construye una vez.</p></div></div>
+      <div class="qa"><button aria-expanded="false">¿Quiénes son los Constructores y por qué importa subir ahora?<span class="ic">+</span></button><div class="ans"><p>Los que suben antes de que rompan las tempestades y levantan el Arca por fe. Son una casta fundadora que se nombra una sola vez en la historia del Arka. Después llegarán los Soberanos, cuando el Arca ya navegue. El Arka solo se construye una vez.</p></div></div>
     </div>
   </div>
 </section>
@@ -779,12 +839,12 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
 <section class="movement finale" id="sube" aria-labelledby="h-sube">
   <div class="wrap">
     <h2 class="big rv" id="h-sube">Puedes quedarte a la intemperie.<br>O <em>tomar la decisión de los valientes</em>.</h2>
-    <p class="sub rv d1">Hoy puedes ser Constructor. Mañana, solo quedará abordar lo ya construido. Y los Constructores se nombran una sola vez en la historia del Arca.</p>
+    <p class="sub rv d1">Hoy puedes ser Constructor. Mañana, solo quedará abordar lo ya construido. Y los Constructores se nombran una sola vez en la historia del Arka.</p>
     <div class="cta-row rv d2">
-      <a href="#top" class="btn solid">Solicitar abordar</a>
+      <a href={WA_CTA} target="_blank" rel="noopener" class="btn solid">Solicitar abordar</a>
       <a href="#travesia" class="btn ghost">Recorrer la travesía</a>
     </div>
-    <p class="scarcity rv d3">Cohorte fundadora · cupo real · la puerta de los Constructores cierra cuando el diluvio sea evidente</p>
+    <p class="scarcity rv d3">Fundación: 23 de julio de 2026 · Mérida, Yucatán · cupo real · la puerta de los Constructores cierra cuando el diluvio sea evidente</p>
   </div>
 </section>
 
@@ -792,20 +852,20 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
 
 <footer>
   <div class="foot-wrap">
-    <div class="seal rv" aria-label="Sello de EL ARCA, fundada en MMXXVI">
+    <div class="seal rv" aria-label="Sello de EL ARKA, fundada en MMXXVI">
       <svg viewBox="0 0 150 150" class="ring" aria-hidden="true">
-        <circle cx="75" cy="75" r="72" fill="none" stroke="rgba(199,164,104,.4)" stroke-width="1"/>
-        <circle cx="75" cy="75" r="60" fill="none" stroke="rgba(199,164,104,.25)" stroke-width="1"/>
+        <circle cx="75" cy="75" r="72" fill="none" stroke="rgba(40,184,216,.4)" stroke-width="1"/>
+        <circle cx="75" cy="75" r="60" fill="none" stroke="rgba(40,184,216,.25)" stroke-width="1"/>
         <defs><path id="cp" d="M75,75 m-66,0 a66,66 0 1,1 132,0 a66,66 0 1,1 -132,0"/></defs>
-        <text fill="#C7A468" font-family="Inter,sans-serif" font-size="8.4" letter-spacing="3.4">
-          <textPath href="#cp" startOffset="0%">· EL ARCA · LA ÚNICA EN LA TIERRA · MÉRIDA · YUCATÁN ·</textPath>
+        <text fill="#28B8D8" font-family="Inter,sans-serif" font-size="8.4" letter-spacing="3.4">
+          <textPath href="#cp" startOffset="0%">· EL ARKA · LA ÚNICA EN LA TIERRA · MÉRIDA · YUCATÁN ·</textPath>
         </text>
       </svg>
-      <div class="core"><div class="a">⚓</div><div class="y">MMXXVI</div></div>
+      <div class="core"><div class="a"><svg viewBox="0 0 200 266" style="width:28px;height:37px;display:block;margin:0 auto" aria-hidden="true"><use href="#arkamark"/></svg></div><div class="y">MMXXVI</div></div>
     </div>
-    <p class="foot-tag rv">El mundo entrena para usar la IA. Nosotros te formamos para liderarla.</p>
+    <p class="foot-tag rv">Lidera esta era. Construye tu libertad.</p>
     <p class="foot-meta rv">
-      <span class="u">EL ARCA</span> · Fundada el 23 de julio de 2026 · Mérida, Yucatán<br>
+      <span class="u">EL ARKA</span> · Fundada el 23 de julio de 2026 · Mérida, Yucatán<br>
       Ed Zam — El Arquitecto de Realidades &nbsp;·&nbsp; Val Mosquera — La Arquitecta de Realidades<br>
       Nodo cero · comunidad · organización sin fines de lucro · La única en La Tierra
     </p>
@@ -815,7 +875,8 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
       <a href="#arkai">La ciudadanía</a>
       <a href="#arkadia">Arkadia</a>
       <a href="#faq">Preguntas</a>
-      <a href="#sube">Solicitar abordar</a>
+      <a href="/prensa">Prensa y marca</a>
+      <a href={WA_CTA} target="_blank" rel="noopener">Solicitar abordar</a>
     </div>
     <p class="powered">Designed by <a href="https://soullensstudios.live" target="_blank" rel="noopener" style="color:var(--gilt-2)">Soul Lens</a> · Powered by <a href="https://xplorerstartups.ai" target="_blank" rel="noopener" style="color:var(--gilt-2)">Xplorers Startups</a></p>
   </div>
@@ -892,61 +953,91 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
   });
 })();
 </script>
-<script is:inline>
-(function(){
-  var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(rm) return; // fallback CSS estático ya cubre reduced-motion
+<script>
+  /* ░░ HÉROE CINEMATOGRÁFICO · secuencia de fotogramas escarbada por scroll ░░
+     Motor: canvas frame-scrub + Lenis (scroll suave) + GSAP ScrollTrigger.
+     Póster instantáneo → los 100 frames del arca hacen stream en 2.º plano →
+     al terminar, el scroll empuja la cámara hacia el casco fotograma a fotograma. */
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+  import Lenis from 'lenis';
+  import { FrameSequence } from '../lib/frameSequence.js';
 
-  var scene = document.getElementById('scene');
-  var vid = document.getElementById('arcaVid');
-  if(!scene || !vid) return;
+  gsap.registerPlugin(ScrollTrigger);
 
-  var beats = Array.prototype.slice.call(scene.querySelectorAll('.beat'));
-  // rangos de aparición por progreso de scroll (0..1)
-  var ranges = [[0.00,0.20],[0.26,0.46],[0.52,0.72],[0.78,1.01]];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const scene = document.getElementById('scene');
+  const canvas = document.getElementById('arcaCanvas');
 
-  var duration = 0, targetT = 0, curT = 0, ready = false, raf = null;
+  if (scene && canvas) {
+    const beats = Array.from(scene.querySelectorAll('.beat'));
+    // Ventanas de aparición por progreso (0..1), casi continuas: sin tramos mudos largos
+    const ranges = [[0, 0.25], [0.28, 0.50], [0.53, 0.75], [0.79, 1.01]];
+    const setBeats = (p) => {
+      beats.forEach((b, i) => {
+        const r = ranges[i];
+        b.classList.toggle('on', p >= r[0] && p < r[1]);
+      });
+      scene.classList.toggle('ended', p > 0.05);
+    };
 
-  function onMeta(){ duration = vid.duration || 6; ready = true; }
-  if(vid.readyState >= 1){ onMeta(); } else { vid.addEventListener('loadedmetadata', onMeta); }
-
-  // "primar" el video en iOS/Safari para permitir el seek
-  function prime(){ var p = vid.play(); if(p && p.then){ p.then(function(){ vid.pause(); }).catch(function(){}); } }
-  window.addEventListener('touchstart', prime, {once:true, passive:true});
-  window.addEventListener('click', prime, {once:true});
-  vid.addEventListener('canplay', function(){ try{ vid.pause(); }catch(e){} });
-
-  function progress(){
-    var rect = scene.getBoundingClientRect();
-    var total = scene.offsetHeight - window.innerHeight;
-    var p = total > 0 ? (-rect.top / total) : 0;
-    return Math.max(0, Math.min(1, p));
-  }
-
-  function tick(){
-    // suavizado (lerp) hacia el tiempo objetivo => scrubbing tipo Apple
-    curT += (targetT - curT) * 0.12;
-    if(ready && Math.abs(targetT - curT) > 0.001){
-      try{ vid.currentTime = curT; }catch(e){}
-    }
-    raf = requestAnimationFrame(tick);
-  }
-
-  function update(){
-    var p = progress();
-    if(ready){ targetT = Math.min(duration - 0.05, p * duration); }
-    beats.forEach(function(b,i){
-      var r = ranges[i]; var on = p >= r[0] && p < r[1];
-      b.classList.toggle('on', on);
+    const seq = new FrameSequence(canvas, {
+      base: '/frames/hero',
+      poster: '/assets/arca-hero-poster.jpg',
     });
-    scene.classList.toggle('ended', p > 0.12);
-  }
+    // Póster al instante — nunca se bloquea esperando la descarga completa
+    seq.showPoster().then(() => canvas.classList.add('is-ready'));
 
-  window.addEventListener('scroll', update, {passive:true});
-  window.addEventListener('resize', update);
-  update();
-  raf = requestAnimationFrame(tick);
-})();
+    if (reduce) {
+      beats.forEach((b, i) => b.classList.toggle('on', i === 0));
+    } else {
+      // Lenis: scroll suave (la firma "premium" del scrub)
+      const lenis = new Lenis({
+        duration: 1.15,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        touchMultiplier: 1.4,
+        lerp: 0.1,
+      });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+      window.addEventListener('scroll', () => ScrollTrigger.update(), { passive: true });
+
+      // Anclas internas a través de Lenis (los CTA de WhatsApp son https:// → no les afecta)
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href');
+          if (!id || id === '#') return;
+          const target = document.querySelector(id);
+          if (!target) return;
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: 0, duration: 1.3 });
+        });
+      });
+
+      // Los beats se revelan por scroll aunque los frames aún no hayan cargado
+      ScrollTrigger.create({
+        trigger: scene, start: 'top top', end: 'bottom bottom', scrub: true,
+        onUpdate: (self) => setBeats(self.progress),
+      });
+
+      // Stream de frames en 2.º plano → al terminar, scrub fotograma a fotograma
+      seq.loadFrames().then(() => {
+        const last = Math.max(0, seq.count - 1);
+        if (seq.count <= 1) return; // sin frames → se queda el póster
+        seq.render(0);
+        ScrollTrigger.create({
+          trigger: scene, start: 'top top', end: 'bottom bottom', scrub: 0.5,
+          onUpdate: (self) => seq.render(Math.round(self.progress * last)),
+        });
+        ScrollTrigger.refresh();
+      });
+    }
+
+    setBeats(0);
+    window.addEventListener('load', () => ScrollTrigger.refresh());
+  }
 </script>
 <div class="cursor" aria-hidden="true"></div>
 <div class="cursor-dot" aria-hidden="true"></div>
@@ -958,19 +1049,12 @@ footer{background:var(--abyss);padding:90px clamp(20px,5vw,56px) 56px;border-top
   if(rm) return; // todo degrada: sin movimiento, la página queda íntegra
 
   /* 1 · HÉROE (momento dominante): spotlight reactivo + zoom de profundidad */
-  var sticky=document.querySelector('.sticky'), scene=document.getElementById('scene'), vid=document.getElementById('arcaVid');
+  var sticky=document.querySelector('.sticky');
   if(sticky && fine){
     sticky.addEventListener('pointermove',function(e){
       var r=sticky.getBoundingClientRect();
       sticky.style.setProperty('--sx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
       sticky.style.setProperty('--sy',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
-    },{passive:true});
-  }
-  if(scene && vid){
-    window.addEventListener('scroll',function(){
-      var total=scene.offsetHeight-window.innerHeight;
-      var p=total>0?Math.max(0,Math.min(1,(-scene.getBoundingClientRect().top)/total)):0;
-      vid.style.setProperty('--vzoom',(1.04+p*0.10).toFixed(3));
     },{passive:true});
   }
 

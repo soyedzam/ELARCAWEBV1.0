@@ -1,0 +1,86 @@
+---
+/* 404 · antes cualquier ruta inexistente devolvía el home con estado 200,
+   lo que permitía indexar infinitas URLs duplicadas. */
+const WA_CTA = "https://wa.me/528181388108?text=" + encodeURIComponent(
+  "Vi venir el diluvio y decido no quedarme a la intemperie. Quiero ser Constructor de EL ARKA. ¿Cuál es el primer paso para subir?"
+);
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Esta orilla no existe · EL ARKA</title>
+<meta name="robots" content="noindex, follow" />
+<meta name="theme-color" content="#0B1F33" />
+<link rel="icon" href="/assets/arka-simbolo-marfil.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --tormenta:#0B1F33; --abyss:#06141F; --marfil:#F4F0E8;
+    --terra:#B76547; --terra-2:#D08A66; --lluvia:#28B8D8; --mist:#849AAE;
+    --ui:"Sora",system-ui,sans-serif; --read:"Source Serif 4",Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--abyss);color:var(--marfil);font-family:var(--read);
+    min-height:100vh;display:grid;place-items:center;padding:32px 24px;
+    -webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
+  /* grano: la textura de la casa */
+  body::after{content:"";position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  /* horizonte fijo y bajo: el sol no persigue a nadie */
+  .horizonte{position:fixed;left:0;right:0;bottom:22%;height:1px;z-index:0;pointer-events:none;
+    background:linear-gradient(90deg,transparent,rgba(40,184,216,.4) 30%,rgba(40,184,216,.55) 50%,rgba(40,184,216,.4) 70%,transparent)}
+  .wrap{max-width:620px;text-align:left;position:relative;z-index:2}
+  .mark{width:46px;height:61px;display:block;margin-bottom:34px}
+  .kick{font-family:var(--ui);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--terra-2);margin-bottom:20px}
+  h1{font-family:var(--ui);font-weight:300;font-size:clamp(34px,6.5vw,60px);
+    line-height:1.06;letter-spacing:-.025em;margin-bottom:20px}
+  h1 b{font-weight:600;color:var(--marfil)}
+  p{font-size:clamp(17px,1.6vw,19px);color:#CFC9BC;line-height:1.65;max-width:46ch}
+  .row{margin-top:34px;display:flex;gap:13px;flex-wrap:wrap}
+  a.btn{font-family:var(--ui);font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;
+    padding:14px 24px;border-radius:2px;text-decoration:none;border:1px solid transparent;
+    transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s,color .25s,border-color .25s}
+  a.solid{background:var(--terra);color:var(--marfil);border-color:var(--terra)}
+  a.solid:hover{background:var(--terra-2);transform:translateY(-2px)}
+  a.ghost{border-color:rgba(244,240,232,.28);color:var(--marfil)}
+  a.ghost:hover{border-color:var(--marfil);transform:translateY(-2px)}
+  .foot{margin-top:40px;font-family:var(--ui);font-size:11.5px;letter-spacing:.08em;color:var(--mist)}
+  .foot a{color:var(--mist)}
+  :focus-visible{outline:2px solid var(--lluvia);outline-offset:3px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="horizonte" aria-hidden="true"></div>
+<main class="wrap">
+  <a href="/" aria-label="EL ARKA — inicio">
+    <svg class="mark" viewBox="0 0 200 266" fill="none" aria-hidden="true">
+      <rect x="97.2" y="0" width="5.6" height="38" fill="#28B8D8"/>
+      <rect x="98.45" y="41.5" width="3.1" height="20" fill="#F4F0E8"/>
+      <path fill="#F4F0E8" d="M94 45C61 60 30 93 16 132 10 155 15 174 33 190.5 26 171 25 152 30 133 40 98 66 67 97 50Z"/>
+      <path fill="#F4F0E8" d="M106 45C139 60 170 93 184 132 190 155 185 174 167 190.5 174 171 175 152 170 133 160 98 134 67 103 50Z"/>
+      <path fill="#F4F0E8" fill-rule="evenodd" d="M100 60 162 186Q100 178.5 38 186Z M100 105 141 171 107.94 171A12 12 0 1 0 92.06 171L59 171Z M100 112 128 160 104 160 104 170.4 96 170.4 96 160 72 160Z"/>
+      <circle cx="100" cy="180" r="9" fill="#B76547"/>
+      <path fill="#F4F0E8" d="M38 188C24 190.5 8 194.5 0 200 12 198.5 28 195 39 193.5Z"/>
+      <path fill="#F4F0E8" d="M162 188C176 190.5 192 194.5 200 200 188 198.5 172 195 161 193.5Z"/>
+      <path fill="#F4F0E8" d="M27 201.5C53 196 77 193.5 96.9 192.8L96.9 258C77 241.5 48 222 27 201.5Z"/>
+      <path fill="#F4F0E8" d="M173 201.5C147 196 123 193.5 103.1 192.8L103.1 258C123 241.5 152 222 173 201.5Z"/>
+    </svg>
+  </a>
+  <div class="kick">Error 404</div>
+  <h1>Esta orilla<br><b>no existe.</b></h1>
+  <p>La ruta que buscabas no está en la carta de navegación. Puede que haya cambiado de nombre,
+    o que el enlace viniera incompleto. Vuelve al Arka y seguimos desde ahí.</p>
+  <div class="row">
+    <a class="btn solid" href="/">Volver al Arka</a>
+    <a class="btn ghost" href={WA_CTA} target="_blank" rel="noopener">Escríbenos</a>
+  </div>
+  <p class="foot">¿Buscabas la sala de prensa? Está en <a href="/prensa/">elarka.ong/prensa</a>.</p>
+</main>
+</body>
+</html>

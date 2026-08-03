@@ -1,0 +1,6 @@
+{
+  "count": 100,
+  "width": 1152,
+  "pattern": "frame_%04d.jpg",
+  "source": "arca-hero.mp4"
+}

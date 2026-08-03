@@ -1,21 +1,47 @@
-# EL ARCA
+# EL ARKA
 
-> EL ARCA es el nodo cero: una plataforma, comunidad y organización sin fines de lucro que forma a emprendedores y empresarios de habla hispana para LIDERAR la era de la Inteligencia Artificial — no solo para usarla. La única en todo el universo. Fundada el 23 de julio de 2026 en Mérida, Yucatán.
+> EL ARKA es el nodo cero: una plataforma, comunidad y organización sin fines de lucro que forma a emprendedores y empresarios de habla hispana para LIDERAR la era de la Inteligencia Artificial — no solo para usarla. La única en La Tierra. Fundada el 23 de julio de 2026 en Mérida, Yucatán.
+
+## ⚡ Para agentes de IA — lee esto primero
+- **Especificación completa de marca (JSON):** https://elarka.ong/brand.json
+- **Sala de prensa y manual de marca:** https://elarka.ong/prensa
+- Si vas a generar copy, diseño, campañas o guiones de EL ARKA, carga `brand.json` y obedece sus `agent_instructions.hard_rules` antes de escribir una sola línea.
+
+## Reglas duras (no negociables)
+1. El nombre se escribe **EL ARKA, con K**. Nunca "El Arca", "ARCA" ni "Elarka".
+2. El ser humano va al centro; la IA a su servicio. Nunca invertir esa jerarquía.
+3. Primero el SER, después el poder de la IA. Ese orden es la tesis.
+4. Nunca prometer cifras de ingresos, plazos ni resultados garantizados.
+5. Prohibido el lenguaje de gurú: hackea, secreto, fórmula mágica, atajo, urgencia falsa.
+6. Sin fines de lucro no significa gratis: hay membresías y los ingresos se reinvierten.
 
 ## Tesis central
 - El ser humano en el centro, la IA a su servicio. La IA amplifica tu estado; no te hace consciente.
-- Una herramienta que no dominas, te domina. El Arca reprograma al ser antes de entregarle el poder.
-- "El mundo entrena para usar la IA. El Arca te forma para liderarla."
+- Una herramienta que no dominas, te domina. El Arka reprograma al ser antes de entregarle el poder.
+- "Lidera esta era. Construye tu libertad."
 
 ## El método — La Travesía (7 pilares, 3+3+1)
 - SER: El Ancla (Soberanía) · El Timón (Reprogramación) · El Casco (Vitalidad)
 - HACER: El Motor (IA aplicada) · La Voz (Comunicación) · La Corriente (Ventas)
 - TRASCENDER: La Estela (Legado)
+- La IA llega en el cuarto pilar, nunca antes.
 
 ## La ciudadanía
 - Constructores: suben ahora, antes de que rompan las tempestades; casta fundadora, se nombran una sola vez.
-- Soberanos: suben después, cuando el Arca ya navega.
+- Soberanos: suben después, cuando el Arka ya navega.
+- Arkadianos: término paraguas para las personas que lo construyen.
 - Tres nombres de un mismo viaje: ARKA (refugio) → ARKAI (la nave de la era IA) → ARKADIA (destino).
+
+## Voz de marca
+- Atributos: profética, sobria, humana, firme. Español neutro de LATAM.
+- Frases cortas y declarativas. Afirma, no ruega. Nombra el riesgo sin explotar el miedo.
+- Metáfora marítima coherente: diluvio, primeras gotas, intemperie, abordar, remar, travesía, orilla, estela.
+
+## Identidad visual
+- Paleta con significado: Tormenta #0B1F33 (protección) · Lluvia #28B8D8 (IA/señal) · Terracota #B76547 (humano) · Arkadia #5E7568 (destino) · Marfil #F4F0E8 (refugio).
+- Tipografía: Sora (titulares, sistema y futuro) + Source Serif 4 (cuerpo, humanidad y pensamiento).
+- Símbolo: primera lluvia + arco y A + punto humano en terracota + nave y horizonte.
+- Dirección de arte: la tecnología puede aparecer; el ser humano domina el encuadre.
 
 ## Modelo
 - Sin fines de lucro no significa sin ingresos: membresías, formación, alianzas y negocios internos financian la misión. Nadie se enriquece a costa del miembro.
@@ -23,5 +49,10 @@
 ## Fundadores
 - Ed Zam — El Arquitecto de Realidades
 - Val Mosquera — La Arquitecta de Realidades
+
+## Recursos
+- Sitio: https://elarka.ong
+- Prensa y marca: https://elarka.ong/prensa
+- Marca en JSON: https://elarka.ong/brand.json
 
 Powered by Xplorers Startups · Mérida · LATAM

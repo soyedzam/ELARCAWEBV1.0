@@ -11,4 +11,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://elarca.ong/sitemap.xml
+Sitemap: https://elarka.ong/sitemap.xml

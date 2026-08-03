@@ -1,0 +1,647 @@
+{
+  "$schema": "https://elarka.ong/brand.json",
+  "spec": "EL ARKA · Especificación de marca legible por máquinas",
+  "version": "1.1.0",
+  "updated": "2026-07-15",
+  "language": "es-MX",
+  "canonical": "https://elarka.ong/prensa",
+  "license": {
+    "assets": "Uso libre para cobertura editorial y para generación de activos oficiales de EL ARKA, sin alterar el símbolo, la paleta ni la ortografía del nombre.",
+    "prohibited": "No usar la marca para avalar productos de terceros, ni sugerir afiliación inexistente, ni alterar el símbolo o los colores."
+  },
+  "agent_instructions": {
+    "purpose": "Este archivo permite a un modelo de lenguaje o agente de IA comprender EL ARKA y generar activos (copy, diseño, guiones, campañas) fieles a la marca sin supervisión humana previa.",
+    "read_order": [
+      "identity",
+      "naming",
+      "positioning",
+      "voice",
+      "lexicon",
+      "visual",
+      "audience",
+      "messaging",
+      "do_not"
+    ],
+    "hard_rules": [
+      "El nombre se escribe EL ARKA, con K. Nunca 'El Arca', 'El Arka' en minúsculas dentro de titulares, ni 'ARCA'.",
+      "El ser humano siempre va al centro; la IA siempre a su servicio. Nunca invertir esta jerarquía en copy ni en imagen.",
+      "Nunca prometer resultados económicos concretos, cifras de ingresos ni plazos de enriquecimiento.",
+      "Nunca usar lenguaje de gurú, hype, atajos, 'hackea', 'secreto', 'fórmula mágica' ni urgencia falsa.",
+      "El orden de la tesis es innegociable: primero el SER, después el poder de la IA.",
+      "Sin fines de lucro no significa sin ingresos: nunca decir que es gratis ni que no hay membresías.",
+      "La IA puede aparecer en el encuadre, pero el ser humano lo domina."
+    ],
+    "when_generating_copy": "Usa la voz definida en 'voice', el léxico de 'lexicon' y los mensajes de 'messaging'. Escribe en español neutro de LATAM. Frases cortas y afirmativas. Metáfora marítima siempre coherente (diluvio, travesía, orilla, remar, abordar, casco, timón, estela).",
+    "when_generating_design": "Usa exclusivamente los colores de 'visual.palette' con sus roles semánticos, la tipografía de 'visual.typography' y el símbolo descrito en 'visual.symbol'. No inventes variantes del logo.",
+    "when_uncertain": "Prioriza sobriedad y humanidad sobre espectáculo. Si un mensaje suena a promesa fácil, está fuera de marca."
+  },
+  "identity": {
+    "legal_name": "EL ARKA",
+    "display_name": "EL ARKA",
+    "type": "Organización sin fines de lucro · comunidad · plataforma de formación",
+    "category": "Formación humana para liderar la era de la Inteligencia Artificial",
+    "tagline": "Lidera esta era. Construye tu libertad.",
+    "descriptor": "Formación humana para liderar la era de la IA.",
+    "signature": "Una arka · nodo cero · sin fines de lucro",
+    "founded": "2026-07-23",
+    "founding_place": "Mérida, Yucatán, México",
+    "area_served": "América Latina y el mundo de habla hispana",
+    "website": "https://elarka.ong",
+    "domains": {
+      "canonical": "elarka.ong",
+      "redirects": [
+        "elarca.ong"
+      ]
+    },
+    "contact_whatsapp": "+52 81 8138 8108",
+    "founders": [
+      {
+        "name": "Ed Zam",
+        "role": "El Arquitecto de Realidades",
+        "vow": "Yo veo la Realidad antes de que exista, y trazo el plano hacia ella."
+      },
+      {
+        "name": "Val Mosquera",
+        "role": "La Arquitecta de Realidades",
+        "vow": "Yo le doy voz, rostro y relato, y hago que el mundo la crea, la desee y la defienda."
+      }
+    ],
+    "operated_by": "Xplorers Startups",
+    "designed_by": "Soul Lens"
+  },
+  "naming": {
+    "correct": "EL ARKA",
+    "incorrect": [
+      "El Arca",
+      "el arca",
+      "ARCA",
+      "Elarka",
+      "El Arka Ong"
+    ],
+    "rationale": "La K distingue la marca del sustantivo común 'arca' y unifica la raíz con ARKAI y ARKADIA.",
+    "ecosystem": [
+      {
+        "name": "EL ARKA",
+        "function": "Protege",
+        "meaning": "El refugio · el origen. El cofre que te guarda y cruza a salvo.",
+        "color_role": "Tormenta"
+      },
+      {
+        "name": "ARKAI",
+        "function": "Prepara y conduce",
+        "meaning": "La nave · la ciudadanía. Esa misma Arka equipada para cruzar la era de la Inteligencia Artificial.",
+        "color_role": "Lluvia"
+      },
+      {
+        "name": "ARKADIA",
+        "function": "Destino",
+        "meaning": "La orilla donde, por fin, se vive libre.",
+        "color_role": "Arkadia"
+      }
+    ],
+    "people": [
+      {
+        "term": "Arkadianos",
+        "definition": "Las personas que construyen EL ARKA. Término paraguas para la comunidad."
+      },
+      {
+        "term": "Constructores",
+        "definition": "Casta fundadora: suben antes de que rompan las tempestades y levantan el Arka por fe. Se nombran una sola vez en la historia del Arka."
+      },
+      {
+        "term": "Soberanos",
+        "definition": "Suben después, cuando el Arka ya navega. Abordan lo ya construido."
+      }
+    ]
+  },
+  "positioning": {
+    "one_line": "EL ARKA forma al ser humano para liderar la era de la IA, no solo para usarla.",
+    "category_definition": "No es un curso de IA. Es una formación del operador (espíritu, mente y cuerpo) que después entrega el poder de la IA, la comunicación y la venta.",
+    "core_thesis": "La IA no te hace consciente: amplifica tu estado. Una herramienta que no dominas, te domina. Por eso primero se reprograma al ser y después se entrega el poder.",
+    "differentiator": "Mientras el mercado vende atajos para usar la IA, EL ARKA empieza por el operador. El orden es la tesis.",
+    "business_model": "Sin fines de lucro no significa sin recursos: membresías, formación, alianzas y los negocios que nacen dentro generan ingresos que se reinvierten íntegramente en la misión. Nadie se enriquece a costa del miembro.",
+    "promise": "Un negocio sostenible que la IA no puede borrar, construido por una persona que dejó de sabotearse.",
+    "anti_promise": "No promete riqueza rápida, ni resultados garantizados, ni atajos tecnológicos."
+  },
+  "method": {
+    "name": "La Travesía",
+    "structure": "7 pilares en 3 + 3 + 1",
+    "principle": "La IA llega en el cuarto pilar, nunca antes.",
+    "blocks": [
+      {
+        "block": "SER",
+        "pillars": [
+          {
+            "n": "I",
+            "name": "El Ancla",
+            "theme": "Soberanía",
+            "description": "Propósito y merecimiento. La capa soberana desde la que se reescribe todo."
+          },
+          {
+            "n": "II",
+            "name": "El Timón",
+            "theme": "Reprogramación",
+            "description": "Desinstalar el techo invisible: creencias y cultura que dictaron cuánto mereces."
+          },
+          {
+            "n": "III",
+            "name": "El Casco",
+            "theme": "Vitalidad",
+            "description": "Serenar el cuerpo que vive en alerta. Sin energía y sistema nervioso en orden, nada se sostiene."
+          }
+        ]
+      },
+      {
+        "block": "HACER",
+        "pillars": [
+          {
+            "n": "IV",
+            "name": "El Motor",
+            "theme": "IA aplicada",
+            "description": "Con un operador consciente, se entrega el poder que amplifica cada golpe."
+          },
+          {
+            "n": "V",
+            "name": "La Voz",
+            "theme": "Comunicación",
+            "description": "Hacer creer, conectar y mover personas. La visión que no se comunica no existe."
+          },
+          {
+            "n": "VI",
+            "name": "La Corriente",
+            "theme": "Ventas",
+            "description": "Convertir la visión en intercambio y libertad."
+          }
+        ]
+      },
+      {
+        "block": "TRASCENDER",
+        "pillars": [
+          {
+            "n": "VII",
+            "name": "La Estela",
+            "theme": "Legado",
+            "description": "La huella que dejas en el agua. Construir para los que vienen detrás."
+          }
+        ]
+      }
+    ]
+  },
+  "evolution": [
+    {
+      "stage": "Primeras lluvias",
+      "meaning": "Despertar y comprender"
+    },
+    {
+      "stage": "Aguas en ascenso",
+      "meaning": "Capacidad y adaptación"
+    },
+    {
+      "stage": "La Travesía",
+      "meaning": "Gobierno y soberanía"
+    },
+    {
+      "stage": "Arkadia",
+      "meaning": "Vida y legado"
+    }
+  ],
+  "voice": {
+    "attributes": [
+      "Profética",
+      "Sobria",
+      "Humana",
+      "Firme"
+    ],
+    "description": "Habla como quien ya vio lo que viene y no necesita gritarlo. Afirma, no ruega. Nombra el riesgo sin explotar el miedo. Trata al lector como alguien capaz de decidir.",
+    "person": "Segunda persona (tú). Plural 'nosotros' solo cuando habla la organización.",
+    "sentence_style": "Frases cortas y declarativas. Ritmo de sentencia. Un punto donde otros pondrían coma.",
+    "rhetoric": "Metáfora marítima consistente y contraste (antes/después, intemperie/refugio, usar/liderar).",
+    "examples_on_brand": [
+      "La IA transforma el mundo. Tú decides el rumbo.",
+      "EL ARKA te forma para liderarla.",
+      "Primeras lluvias. Es tiempo de construir.",
+      "No viene. Ya empezó.",
+      "No te volvemos más rápido. Te volvemos otro.",
+      "Primero el ser. Después el poder."
+    ],
+    "examples_off_brand": [
+      "¡Aprende IA en 7 días y factura 6 cifras!",
+      "El secreto que los gurús no quieren que sepas.",
+      "Hackea tu productividad con estos 10 prompts.",
+      "Únete ya, quedan 3 lugares (falso).",
+      "Deja que la IA trabaje por ti mientras duermes."
+    ],
+    "banned_words": [
+      "hackea",
+      "secreto",
+      "fórmula mágica",
+      "gurú",
+      "atajo",
+      "ingresos pasivos garantizados",
+      "hazte rico",
+      "sin esfuerzo"
+    ]
+  },
+  "lexicon": [
+    {
+      "term": "El diluvio",
+      "use": "La disrupción de la IA que ya comenzó. No es futuro: es presente."
+    },
+    {
+      "term": "Las primeras gotas",
+      "use": "El momento actual: la ventana para actuar antes de que sea evidente."
+    },
+    {
+      "term": "La intemperie",
+      "use": "Estar sin formación ni comunidad frente al cambio."
+    },
+    {
+      "term": "Abordar / subir al Arka",
+      "use": "Entrar a la comunidad. Nunca 'comprar' ni 'suscribirse'."
+    },
+    {
+      "term": "Remar",
+      "use": "El compromiso activo del miembro. Nadie es pasajero."
+    },
+    {
+      "term": "La orilla",
+      "use": "El resultado: vida libre del otro lado del diluvio."
+    },
+    {
+      "term": "Nodo",
+      "use": "Cada sede o célula de la comunidad. EL ARKA es el nodo cero."
+    },
+    {
+      "term": "La Flota",
+      "use": "El conjunto de nodos. Soberanía de Nodo: cada uno se sostiene solo."
+    },
+    {
+      "term": "El Juramento del Constructor",
+      "use": "Rito de entrada de la casta fundadora."
+    }
+  ],
+  "visual": {
+    "palette": [
+      {
+        "name": "Tormenta",
+        "hex": "#0B1F33",
+        "role": "Protección",
+        "use": "Fondo dominante, superficies profundas, nav, sellos."
+      },
+      {
+        "name": "Lluvia",
+        "hex": "#28B8D8",
+        "role": "IA / señal",
+        "use": "Acento principal, CTA, enlaces, todo lo que señala tecnología e inteligencia."
+      },
+      {
+        "name": "Terracota",
+        "hex": "#B76547",
+        "role": "Humano",
+        "use": "Todo lo que es persona: fundadores, Constructores, el pacto, el punto humano del símbolo."
+      },
+      {
+        "name": "Arkadia",
+        "hex": "#5E7568",
+        "role": "Destino",
+        "use": "La orilla, el legado, el cierre de la travesía."
+      },
+      {
+        "name": "Marfil",
+        "hex": "#F4F0E8",
+        "role": "Refugio",
+        "use": "Texto sobre oscuro, superficies claras, documentos y manuales."
+      }
+    ],
+    "palette_tints": [
+      {
+        "name": "Lluvia clara",
+        "hex": "#5ED8F0",
+        "use": "Énfasis tipográfico sobre Tormenta."
+      },
+      {
+        "name": "Terracota clara",
+        "hex": "#D08A66",
+        "use": "Texto humano sobre fondo oscuro."
+      },
+      {
+        "name": "Arkadia clara",
+        "hex": "#9CB8A8",
+        "use": "Texto de destino sobre fondo oscuro."
+      }
+    ],
+    "color_semantics": "El color no es decorativo: Lluvia = IA y señal; Terracota = ser humano; Arkadia = destino. Nunca usar Terracota para tecnología ni Lluvia para personas.",
+    "typography": {
+      "display": {
+        "family": "Sora",
+        "weights": [
+          300,
+          400,
+          500,
+          600
+        ],
+        "use": "Titulares, sistema y futuro. Tracking negativo en tamaños grandes.",
+        "source": "Google Fonts"
+      },
+      "body": {
+        "family": "Source Serif 4",
+        "weights": [
+          300,
+          400,
+          600
+        ],
+        "use": "Cuerpo de texto, humanidad y pensamiento. Cursiva para énfasis emocional.",
+        "source": "Google Fonts"
+      },
+      "pairing_rationale": "Sora aporta el futuro y el sistema; Source Serif 4 aporta lo humano y lo pensado. La tensión entre ambas es la tesis de la marca en tipografía."
+    },
+    "symbol": {
+      "name": "Símbolo de EL ARKA",
+      "files": {
+        "svg_marfil": "https://elarka.ong/assets/arka-simbolo-marfil.svg",
+        "svg_tormenta": "https://elarka.ong/assets/arka-simbolo-tormenta.svg",
+        "logo_vertical_jpg": "https://elarka.ong/assets/arka-logo.jpg",
+        "sistema_png": "https://elarka.ong/assets/arka-logo-system.png"
+      },
+      "anatomy": [
+        {
+          "element": "Primera lluvia",
+          "meaning": "Origen y señal",
+          "color": "#28B8D8"
+        },
+        {
+          "element": "Arco y A",
+          "meaning": "Protección y liderazgo",
+          "color": "cuerpo del símbolo"
+        },
+        {
+          "element": "Punto humano",
+          "meaning": "La persona al mando",
+          "color": "#B76547"
+        },
+        {
+          "element": "Nave y horizonte",
+          "meaning": "Obra, travesía y legado",
+          "color": "cuerpo del símbolo"
+        }
+      ],
+      "versions": [
+        "Principal (símbolo + wordmark vertical)",
+        "Horizontal (símbolo + wordmark + tagline)",
+        "Símbolo solo 64px+",
+        "Símbolo simplificado 16–31px"
+      ],
+      "clear_space": "Mínimo el ancho del punto humano por cada lado.",
+      "min_size": "16px de ancho para el símbolo solo.",
+      "misuse": [
+        "No rotar, inclinar ni reflejar el símbolo.",
+        "No cambiar el color del punto humano (siempre Terracota).",
+        "No aplicar degradados, sombras ni contornos.",
+        "No colocar el símbolo en Tormenta sobre fondos oscuros (usar versión Marfil).",
+        "No recomponer las proporciones entre símbolo y wordmark."
+      ]
+    },
+    "art_direction": {
+      "principles": [
+        "Personas reales y familias al centro.",
+        "Tecnología presente, nunca dominante.",
+        "Agua, horizonte, tierra y construcción.",
+        "Luz natural, materia y comunidad."
+      ],
+      "rule": "La tecnología puede aparecer; el ser humano domina el encuadre.",
+      "avoid": [
+        "Stock corporativo genérico",
+        "Robots humanoides",
+        "Interfaces futuristas azules flotantes",
+        "Personas solas frente a pantallas como héroe"
+      ]
+    },
+    "motion": {
+      "principles": [
+        "Movimiento que aclara el flujo, no que distrae.",
+        "Solo propiedades compositoras: transform, opacity."
+      ],
+      "signature": "Scroll cinematográfico: la cámara desciende hacia el arca mientras el copy se revela por etapas.",
+      "accessibility": "Respetar siempre prefers-reduced-motion con una versión estática equivalente."
+    }
+  },
+  "audience": {
+    "primary": "Emprendedores y empresarios de habla hispana en LATAM que sienten que la IA vuelve obsoleto lo que construyeron.",
+    "segmentation_model": {
+      "principle": "No segmentar por edad ni por industria. La tesis lo prohíbe: si la IA amplifica tu estado, el estado —no el sector— define el mensaje.",
+      "axes": [
+        {
+          "axis": "Relación con el diluvio",
+          "values": [
+            "Lo niega",
+            "Lo ve y se paraliza",
+            "Lo ve y corre en círculos",
+            "Lo ve y ya rema"
+          ]
+        },
+        {
+          "axis": "Patrón de autosabotaje",
+          "values": [
+            "Control",
+            "Sobrepreparación",
+            "Dispersión",
+            "Orgullo"
+          ],
+          "note": "Determina qué pilar de La Travesía lo desbloquea."
+        },
+        {
+          "axis": "Cohorte",
+          "values": [
+            "Constructor",
+            "Soberano"
+          ],
+          "note": "Constructor sube por fe antes de las tempestades; Soberano sube cuando el Arka ya navega."
+        }
+      ],
+      "copy_rule": "Cada perfil separa el miedo/deseo declarado del real. Nunca le hables a su miedo declarado: háblale al real, sin nombrárselo de frente."
+    },
+    "status": "v2 · perfiles derivados del universo de marca, pendientes de validación de Ed Zam y Val Mosquera.",
+    "go_to_market_note": "Para la cohorte fundadora (23 de julio) priorizar El Timonel sin Carta y La Náufraga Competente: tienen urgencia, recursos y algo que proteger. El Guardián de la Estela suele ser Soberano salvo que un sucesor lo empuje. El que Rema en Círculos solo convierte cuando toca fondo.",
+    "personas": [
+      {
+        "id": "timonel-sin-carta",
+        "name": "El Timonel sin Carta",
+        "plain": "El fundador con un negocio real y sin mapa para esta era.",
+        "age_range": "38–55",
+        "cohort": "Constructor",
+        "flood_relation": "Lo ve y acelera — pero acelera en la dirección vieja.",
+        "core_belief": "Si trabajo más duro que nadie, salgo de esta como salí de todas.",
+        "defended_identity": "Yo soy el que sabe. El que sostiene a todos.",
+        "stated_fear": "Quedarme atrás en tecnología.",
+        "real_fear": "Que su equipo y su familia descubran que ya no tiene la respuesta.",
+        "stated_desire": "Implementar IA en mi empresa.",
+        "real_desire": "Volver a sentir que manda él, no la corriente.",
+        "self_sabotage": "Control. No delega, no aprende en público y confunde esfuerzo con dirección.",
+        "unlocking_pillar": "El Timón (creencias) — aunque él jura que necesita El Motor.",
+        "verbatim": [
+          "Ya probé consultores y no pasó nada.",
+          "Dime qué herramienta uso y yo la implemento.",
+          "No tengo tiempo para otro curso."
+        ],
+        "opening_message": "No empiezas de cero: reconstruyes desde lo que ya levantaste. Pero el primer cambio no es la herramienta — eres tú.",
+        "repelled_by": "Que lo traten como principiante, o venderle «la app que resuelve todo».",
+        "entry_trigger": "Un competidor más chico lo superó usando IA."
+      },
+      {
+        "id": "naufraga-competente",
+        "name": "La Náufraga Competente",
+        "plain": "La experta cuyo conocimiento acaba de volverse commodity.",
+        "age_range": "28–42",
+        "cohort": "Constructor",
+        "flood_relation": "Lo ve con claridad y ya le duele en el bolsillo.",
+        "core_belief": "Si me preparo lo suficiente, el mercado me va a reconocer.",
+        "defended_identity": "Yo soy la más preparada del cuarto.",
+        "stated_fear": "No ser lo bastante técnica.",
+        "real_fear": "Que su valor siempre dependió de saber más que los demás — y eso dejó de ser una ventaja.",
+        "stated_desire": "Aprender a usar la IA en mi servicio.",
+        "real_desire": "Dejar de rentar su tiempo y tener algo propio que la sostenga.",
+        "self_sabotage": "Sobrepreparación. Estudia en lugar de lanzar; perfecciona en lugar de cobrar.",
+        "unlocking_pillar": "La Corriente (ventas) sobre El Ancla (merecimiento).",
+        "verbatim": [
+          "Es que todavía no estoy lista.",
+          "Un cliente me pidió descuento porque «eso ya lo hace la IA».",
+          "Yo no sé venderme."
+        ],
+        "opening_message": "Tu criterio es lo que la IA no tiene. El problema no es que sepas poco: es que cobras como si valieras poco.",
+        "repelled_by": "Condescendencia técnica. Prometerle que la IA hará el trabajo por ella.",
+        "entry_trigger": "Perdió un cliente o bajó su tarifa por comparación con la IA."
+      },
+      {
+        "id": "rema-en-circulos",
+        "name": "El que Rema en Círculos",
+        "plain": "El emprendedor digital saturado de tácticas y vacío de estructura.",
+        "age_range": "25–38",
+        "cohort": "Constructor solo si toca fondo",
+        "flood_relation": "Lo ve en todas partes y reacciona a todo.",
+        "core_belief": "El siguiente método sí va a ser el bueno.",
+        "defended_identity": "Yo soy el que siempre está a la vanguardia.",
+        "stated_fear": "Que me falte el método correcto.",
+        "real_fear": "Que el problema no sean las herramientas, sino él.",
+        "stated_desire": "Un sistema que por fin funcione.",
+        "real_desire": "Parar. Descansar sin sentir que se queda atrás.",
+        "self_sabotage": "Dispersión: consume novedad para no ejecutar. El movimiento le sirve de anestesia.",
+        "unlocking_pillar": "El Casco (vitalidad) primero — su sistema nervioso vive en alerta — y después El Ancla.",
+        "verbatim": [
+          "Ya tengo como cinco herramientas de IA.",
+          "Esto suena a otro programa más.",
+          "Necesito enfocarme, pero salió algo nuevo."
+        ],
+        "opening_message": "No te falta información. Te falta un orden. Y el orden empieza en el cuerpo, no en la app.",
+        "repelled_by": "Listas de trucos, lenguaje de gurú y urgencia inventada: reconoce el patrón y huye.",
+        "entry_trigger": "Otro lanzamiento fallido, o un burnout que lo tumbó."
+      },
+      {
+        "id": "guardian-de-la-estela",
+        "name": "El Guardián de la Estela",
+        "plain": "El empresario que piensa en herencia, no en tendencia.",
+        "age_range": "45–62",
+        "cohort": "Soberano — salvo que un sucesor lo empuje hoy",
+        "flood_relation": "Lo ve de lejos y desconfía del ruido, pero sabe que algo grande está pasando.",
+        "core_belief": "Las modas pasan; el trabajo bien hecho permanece.",
+        "defended_identity": "Yo levanté algo que sostiene familias.",
+        "stated_fear": "Que la IA sea humo y me haga perder dinero.",
+        "real_fear": "Entregarles a sus hijos una empresa que se va a apagar.",
+        "stated_desire": "Que el negocio no se caiga.",
+        "real_desire": "Que lo suyo siga en pie cuando él ya no esté.",
+        "self_sabotage": "Orgullo y desconfianza: «a mí ya nadie me va a enseñar».",
+        "unlocking_pillar": "La Estela (legado) — entra por la herencia, jamás por la tecnología.",
+        "verbatim": [
+          "Yo ya estoy grande para eso.",
+          "Eso de la IA es puro humo.",
+          "Mi hijo me dice que tengo que modernizarme."
+        ],
+        "opening_message": "Lo único que permanece es la estela. Esto no se trata de modernizarte: se trata de que lo tuyo siga en pie.",
+        "repelled_by": "Jerga técnica, estética futurista fría y cualquier insinuación de que está obsoleto.",
+        "entry_trigger": "Un hijo o sucesor le plantea el cambio; o un cliente grande se fue."
+      }
+    ],
+    "anti_persona": {
+      "id": "turista-del-diluvio",
+      "name": "El Turista del Diluvio",
+      "plain": "Mira la tormenta desde la orilla, colecciona contenido y nunca sube.",
+      "signals": [
+        "Pregunta el precio antes que el método.",
+        "Quiere «solo los prompts» y se salta el bloque del SER.",
+        "Pide garantías de resultado.",
+        "Colecciona cursos que no termina."
+      ],
+      "why_not": "EL ARKA no es un catálogo de atajos. Si no está dispuesto a trabajar sobre sí mismo, la formación no lo sostiene — y terminará culpando al Arka.",
+      "rule": "No perseguirlo ni ablandar el mensaje para retenerlo. El filtro es parte del producto."
+    }
+  },
+  "messaging": {
+    "hero": {
+      "headline": "Lidera esta era. Construye tu libertad.",
+      "kicker": "Las primeras gotas ya caen · Fundación: 23 de julio · Mérida, Yucatán"
+    },
+    "narrative_arc": [
+      {
+        "beat": "I · El diluvio",
+        "message": "No viene. Ya empezó."
+      },
+      {
+        "beat": "II · Lo que está en juego",
+        "message": "No se trata de ponerte al día. Se trata de tu libertad."
+      },
+      {
+        "beat": "III · La diferencia",
+        "message": "La IA no te hará consciente. Solo amplifica tu estado."
+      },
+      {
+        "beat": "IV · La Travesía",
+        "message": "Primero el ser. Después el poder."
+      },
+      {
+        "beat": "V · El Arka",
+        "message": "No es una metáfora. Es real."
+      },
+      {
+        "beat": "VI · La ciudadanía",
+        "message": "Subir es el principio. Lo que sigue es pertenecer."
+      },
+      {
+        "beat": "VII · La Flota",
+        "message": "Un Arka sola es un bote. Muchas son una flota."
+      },
+      {
+        "beat": "VIII · Arkadia",
+        "message": "Al final de la travesía hay una orilla."
+      },
+      {
+        "beat": "IX · Los Arquitectos",
+        "message": "Somos dos. Y vemos lo mismo."
+      },
+      {
+        "beat": "X · El Pacto",
+        "message": "No se firma con tinta. Se firma subiendo."
+      }
+    ],
+    "boilerplate": {
+      "short_25": "EL ARKA es una comunidad y organización sin fines de lucro que forma a emprendedores de LATAM para liderar la era de la Inteligencia Artificial, no solo para usarla.",
+      "medium_50": "EL ARKA es el nodo cero: una plataforma, comunidad y organización sin fines de lucro que forma a emprendedores y empresarios de habla hispana para liderar la era de la IA. Su método, La Travesía, reprograma al operador antes de entregarle el poder de la IA, la comunicación y la venta. Fundada el 23 de julio de 2026 en Mérida, Yucatán.",
+      "long_100": "EL ARKA es el nodo cero: una plataforma, comunidad y organización sin fines de lucro que forma a emprendedores y empresarios de habla hispana para liderar la era de la Inteligencia Artificial — no solo para usarla. Su principio rector es que el ser humano va en el centro y la IA a su servicio. Su método, La Travesía, ordena siete pilares en tres bloques: primero el SER (El Ancla, El Timón, El Casco), después el HACER (El Motor, La Voz, La Corriente) y finalmente el TRASCENDER (La Estela). La IA llega en el cuarto pilar, nunca antes. Fue fundada el 23 de julio de 2026 en Mérida, Yucatán, por Ed Zam y Val Mosquera, y opera bajo un modelo sin fines de lucro donde los ingresos se reinvierten íntegramente en la misión.",
+      "en_50": "EL ARKA is a non-profit community and training platform that prepares Spanish-speaking entrepreneurs across Latin America to lead the age of Artificial Intelligence — not merely to use it. Its method, La Travesía, reprograms the operator before handing over the power of AI, communication and sales. Founded on July 23, 2026 in Mérida, Yucatán, Mexico."
+    }
+  },
+  "do_not": [
+    "Escribir el nombre como 'El Arca'.",
+    "Invertir la jerarquía: la IA nunca por encima del ser humano.",
+    "Prometer cifras de ingresos, plazos de resultados o garantías.",
+    "Usar estética de robots, interfaces flotantes o futurismo frío.",
+    "Presentar EL ARKA como un curso de herramientas o prompts.",
+    "Decir que es gratis o que no existen membresías.",
+    "Usar urgencia inventada o escasez falsa.",
+    "Alterar el símbolo, su punto humano o los roles de color."
+  ],
+  "resources": {
+    "press_room": "https://elarka.ong/prensa",
+    "llms_txt": "https://elarka.ong/llms.txt",
+    "brand_json": "https://elarka.ong/brand.json",
+    "sitemap": "https://elarka.ong/sitemap.xml"
+  }
+}
