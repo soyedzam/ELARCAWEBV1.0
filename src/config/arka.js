@@ -122,7 +122,7 @@ export const NODOS = [
    Membresías de Ed y Val a título personal (no de la organización).
    Es la red donde ya estaban antes de zarpar. */
 export const PERTENENCIAS = [
-  { nombre: "Cluster Empresarial EXATEC", rol: "Miembros fundadores",
+  { nombre: "Cluster Empresarial EXATEC Sureste", rol: "Miembros fundadores",
     linea: "Parte del grupo que lo levantó desde el primer día." },
   { nombre: "Comunidad EXATEC", rol: "Miembros activos",
     linea: "La red de egresados del Tecnológico de Monterrey." },
@@ -136,19 +136,19 @@ export const PERTENENCIAS = [
    Aquí no solo se acompaña: se opera. Es la prueba de la tesis. */
 export const ALIANZAS = [
   { nombre: "Cumbre Global de Liderazgo", tipo: "Formación de líderes · México",
-    aporta: ["Tecnología, IA y agentes", "Contenido y marketing"],
+    aporta: ["Orquestación de agentes y arneses", "Contenido y marketing"],
     linea: "El encuentro que forma a quienes conducen a otros." },
-  { nombre: "Cluster Empresarial EXATEC", tipo: "Cámara empresarial",
-    aporta: ["Tecnología, IA y agentes", "Contenido y marketing"],
-    linea: "La red de empresarios egresados del Tec de Monterrey." },
+  { nombre: "Cluster Empresarial EXATEC Sureste", tipo: "Cámara empresarial",
+    aporta: ["Orquestación de agentes y arneses", "Contenido y marketing"],
+    linea: "La red de empresarios egresados del Tec de Monterrey en el sureste de México." },
   { nombre: "Congreso El Cielo en mi Ciudad", tipo: "Congreso · comunidad",
-    aporta: ["Tecnología, IA y agentes", "Contenido y marketing"],
+    aporta: ["Orquestación de agentes y arneses", "Contenido y marketing"],
     linea: "Un congreso que reúne a la ciudad entera." },
   { nombre: "Club Conéctate", tipo: "Encuentro empresarial", url: "https://clubconectate.elarka.ong",
-    aporta: ["Ecosistema digital e IA"],
+    aporta: ["Orquestación de agentes y arneses", "Contenido y marketing"],
     linea: "Donde emprendedores y empresarios se reconocen cara a cara.", externo: true },
   { nombre: "Techo Venezuela", tipo: "Causa social", url: "https://techovenezuela.elarka.ong",
-    aporta: ["Acompañamiento"],
+    aporta: ["Orquestación de agentes y arneses", "Contenido y marketing"],
     linea: "Un techo para quien cruza sin tenerlo.", externo: true },
 ];
 

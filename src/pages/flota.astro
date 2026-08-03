@@ -48,10 +48,16 @@ const descripcion =
     <h2 class="titulo revelar d1" id="h-alianzas">No enseñamos la IA<br>
       <span class="sentencia">desde la teoría.</span></h2>
     <p class="guia lectura revelar d2">El Arka acompaña a otras causas e instituciones para que más
-      gente cruce — y a varias de ellas les operamos la tecnología, la inteligencia artificial y la
-      comunicación con la que trabajan hoy. <span class="sentencia">Lo que formamos aquí, allá ya
-      está corriendo.</span>
-      <span class="aparte-inline">Acompañan al Arka; no son parte de la ciudadanía.</span></p>
+      gente cruce. Y a todas ellas les operamos hoy lo mismo que aquí enseñamos:
+      <span class="sentencia">lo que formamos en El Arka, allá ya está corriendo.</span></p>
+
+    <div class="aporte-comun revelar d2">
+      <p class="rotulo">Lo que operamos para cada una</p>
+      <ul>
+        <li>Orquestación de agentes y arneses</li>
+        <li>Contenido y marketing</li>
+      </ul>
+    </div>
 
     <ul class="alianzas revelar d2">
       {ALIANZAS.map((a) => {
@@ -60,9 +66,6 @@ const descripcion =
             <p class="rotulo tipo">{a.tipo}</p>
             <h3>{a.nombre}{a.externo && <span class="fuera" aria-hidden="true">↗</span>}</h3>
             <p class="linea">{a.linea}</p>
-            <ul class="aporta">
-              {a.aporta.map((x) => <li>{x}</li>)}
-            </ul>
           </>
         );
         return (
@@ -74,6 +77,7 @@ const descripcion =
         );
       })}
     </ul>
+    <p class="aparte revelar d3" style="margin-top:26px">Acompañan al Arka; no son parte de la ciudadanía.</p>
   </div>
 </section>
 
@@ -237,12 +241,15 @@ const descripcion =
   color:var(--marfil);margin-top:8px}
 .alianzas .fuera{font-size:.5em;color:var(--tinta-tenue);margin-left:7px;vertical-align:super}
 .alianzas .linea{margin-top:9px;color:var(--tinta-suave);font-size:var(--t-menor);line-height:1.6}
-/* Lo que aportamos: el dato que convierte "apoyamos" en "operamos" */
-.alianzas .aporta{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
-.alianzas .aporta li{border:0;border-radius:var(--borde);padding:5px 10px;
-  background:rgba(183,101,71,.14);
-  font-family:var(--sans);font-size:10.5px;font-weight:600;
-  letter-spacing:var(--track-inline);text-transform:uppercase;color:var(--terra-luz)}
+/* El aporte es idéntico para las cinco: se enuncia una vez, no diez.
+   Repetir un dato uniforme por fila no informa — solo hace ruido. */
+.aporte-comun{margin-top:34px;padding:20px 24px;
+  border-left:2px solid var(--terracota);background:rgba(183,101,71,.07)}
+.aporte-comun .rotulo{color:var(--terra-luz)}
+.aporte-comun ul{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.aporte-comun li{font-family:var(--sans);font-weight:var(--peso-aire);
+  font-size:clamp(17px,1vw + 13px,22px);letter-spacing:-.018em;color:var(--marfil)}
+.aporte-comun li + li::before{content:"·";margin-right:10px;color:var(--terra-luz)}
 
 /* Pertenencias: credencial institucional, tratamiento de dato sobrio */
 .pertenencias-sec{background:var(--marfil)}
