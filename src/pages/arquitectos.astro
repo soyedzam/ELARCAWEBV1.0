@@ -61,6 +61,28 @@ const descripcion =
   </div>
 </section>
 
+<!-- ░░░░ MÉRIDA · el lugar que ancla la épica ░░░░ -->
+<section class="mov imagen-sec" aria-labelledby="h-merida">
+  <div class="contenedor">
+    <p class="etiqueta revelar">El lugar</p>
+    <h2 class="titulo revelar d1" id="h-merida">Todo esto empieza<br>
+      <span class="sentencia">en una calle de Mérida</span>.</h2>
+    <figure class="figura revelar d2">
+      <img
+        src="/assets/comunidad/merida-recreacion.webp"
+        srcset="/assets/comunidad/merida-recreacion-800.webp 800w, /assets/comunidad/merida-recreacion.webp 1600w"
+        sizes="(max-width: 900px) 100vw, 1180px"
+        width="1600" height="893" loading="lazy" decoding="async"
+        alt="Calle colonial de Mérida al anochecer después de la lluvia: adoquines mojados, faroles encendidos, nubes de tormenta despejando y una figura caminando a lo lejos." />
+      <figcaption>
+        <span class="pie">Mérida, después de la lluvia. La tormenta pasa y alguien sigue caminando:
+          ahí cabe todo lo que queremos decir.</span>
+        <span class="credito">Imagen de recreación · la fotografía documental llega en el próximo sprint</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
 <!-- ░░░░ LA FICHA · el único lugar del sitio donde vive la fundación ░░░░ -->
 <section class="mov ficha-sec" aria-labelledby="h-ficha">
   <div class="contenedor">
@@ -119,6 +141,16 @@ const descripcion =
 .dos-tercios{display:grid;gap:30px}
 @media(min-width:900px){.dos-tercios{grid-template-columns:2fr 3fr;gap:64px;align-items:start}}
 .dos-tercios p{color:var(--tinta-suave)}
+
+/* Mérida: el lugar real bajo la metáfora */
+.imagen-sec{background:var(--hondo)}
+.figura{margin:38px 0 0}
+.figura img{width:100%;height:auto;display:block;border-radius:var(--borde);
+  filter:saturate(.94) contrast(1.02)}
+.figura figcaption{margin-top:14px;display:grid;gap:5px}
+.figura .pie{font-size:var(--t-menor);color:var(--tinta-suave);max-width:60ch}
+.figura .credito{font-family:var(--sans);font-size:var(--t-micro);
+  letter-spacing:var(--track-inline);text-transform:uppercase;color:var(--tinta-tenue)}
 
 /* La ficha: dato puro, sin decoración */
 .ficha-sec{background:var(--media-agua)}

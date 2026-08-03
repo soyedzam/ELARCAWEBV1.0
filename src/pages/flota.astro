@@ -65,6 +65,26 @@ const descripcion =
   </div>
 </section>
 
+<!-- ░░░░ LA PROA EN CAMPO ░░░░
+     Imagen de recreación mientras llega la fotografía documental.
+     Se rotula a la vista: no se presenta como prueba de asistencia. -->
+<section class="mov imagen-sec" aria-labelledby="h-campo">
+  <div class="contenedor">
+    <figure class="figura revelar">
+      <img
+        src="/assets/comunidad/taller-recreacion.webp"
+        srcset="/assets/comunidad/taller-recreacion-800.webp 800w, /assets/comunidad/taller-recreacion.webp 1600w"
+        sizes="(max-width: 900px) 100vw, 1180px"
+        width="1600" height="893" loading="lazy" decoding="async"
+        alt="Sala de taller en una casona de Mérida: filas de personas adultas sentadas de espaldas, tomando notas, frente a quien facilita." />
+      <figcaption>
+        <span class="pie">Así se ve un taller del Arka: gente que dejó la intemperie y vino a construir.</span>
+        <span class="credito">Imagen de recreación · la fotografía documental llega con el próximo taller</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
 <!-- ░░░░ SOBERANÍA DE NODO · corte en positivo ░░░░ -->
 <section class="mov positivo corte" aria-labelledby="h-soberania">
   <div class="contenedor">
@@ -152,6 +172,16 @@ const descripcion =
   font-size:clamp(26px,2vw + 18px,38px);letter-spacing:-.025em;color:var(--marfil);margin-top:9px}
 .nodo .fuera{font-size:.5em;color:var(--tinta-tenue);margin-left:8px;vertical-align:super}
 .nodo .linea{margin-top:12px;color:var(--tinta-suave);font-size:var(--t-menor);line-height:1.6}
+
+/* ══ Figura documental ══ */
+.imagen-sec{padding:0 0 var(--aire-base);background:var(--abismo)}
+.figura{margin:0}
+.figura img{width:100%;height:auto;display:block;border-radius:var(--borde);
+  filter:saturate(.92) contrast(1.03)}
+.figura figcaption{margin-top:14px;display:grid;gap:5px}
+.figura .pie{font-size:var(--t-menor);color:var(--tinta-suave);max-width:60ch}
+.figura .credito{font-family:var(--sans);font-size:var(--t-micro);
+  letter-spacing:var(--track-inline);text-transform:uppercase;color:var(--tinta-tenue)}
 
 /* Las alianzas: acompañan, no pertenecen. Tratamiento más ligero
    que los nodos — sin fondo propio, solo filete. */

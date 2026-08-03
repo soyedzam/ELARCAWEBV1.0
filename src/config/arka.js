@@ -29,6 +29,7 @@ export const NAV = [
   { numero: "III", corto: "La ciudadanía", titulo: "La ciudadanía",   ruta: "/ciudadania/" },
   { numero: "IV",  corto: "La Flota",      titulo: "La Flota",        ruta: "/flota/" },
   { numero: "V",   corto: "Arquitectos",   titulo: "Los Arquitectos", ruta: "/arquitectos/" },
+  { numero: "VI",  corto: "Bitácora",      titulo: "Bitácora",        ruta: "/bitacora/" },
 ];
 
 /* ── LOS DOS NICHOS (Carta · sección III) ──
@@ -160,6 +161,43 @@ export const JURAMENTO = [
   "No busco mi nombre: busco dejar huella.",
 ];
 export const JURAMENTO_SELLO = "Subo al Arka. Soy Constructor.";
+
+/* ── BITÁCORA · lo trazado y lo que falta ──
+   Todo lo de aquí sale de la Carta Fundacional v1.7. Lo marcado como
+   pendiente está literalmente [VALIDAR] en el canon: no se inventa. */
+export const TRAZADO = [
+  { que: "La Travesía · los siete pilares",
+    detalle: "El método completo, en estructura 3 + 3 + 1, con el sabotaje que vence cada pilar. Trazado y en uso." },
+  { que: "La doctrina y el léxico",
+    detalle: "Los tres nombres, las dos castas, la identidad del Arkadiano y la voz de la casa. Escritos y vigentes." },
+  { que: "La Proa · el taller en campo",
+    detalle: "El Taller Conéctate ya se imparte y tiene su propio material. Es el primer contacto real con el Arka." },
+  { que: "Las primeras alianzas",
+    detalle: "Club Conéctate y Techo Venezuela acompañan al Arka con causas y encuentros propios." },
+];
+
+export const POR_TRAZAR = [
+  { que: "Las 7 Estaciones de ARKAI",
+    detalle: "Si La Travesía te transforma a ti, las Estaciones construyen tu negocio. Están nombradas como concepto, pero su detalle aún no se dibuja. No las inventamos: se trazan cuando los Arquitectos las dibujen." },
+  { que: "La constitución legal",
+    detalle: "El Arka opera hoy como comunidad y organización sin fines de lucro. Su constitución jurídica formal está prevista para 2027, autofinanciada por el propio Arka — cuando haya recursos, no antes." },
+  { que: "La prueba real de un nodo",
+    detalle: "La Soberanía de Nodo está definida en doctrina. Falta la prueba en campo: un nodo sosteniéndose solo, con sus propios ingresos y su comunidad." },
+  { que: "El motor de monetización, en detalle",
+    detalle: "Sabemos que los ingresos se reinvierten íntegramente en la misión. El detalle de membresías y niveles se está afinando." },
+];
+
+/* Entradas de bitácora. Solo hechos verificables, con fecha.
+   Las siguientes las escriben Ed o Val. */
+export const BITACORAS = [
+  {
+    iso: "2026-08-03",
+    fecha: "3 · ago · 2026",
+    titulo: "Abrimos el plano",
+    texto: "Publicamos esta bitácora con lo que ya está en pie y —sobre todo— con lo que todavía no está trazado. Casi nadie enseña su plano incompleto. Nosotros preferimos que quien suba sepa exactamente en qué momento del viaje está entrando: temprano, cuando aún cuesta creer.",
+    firma: "Los Arquitectos",
+  },
+];
 
 /* Fundación: por instrucción de los Arquitectos, este dato vive
    ÚNICAMENTE en /arquitectos. No se repite en el resto del sitio. */

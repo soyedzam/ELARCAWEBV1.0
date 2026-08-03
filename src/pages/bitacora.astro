@@ -1,0 +1,160 @@
+---
+import Base from "../layouts/Base.astro";
+import { WA_CTA, TRAZADO, POR_TRAZAR, BITACORAS } from "../config/arka.js";
+
+const titulo = "Bitácora · el plano a medio dibujar";
+const descripcion =
+  "Lo que ya está en pie en EL ARKA y lo que todavía no está trazado. Un registro abierto, con fecha, de una organización que apenas está empezando.";
+---
+<Base titulo={titulo} descripcion={descripcion} ruta="/bitacora/">
+
+<header class="portada">
+  <div class="contenedor">
+    <p class="etiqueta">Bitácora</p>
+    <h1 class="display">El plano<br><span class="sentencia">a medio dibujar</span>.</h1>
+    <p class="entrada lectura">Casi todas las organizaciones se presentan terminadas. Nosotros no
+      podemos: apenas estamos empezando, y preferimos que lo sepas por nosotros.
+      Aquí está lo que ya está en pie <span class="sentencia">y lo que todavía no</span>.</p>
+  </div>
+</header>
+
+<!-- ░░░░ LO QUE YA ESTÁ EN PIE ░░░░ -->
+<section class="mov" aria-labelledby="h-trazado">
+  <div class="contenedor">
+    <p class="etiqueta revelar">Lo que ya está en pie</p>
+    <h2 class="titulo revelar d1" id="h-trazado">Esto ya existe y se puede tocar.</h2>
+    <ul class="lista revelar d2">
+      {TRAZADO.map((t) => (
+        <li>
+          <h3>{t.que}</h3>
+          <p>{t.detalle}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- ░░░░ LO QUE FALTA · el corte en marfil ░░░░
+     La pieza más honesta del sitio: nadie publica su plano incompleto. -->
+<section class="mov positivo corte" aria-labelledby="h-falta">
+  <div class="contenedor">
+    <p class="etiqueta revelar">Lo que todavía no está trazado</p>
+    <h2 class="titulo revelar d1" id="h-falta">Y esto <span class="sentencia">aún no</span>.</h2>
+    <p class="guia lectura revelar d2">No lo inventamos para que se vea completo. Se traza cuando
+      los Arquitectos lo dibujen, y aquí quedará escrito cuando pase.</p>
+    <ul class="lista pendiente revelar d2">
+      {POR_TRAZAR.map((t) => (
+        <li>
+          <h3>{t.que}</h3>
+          <p>{t.detalle}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- ░░░░ EL RITO DEL NOMBRE ░░░░ -->
+<section class="mov rito" aria-labelledby="h-rito">
+  <div class="contenedor">
+    <div class="dos-tercios">
+      <div>
+        <p class="etiqueta revelar">El rito</p>
+        <h2 class="titulo revelar d1" id="h-rito">Al subir<br>tomas un nombre nuevo.</h2>
+      </div>
+      <div class="revelar d2">
+        <p>A quien sube se le hace una sola pregunta, y nadie más la responde por él:</p>
+        <blockquote class="pregunta">Constructor, ¿cuál es el nombre nuevo con el que subiste al Arka?</blockquote>
+        <p>Ese nombre queda en su expediente. Nunca se impone ni se sugiere. Aquí no se te reconoce
+          por tus seguidores ni por tu título, sino por lo que construyes —
+          <span class="sentencia">y un Constructor solo es reconocido por otro Constructor</span>.</p>
+        <p class="aparte">Por eso, cuando alguien de adentro hable en este sitio, lo hará como
+          lo que es: un código y una ciudad. No un nombre para presumir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░ LAS ENTRADAS ░░░░ -->
+<section class="mov entradas-sec" aria-labelledby="h-entradas">
+  <div class="contenedor">
+    <p class="etiqueta revelar">Las entradas</p>
+    <h2 class="titulo revelar d1" id="h-entradas">Lo que va pasando.</h2>
+    <ol class="entradas">
+      {BITACORAS.map((b) => (
+        <li class="entrada-b revelar">
+          <time datetime={b.iso}>{b.fecha}</time>
+          <div>
+            <h3>{b.titulo}</h3>
+            <p>{b.texto}</p>
+            <p class="firma">{b.firma}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<section class="mov final" aria-labelledby="h-cta">
+  <div class="contenedor">
+    <h2 class="titulo revelar" id="h-cta">Apenas estamos empezando.<br>
+      <span class="sentencia">Por eso vale subir ahora.</span></h2>
+    <div class="botones revelar d1">
+      <a href={WA_CTA} target="_blank" rel="noopener" class="boton principal">Solicitar abordar</a>
+      <a href="/travesia/" class="boton contorno">Ver La Travesía</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.portada{padding:calc(var(--aire-vasto) + 60px) 0 var(--aire-base);
+  background:linear-gradient(180deg,var(--abismo),var(--hondo))}
+.display{font-size:var(--t-display);margin:22px 0 0;line-height:1}
+.entrada{margin-top:26px;font-size:var(--t-guia);color:var(--tinta-suave);line-height:1.6}
+.mov{padding:var(--aire-base) 0}
+.mov.corte{padding:var(--aire-vasto) 0;background:var(--marfil)}
+.titulo{font-size:var(--t-titulo);margin-top:20px}
+.guia{font-size:var(--t-guia);color:var(--tinta-suave);line-height:1.6;margin-top:22px}
+.positivo .guia{color:var(--tinta-oscura-suave)}
+.mov p + p{margin-top:16px}
+
+.lista{list-style:none;display:grid;gap:2px;margin-top:44px}
+.lista li{border-top:1px solid var(--linea-tenue);padding:24px 0}
+.lista h3{font-family:var(--sans);font-weight:var(--peso-aire);
+  font-size:clamp(21px,1.5vw + 15px,29px);letter-spacing:-.022em;color:var(--marfil)}
+.lista p{margin-top:8px;color:var(--tinta-suave);font-size:var(--t-menor);
+  line-height:1.65;max-width:62ch}
+/* Lo pendiente se marca con el color del destino: aún no llega */
+.lista.pendiente li{border-top-color:rgba(15,36,56,.14);
+  padding-left:26px;position:relative}
+.lista.pendiente li::before{content:"";position:absolute;left:0;top:32px;
+  width:11px;height:11px;border:1.5px solid var(--arkadia);border-radius:50%}
+.lista.pendiente h3{color:var(--tinta-oscura)}
+.lista.pendiente p{color:var(--tinta-oscura-suave)}
+
+.rito{background:var(--media-agua)}
+.dos-tercios{display:grid;gap:30px}
+@media(min-width:900px){.dos-tercios{grid-template-columns:2fr 3fr;gap:64px;align-items:start}}
+.dos-tercios p{color:var(--tinta-suave)}
+.pregunta{margin:22px 0;padding:20px 0 20px 24px;
+  border-left:2px solid var(--terracota);
+  font-family:var(--sans);font-weight:var(--peso-aire);
+  font-size:clamp(20px,1.6vw + 14px,29px);line-height:1.3;letter-spacing:-.022em;
+  color:var(--marfil)}
+
+.entradas{list-style:none;display:grid;gap:2px;margin-top:44px}
+.entrada-b{display:grid;gap:10px;padding:28px 0;border-top:1px solid var(--linea-tenue)}
+@media(min-width:760px){.entrada-b{grid-template-columns:150px 1fr;gap:40px;align-items:baseline}}
+.entrada-b time{font-family:var(--sans);font-size:var(--t-micro);font-weight:600;
+  letter-spacing:var(--track-inline);text-transform:uppercase;color:var(--terra-luz)}
+.entrada-b h3{font-family:var(--sans);font-weight:var(--peso-aire);
+  font-size:clamp(21px,1.4vw + 15px,28px);letter-spacing:-.022em;color:var(--marfil)}
+.entrada-b p{margin-top:10px;color:var(--tinta-suave);font-size:var(--t-cuerpo);max-width:62ch}
+.entrada-b .firma{margin-top:14px;font-family:var(--sans);font-size:var(--t-micro);
+  font-weight:600;letter-spacing:var(--track-inline);text-transform:uppercase;
+  color:var(--tinta-tenue)}
+
+.final{background:linear-gradient(180deg,var(--media-agua),var(--abismo));
+  padding:var(--aire-vasto) 0 var(--aire-base)}
+.botones{margin-top:32px;display:flex;gap:13px;flex-wrap:wrap}
+</style>
+</Base>
