@@ -8,8 +8,17 @@
 
 ## ⏳ Esperando a Ed
 
-- **Promover v2 a producción.** El ecosistema de 7 páginas vive en preview
-  (`v2-facelift.el-arca.pages.dev`). Producción sigue en v1. Requiere su «ve» explícito.
+- **Promover v2 a producción.** El ecosistema de 8 páginas vive en preview
+  (`v2-facelift.el-arca.pages.dev`, último `7f4351b2`). Producción sigue en v1.
+  Requiere su «ve» explícito nombrando la operación.
+- **Autorizar el copy** (revisado con él en consola el 3-ago):
+  · las 5 descripciones de instituciones aliadas — frases mías sobre organizaciones ajenas;
+  · la entrada de bitácora firmada «Los Arquitectos» — palabras mías con su firma;
+  · los 4 pendientes públicos (Estaciones, constitución legal, prueba de nodo, monetización);
+  · las 6 frases de los dos nichos;
+  · «Orquestación de agentes y arneses» — preciso, pero jerga para el empresario tradicional.
+- **Enlaces** de Cumbre Global de Liderazgo y Congreso El Cielo en mi Ciudad (hoy sin enlace).
+- **Visto bueno de cada institución aliada** antes de publicar su nombre en material propio.
 - **Fotos y credenciales de los Arquitectos** (P0.2 de la auditoría): sin ellas, /arquitectos
   no tiene rostro y la marca predica "personas al centro" sin mostrar ninguna.
 - **Cifras reales para la bitácora de impacto**: formados, países, cohortes, negocios vivos.
@@ -31,6 +40,30 @@
 ---
 
 ## ✅ Hecho
+
+**2026-08-03 · Cierre de sesión**
+- **Copy completo entregado para autorización** (artifact + revisión en consola):
+  https://claude.ai/code/artifact/6669a4db-5a36-43de-9c91-48ac4f1b6a7d — separado por origen
+  (canon de la Carta / escrito nuevo / afirma sobre terceros), numerado para corrección puntual.
+- **Copy institucional en variantes reutilizables** para otros proyectos, con y sin mención
+  de marca, angulado por aliado (Conéctate, Cumbre, Cluster EXATEC, El Cielo, Techo Venezuela).
+- **Carpeta de material de Ed**: `~/Dev/ARKA/_material/` con atajo en Escritorio
+  («ARKA · material») — fotos, videos, credenciales de LinkedIn y logos de alianzas.
+  Queda para otro sprint.
+- **Coordinación**: otra sesión trabajó este repo el mismo día — rescató `/kit`, `/beca`,
+  `/gracias-kit` y `/gracias-beca` del servidor (mismo patrón A5) y escribió el `CLAUDE.md`
+  del casco. Ambos trabajos integrados; el `dist` incluye las 8 páginas de La Proa.
+
+**2026-08-03 · Institucional y humanización**
+- **Alianzas y pertenencias** en `/flota`, separadas según canon (las alianzas acompañan al
+  Arka pero no son ciudadanía). Aporte real enunciado una sola vez: orquestación de agentes
+  y arneses + contenido y marketing, para las cinco.
+- **Pertenencias a título personal de Ed y Val**: miembros fundadores del Cluster Empresarial
+  EXATEC Sureste; miembros activos de Comunidad EXATEC y Comunidad IPADE.
+- **`/bitacora`** — el plano a medio dibujar: lo que está en pie y lo que aún NO está trazado,
+  el rito del nombre nuevo, y la primera entrada fechada.
+- **Dos imágenes generadas** (cowork contemporáneo y Paseo de Montejo tras la lluvia),
+  rotuladas a la vista como recreación. Se sustituyen cuando lleguen las fotos reales.
 
 **2026-08-03 · Fase 1 — face-lift v2 (en preview)**
 - **Ecosistema de 7 páginas** en vez de una sola: `/`, `/diluvio`, `/travesia`, `/ciudadania`,
