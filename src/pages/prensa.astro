@@ -209,7 +209,7 @@ Tagline: "Lidera esta era. Construye tu libertad."`;
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..600&family=Caveat:wght@600&display=swap" rel="stylesheet" />
 
 <style is:global>
 :root{
@@ -514,6 +514,17 @@ table.ficha td{padding:14px 0;color:var(--ink)}
 footer.pfoot{border-top:1px solid var(--line);margin-top:clamp(40px,6vw,72px);
   padding:28px 0 48px;font-family:var(--ui);font-size:12px;color:var(--ink-faint);line-height:1.9}
 footer.pfoot a{color:var(--ink-soft)}
+
+/* Firma de flota · ley de Ed (3·sep y 29·sep·2026). Fuente canónica: webforge/ducteria/firma-flota/.
+   Fondo claro (--marfil): variante --claro, los blancos toman el color de texto del pie. */
+footer.pfoot .firma-flota{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.2em .45em;font-size:var(--firma-tam,12px);line-height:1.5;letter-spacing:0;text-transform:none;font-style:normal;margin-top:6px}
+footer.pfoot .firma-flota a{text-decoration:none;color:inherit;display:inline-flex;align-items:baseline;gap:.3em;white-space:nowrap;border-bottom:none}
+footer.pfoot .firma-flota a:hover .firma-flota__marca,footer.pfoot .firma-flota a:focus-visible .firma-flota__marca{text-decoration:underline;text-underline-offset:3px}
+footer.pfoot .firma-flota__design{font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;font-weight:700;color:#4C8DFF}
+footer.pfoot .firma-flota__soul{font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;font-weight:700;color:inherit}
+footer.pfoot .firma-flota__sep{color:#8a837b}
+footer.pfoot .firma-flota__powered{font-family:"Caveat",cursive;font-weight:600;font-size:1.35em;line-height:1;color:#A6F07A}
+footer.pfoot .firma-flota__xpl{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-weight:400;color:inherit}
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -1036,7 +1047,8 @@ footer.pfoot a{color:var(--ink-soft)}
   <footer class="pfoot">
     EL ARKA · Fundada el 23 de julio de 2026 · Mérida, Yucatán · Nodo cero · Sin fines de lucro<br>
     Ed Zam, El Arquitecto de Realidades · Val Mosquera, La Arquitecta de Realidades<br>
-    Especificación de marca v1.0.0 · <a href="/brand.json">brand.json</a> · <a href="/llms.txt">llms.txt</a> · <a href="/">elarka.ong</a>
+    Especificación de marca v1.0.0 · <a href="/brand.json">brand.json</a> · <a href="/llms.txt">llms.txt</a> · <a href="/">elarka.ong</a><br>
+    <span class="firma-flota firma-flota--claro"><a href="https://soullensstudios.live" target="_blank" rel="noopener"><span class="firma-flota__design">Design by</span><span class="firma-flota__soul firma-flota__marca">SoulLens</span></a><span class="firma-flota__sep" aria-hidden="true">&middot;</span><a href="https://xplorerstartups.ai" target="_blank" rel="noopener"><span class="firma-flota__powered">Powered by</span><span class="firma-flota__xpl firma-flota__marca">Xplorers Startups</span></a></span>
   </footer>
 
 </main>

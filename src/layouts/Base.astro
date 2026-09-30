@@ -4,6 +4,7 @@
    menú móvil que antes no existía bajo 920px. */
 import "../styles/tokens.css";
 import { WA_CTA, NAV, SITIO } from "../config/arka.js";
+import FirmaFlota from "../components/FirmaFlota.astro";
 
 const { titulo, descripcion, ruta = "/", claseMain = "" } = Astro.props;
 const url = `${SITIO.origen}${ruta}`;
@@ -219,6 +220,7 @@ main{position:relative;z-index:1}
   <div class="cierre">
     <span>EL ARKA · nodo cero · organización sin fines de lucro · Mérida, Yucatán</span>
     <span>Ed Zam y Val Mosquera · <a href="/arquitectos/">Los Arquitectos</a></span>
+    <FirmaFlota />
   </div>
 </footer>
 

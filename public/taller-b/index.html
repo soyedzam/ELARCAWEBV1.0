@@ -216,6 +216,23 @@ h2{font-weight:700;font-size:clamp(30px,5.4vw,80px);line-height:1.05;letter-spac
   background:rgba(16,16,18,.8);border:1px solid var(--linea);border-radius:100px;
   padding:.8em 1.6em;backdrop-filter:blur(8px);transition:opacity 1s;pointer-events:none}
 #hint.hide{opacity:0}
+
+/* Firma de flota · ley de Ed (3·sep y 29·sep·2026). Fuente canónica: webforge/ducteria/firma-flota/.
+   Caveat local (caveat-var.woff2, junto a este archivo): el deck funciona sin internet. */
+@font-face{font-family:'Caveat';font-style:normal;font-weight:400 700;font-display:swap;src:url(caveat-var.woff2) format('woff2')}
+.firma-flota{--firma-marca:#FFFFFF;position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:70;
+  display:inline-flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:.2em .45em;
+  font-size:var(--firma-tam,10px);line-height:1.5;letter-spacing:0;text-transform:none;font-style:normal;pointer-events:auto;
+  background:rgba(16,16,18,.82);border:1px solid var(--linea);border-radius:100px;padding:.5em 1em;backdrop-filter:blur(8px)}
+.firma-flota a{text-decoration:none;color:inherit;display:inline-flex;align-items:baseline;gap:.3em;white-space:nowrap}
+.firma-flota a:hover .firma-flota__marca,.firma-flota a:focus-visible .firma-flota__marca{text-decoration:underline;text-underline-offset:3px}
+.firma-flota__design{font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;font-weight:700;color:#4C8DFF}
+.firma-flota__soul{font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;font-weight:700;color:var(--firma-marca)}
+.firma-flota__sep{color:#8a837b}
+.firma-flota__powered{font-family:"Caveat",cursive;font-weight:600;font-size:1.35em;line-height:1;color:#A6F07A}
+.firma-flota__xpl{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-weight:400;color:var(--firma-marca)}
+.firma-flota--claro .firma-flota__soul,.firma-flota--claro .firma-flota__xpl{color:inherit}
+@media (max-width:480px){.firma-flota{bottom:4px}}
 </style>
 </head>
 <body>
@@ -422,6 +439,8 @@ h2{font-weight:700;font-size:clamp(30px,5.4vw,80px);line-height:1.05;letter-spac
     <div class="u">elarka.ong/conectate</div>
   </div>
 </section>
+
+<span class="firma-flota"><a href="https://soullensstudios.live" target="_blank" rel="noopener"><span class="firma-flota__design">Design by</span><span class="firma-flota__soul firma-flota__marca">SoulLens</span></a><span class="firma-flota__sep" aria-hidden="true">&middot;</span><a href="https://xplorerstartups.ai" target="_blank" rel="noopener"><span class="firma-flota__powered">Powered by</span><span class="firma-flota__xpl firma-flota__marca">Xplorers Startups</span></a></span>
 
 </div>
 

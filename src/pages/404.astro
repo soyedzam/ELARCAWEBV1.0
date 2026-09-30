@@ -16,7 +16,7 @@ const WA_CTA = "https://wa.me/528181388108?text=" + encodeURIComponent(
 <link rel="icon" href="/assets/arka-simbolo-marfil.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..600&family=Caveat:wght@600&display=swap" rel="stylesheet" />
 <style>
   :root{
     --tormenta:#0B1F33; --abyss:#06141F; --marfil:#F4F0E8;
@@ -51,6 +51,16 @@ const WA_CTA = "https://wa.me/528181388108?text=" + encodeURIComponent(
   a.ghost:hover{border-color:var(--marfil);transform:translateY(-2px)}
   .foot{margin-top:40px;font-family:var(--ui);font-size:11.5px;letter-spacing:.08em;color:var(--mist)}
   .foot a{color:var(--mist)}
+
+  /* Firma de flota · ley de Ed (3·sep y 29·sep·2026). Fuente canónica: webforge/ducteria/firma-flota/. */
+  .firma-flota{--firma-marca:#FFFFFF;display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.2em .45em;font-size:var(--firma-tam,11.5px);line-height:1.5;letter-spacing:0;text-transform:none;font-style:normal;margin-top:14px}
+  .firma-flota a{text-decoration:none;color:inherit;display:inline-flex;align-items:baseline;gap:.3em;white-space:nowrap;border-bottom:none}
+  .firma-flota a:hover .firma-flota__marca,.firma-flota a:focus-visible .firma-flota__marca{text-decoration:underline;text-underline-offset:3px}
+  .firma-flota__design{font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;font-weight:700;color:#4C8DFF}
+  .firma-flota__soul{font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;font-weight:700;color:var(--firma-marca)}
+  .firma-flota__sep{color:#8a837b}
+  .firma-flota__powered{font-family:"Caveat",cursive;font-weight:600;font-size:1.35em;line-height:1;color:#A6F07A}
+  .firma-flota__xpl{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-weight:400;color:var(--firma-marca)}
   :focus-visible{outline:2px solid var(--lluvia);outline-offset:3px}
   @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -81,6 +91,7 @@ const WA_CTA = "https://wa.me/528181388108?text=" + encodeURIComponent(
     <a class="btn ghost" href={WA_CTA} target="_blank" rel="noopener">Escríbenos</a>
   </div>
   <p class="foot">¿Buscabas la sala de prensa? Está en <a href="/prensa/">elarka.ong/prensa</a>.</p>
+  <p class="foot"><span class="firma-flota"><a href="https://soullensstudios.live" target="_blank" rel="noopener"><span class="firma-flota__design">Design by</span><span class="firma-flota__soul firma-flota__marca">SoulLens</span></a><span class="firma-flota__sep" aria-hidden="true">&middot;</span><a href="https://xplorerstartups.ai" target="_blank" rel="noopener"><span class="firma-flota__powered">Powered by</span><span class="firma-flota__xpl firma-flota__marca">Xplorers Startups</span></a></span></p>
 </main>
 </body>
 </html>
