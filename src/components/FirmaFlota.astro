@@ -22,4 +22,8 @@ const { claro = false } = Astro.props;
 .firma-flota__powered{font-family:"Caveat",cursive;font-weight:600;font-size:1.35em;line-height:1;color:#A6F07A}
 .firma-flota__xpl{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-weight:400;color:var(--firma-marca)}
 .firma-flota--claro .firma-flota__soul,.firma-flota--claro .firma-flota__xpl{color:inherit}
+/* Variante clara legible (aprobada por Ed el 261007): sobre fondo claro el azul y el verde de ley no llegan a AA
+   (2.75:1 y 1.18:1 sobre #F4EDE2). Misma familia, tono profundo: azul #1D4FB8 (6.3:1) y verde #2B6E2F (5.35:1). Palabras, orden y tipografías no cambian. */
+.firma-flota--claro .firma-flota__design{color:#1D4FB8}
+.firma-flota--claro .firma-flota__powered{color:#2B6E2F}
 </style>
