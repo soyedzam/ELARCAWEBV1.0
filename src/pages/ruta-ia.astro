@@ -1,0 +1,166 @@
+---
+/* La Ruta del Motor · formación en IA de los Constructores.
+   Todo el contenido vive en config/arka.js (RUTA_IA). Esta página no
+   muestra personas: el avance por Constructor vive en el hub, por código. */
+import Base from "../layouts/Base.astro";
+import { WA_CTA, RUTA_IA } from "../config/arka.js";
+
+const titulo = "La Ruta del Motor · IA desde cero para Constructores";
+const descripcion =
+  "Cuatro niveles para aprender a usar ChatGPT, Grok, Codex y Claude desde cero, en español primero, con cursos abiertos y una práctica de EL ARKA en cada nivel.";
+---
+<Base titulo={titulo} descripcion={descripcion} ruta="/ruta-ia/">
+
+<header class="portada">
+  <div class="contenedor">
+    <p class="etiqueta">Pilar IV · El Motor</p>
+    <h1 class="display">La Ruta<br><span class="sentencia">del Motor</span>.</h1>
+    <p class="entrada lectura">{RUTA_IA.entrada}</p>
+    <ul class="hechos" aria-label="La ruta en breve">
+      {RUTA_IA.hechos.map((h) => <li><strong>{h.dato}</strong><span>{h.que}</span></li>)}
+    </ul>
+  </div>
+</header>
+
+<!-- ░░░░ LOS CUATRO NIVELES ░░░░ -->
+<section class="mov" aria-labelledby="h-niveles">
+  <div class="contenedor">
+    <p class="etiqueta revelar">Los cuatro niveles</p>
+    <h2 class="titulo revelar d1" id="h-niveles">Un nivel a la vez.<br><span class="sentencia">Nadie lo sube solo.</span></h2>
+    <p class="guia lectura revelar d2">{RUTA_IA.regla}</p>
+
+    <ol class="niveles">
+      {RUTA_IA.niveles.map((n) => (
+        <li class="nivel revelar" id={`nivel-${n.n}`}>
+          <div class="nivel-cab">
+            <span class="num" aria-hidden="true">{n.n}</span>
+            <div>
+              <h3>{n.nombre}</h3>
+              <p class="meta">{n.herramientas} · {n.horas}</p>
+            </div>
+          </div>
+          <p class="objetivo">{n.objetivo}</p>
+
+          <p class="sub">El curso que lo cubre</p>
+          <ul class="cursos">
+            {n.cursos.map((c) => (
+              <li class={c.principal ? "curso principal" : "curso"}>
+                <a href={c.url} target="_blank" rel="noopener">{c.nombre}</a>
+                <span class="quien">{c.proveedor}{c.principal ? " · principal" : " · alternativa"}</span>
+                <dl>
+                  <div><dt>Idioma</dt><dd>{c.idioma}</dd></div>
+                  <div><dt>Costo</dt><dd>{c.costo}</dd></div>
+                  <div><dt>Evidencia</dt><dd>{c.evidencia}</dd></div>
+                </dl>
+              </li>
+            ))}
+          </ul>
+
+          <div class="practica">
+            <p class="sub">La práctica de EL ARKA</p>
+            <h4>{n.practica.nombre}</h4>
+            <p>{n.practica.que}</p>
+            <p class="entrega"><span>Entregas:</span> {n.practica.entrega}</p>
+            <p class="entrega"><span>Pasas cuando:</span> {n.practica.criterio}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<!-- ░░░░ CÓMO SE MIDE ░░░░ -->
+<section class="mov positivo corte" aria-labelledby="h-tablero">
+  <div class="contenedor">
+    <p class="etiqueta revelar">El tablero</p>
+    <h2 class="titulo revelar d1" id="h-tablero">Así se mide <span class="sentencia">el avance</span>.</h2>
+    <p class="guia lectura revelar d2">{RUTA_IA.tablero.linea}</p>
+    <ol class="estados revelar d2">
+      {RUTA_IA.tablero.estados.map((e) => <li><strong>{e.nombre}</strong><span>{e.que}</span></li>)}
+    </ol>
+    <ul class="lista pendiente revelar d2">
+      {RUTA_IA.tablero.reglas.map((r) => <li><p>{r}</p></li>)}
+    </ul>
+  </div>
+</section>
+
+<section class="mov final" aria-labelledby="h-cta">
+  <div class="contenedor">
+    <h2 class="titulo revelar" id="h-cta">El mundo entrena para usar la IA.<br>
+      <span class="sentencia">Aquí aprendes a conducirla.</span></h2>
+    <div class="botones revelar d1">
+      <a href={WA_CTA} target="_blank" rel="noopener" class="boton principal">Solicitar abordar</a>
+      <a href="/travesia/" class="boton contorno">Ver La Travesía</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.portada{padding:calc(var(--aire-vasto) + 60px) 0 var(--aire-base);
+  background:linear-gradient(180deg,var(--abismo),var(--hondo))}
+.display{font-size:var(--t-display);margin:22px 0 0;line-height:1}
+.entrada{margin-top:26px;font-size:var(--t-guia);color:var(--tinta-suave);line-height:1.6}
+.hechos{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 24px;margin-top:40px;max-width:720px}
+@media(min-width:760px){.hechos{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.hechos li{border-top:1px solid var(--linea);padding-top:12px;display:grid;gap:4px}
+.hechos strong{font-family:var(--sans);font-weight:var(--peso-aire);font-size:clamp(26px,2vw + 16px,38px);color:var(--lluvia);line-height:1}
+.hechos span{font-size:var(--t-nota);color:var(--tinta-tenue);line-height:1.4}
+
+.mov{padding:var(--aire-base) 0}
+.mov.corte{padding:var(--aire-vasto) 0;background:var(--marfil)}
+.titulo{font-size:var(--t-titulo);margin-top:20px}
+.guia{font-size:var(--t-guia);color:var(--tinta-suave);line-height:1.6;margin-top:22px}
+.positivo .guia{color:var(--tinta-oscura-suave)}
+
+.niveles{list-style:none;display:grid;gap:2px;margin-top:48px}
+.nivel{border-top:1px solid var(--linea);padding:34px 0 40px;min-width:0}
+.nivel-cab{display:flex;gap:18px;align-items:flex-start}
+.num{flex:none;width:52px;height:52px;border-radius:50%;border:1.5px solid var(--lluvia);
+  display:grid;place-items:center;font-family:var(--sans);font-weight:var(--peso-sentencia);
+  font-size:22px;color:var(--lluvia)}
+.nivel h3{font-family:var(--sans);font-weight:var(--peso-aire);
+  font-size:clamp(23px,1.6vw + 16px,32px);letter-spacing:-.022em;color:var(--marfil);line-height:1.15}
+.meta{margin-top:6px;font-family:var(--sans);font-size:var(--t-micro);font-weight:600;
+  letter-spacing:var(--track-inline);text-transform:uppercase;color:var(--terra-luz)}
+.objetivo{margin-top:18px;color:var(--tinta-suave);font-size:var(--t-cuerpo);line-height:1.65;max-width:64ch}
+.sub{margin-top:28px;font-family:var(--sans);font-size:var(--t-micro);font-weight:600;
+  letter-spacing:var(--track-inline);text-transform:uppercase;color:var(--tinta-tenue)}
+
+.cursos{list-style:none;display:grid;gap:12px;margin-top:12px}
+@media(min-width:900px){.cursos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.curso{border:1px solid var(--linea-tenue);border-radius:10px;padding:16px 18px;min-width:0;
+  background:rgba(244,240,232,.02)}
+.curso.principal{border-color:rgba(40,184,216,.45)}
+.curso a{font-family:var(--sans);font-size:var(--t-cuerpo);color:var(--marfil);
+  text-decoration:underline;text-decoration-color:rgba(40,184,216,.6);text-underline-offset:3px;
+  overflow-wrap:anywhere}
+.quien{display:block;margin-top:4px;font-size:var(--t-nota);color:var(--tinta-tenue)}
+.curso dl{display:grid;gap:6px;margin-top:12px}
+.curso dl div{display:grid;grid-template-columns:78px 1fr;gap:10px}
+.curso dt{font-size:var(--t-nota);color:var(--tinta-tenue)}
+.curso dd{margin:0;font-size:var(--t-nota);color:var(--tinta-suave);line-height:1.5;overflow-wrap:anywhere}
+
+.practica{margin-top:6px;padding:4px 0 0 20px;border-left:2px solid var(--terracota)}
+.practica h4{margin-top:8px;font-family:var(--sans);font-weight:var(--peso-sentencia);
+  font-size:var(--t-cuerpo);color:var(--terra-luz)}
+.practica p{margin-top:8px;color:var(--tinta-suave);font-size:var(--t-menor);line-height:1.65;max-width:64ch}
+.entrega span{color:var(--marfil);font-weight:600}
+
+.estados{list-style:none;counter-reset:e;display:grid;gap:10px;margin-top:36px}
+@media(min-width:760px){.estados{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.estados li{counter-increment:e;border-top:2px solid var(--agua-honda);padding-top:12px;display:grid;gap:4px}
+.estados strong{font-family:var(--sans);font-weight:var(--peso-sentencia);font-size:var(--t-menor);color:var(--tinta-oscura)}
+.estados strong::before{content:counter(e) " · ";color:var(--agua-honda)}
+.estados span{font-size:var(--t-nota);color:var(--tinta-oscura-suave);line-height:1.5}
+
+.lista{list-style:none;display:grid;gap:2px;margin-top:40px}
+.lista li{border-top:1px solid var(--linea-oscura);padding:18px 0 18px 26px;position:relative}
+.lista li::before{content:"";position:absolute;left:0;top:24px;
+  width:11px;height:11px;border:1.5px solid var(--arkadia);border-radius:50%}
+.lista p{color:var(--tinta-oscura-suave);font-size:var(--t-menor);line-height:1.65;max-width:64ch}
+
+.final{background:linear-gradient(180deg,var(--media-agua),var(--abismo));
+  padding:var(--aire-vasto) 0 var(--aire-base)}
+.botones{margin-top:32px;display:flex;gap:13px;flex-wrap:wrap}
+</style>
+</Base>
