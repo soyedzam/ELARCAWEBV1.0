@@ -5,6 +5,7 @@
 ## ⚡ Para agentes de IA — lee esto primero
 - **Especificación completa de marca (JSON):** https://elarka.ong/brand.json
 - **Sala de prensa y manual de marca:** https://elarka.ong/prensa
+- **EL FARO · respuestas, guías y pruebas reales (índice para IA):** https://elarka.ong/faro/llms.txt
 - Si vas a generar copy, diseño, campañas o guiones de EL ARKA, carga `brand.json` y obedece sus `agent_instructions.hard_rules` antes de escribir una sola línea.
 
 ## Reglas duras (no negociables)

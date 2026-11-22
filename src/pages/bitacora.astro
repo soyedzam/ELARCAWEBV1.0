@@ -1,16 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
 import { WA_CTA, TRAZADO, POR_TRAZAR, BITACORAS } from "../config/arka.js";
-import { getCollection } from "astro:content";
-import { GUIAS } from "../config/guias.js";
-
-/* La biblioteca: guías interactivas + artículos. Lo no publicado sólo se ve
-   en un build de revisión con PUBLIC_VER_BORRADORES=1. */
-const verBorradores = import.meta.env.PUBLIC_VER_BORRADORES === "1";
-const guias = GUIAS.filter((g) => g.publicada || verBorradores);
-const articulos = (await getCollection("articulos"))
-  .filter((a) => !a.data.borrador || verBorradores)
-  .sort((x, y) => y.data.fecha - x.data.fecha);
 
 const titulo = "Bitácora · el plano a medio dibujar";
 const descripcion =
@@ -84,32 +74,6 @@ const descripcion =
   </div>
 </section>
 
-<!-- ░░░░ LA BIBLIOTECA ░░░░ -->
-{(guias.length > 0 || articulos.length > 0) && (
-<section class="mov biblioteca" aria-labelledby="h-biblioteca">
-  <div class="contenedor">
-    <p class="etiqueta revelar">La biblioteca</p>
-    <h2 class="titulo revelar d1" id="h-biblioteca">Guías y artículos.</h2>
-    <ul class="libros">
-      {guias.map((g) => (
-        <li><a href={`/bitacora/guias/${g.slug}/`}>
-          <span class="tipo">Guía interactiva · {g.serie}</span>
-          <b>{g.titulo}</b><span class="desc">{g.descripcion}</span>
-          {!g.publicada && <span class="borr">Borrador</span>}
-        </a></li>
-      ))}
-      {articulos.map((a) => (
-        <li><a href={`/bitacora/articulos/${a.slug}/`}>
-          <span class="tipo">Artículo · {a.data.serie}</span>
-          <b>{a.data.titulo}</b><span class="desc">{a.data.descripcion}</span>
-          {a.data.borrador && <span class="borr">Borrador</span>}
-        </a></li>
-      ))}
-    </ul>
-  </div>
-</section>
-)}
-
 <!-- ░░░░ LAS ENTRADAS ░░░░ -->
 <section class="mov entradas-sec" aria-labelledby="h-entradas">
   <div class="contenedor">
@@ -142,12 +106,6 @@ const descripcion =
 </section>
 
 <style>
-.libros{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.libros a{display:block;height:100%;padding:22px;border:1px solid currentColor;border-radius:18px;text-decoration:none;color:inherit}
-.libros .tipo{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.75;margin-bottom:8px}
-.libros b{display:block;font-size:22px;line-height:1.2;margin-bottom:8px}
-.libros .desc{display:block;opacity:.85}
-.libros .borr{display:inline-block;margin-top:12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:1px solid currentColor;border-radius:99px;padding:3px 9px}
 .portada{padding:calc(var(--aire-vasto) + 60px) 0 var(--aire-base);
   background:linear-gradient(180deg,var(--abismo),var(--hondo))}
 .display{font-size:var(--t-display);margin:22px 0 0;line-height:1}

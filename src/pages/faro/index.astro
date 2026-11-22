@@ -1,0 +1,75 @@
+---
+/* EL FARO · la casa de contenido público. Se ordena por la pregunta del visitante. */
+import Base from "../../layouts/Base.astro";
+import { FARO, SECCIONES } from "../../config/faro.js";
+import { piezas, guiasVisibles, urlPieza, fechaLarga, migas, origen } from "../../lib/faro.js";
+
+const lista = await piezas();
+const guias = guiasVisibles();
+const porTipo = (t) => (t === "guias"
+  ? guias.map((g) => ({ url: `/faro/guias/${g.slug}/`, titulo: g.titulo, desc: g.descripcion, fecha: g.actualizada, borrador: !g.publicada }))
+  : lista.filter((p) => p.data.tipo === t).map((p) => ({ url: urlPieza(p), titulo: p.data.titulo, desc: p.data.descripcion, fecha: p.data.fecha, borrador: p.data.borrador })));
+const ld = [
+  { "@context": "https://schema.org", "@type": "CollectionPage", name: "EL FARO · EL ARKA", description: FARO.bajada, url: origen + "/faro/", inLanguage: "es-MX",
+    publisher: { "@type": "Organization", name: "EL ARKA", url: origen } },
+  migas([["EL ARKA", "/"], ["EL FARO", "/faro/"]]),
+];
+---
+<Base titulo="EL FARO · respuestas, guías y pruebas reales · EL ARKA" descripcion={FARO.bajada} ruta="/faro/">
+  <Fragment slot="head">
+    <link rel="alternate" type="text/plain" href="/faro/llms.txt" title="Índice de EL FARO para modelos de IA" />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  </Fragment>
+  <div class="faro">
+    <header class="top">
+      <p class="ey">EL ARKA · VII</p>
+      <h1>EL FARO</h1>
+      <p class="bajada">{FARO.bajada}</p>
+    </header>
+    <nav class="indice" aria-label="Secciones">
+      {SECCIONES.map((s) => <a href={`#${s.tipo}`}><b>{s.nombre}</b><span>{s.pregunta}</span></a>)}
+    </nav>
+    {SECCIONES.map((s) => {
+      const items = porTipo(s.tipo);
+      return (
+        <section class="sec" id={s.tipo}>
+          <p class="ey">{s.pregunta}</p>
+          <h2>{s.nombre}</h2>
+          {items.length === 0 ? <p class="vacio">Muy pronto.</p> : (
+            <ul>
+              {items.map((i) => (
+                <li><a href={i.url}>
+                  <b>{i.titulo}</b><span>{i.desc}</span>
+                  <small>{fechaLarga(i.fecha)}{i.borrador && " · Borrador"}</small>
+                </a></li>
+              ))}
+            </ul>
+          )}
+        </section>
+      );
+    })}
+  </div>
+</Base>
+
+<style>
+.faro{--luz:#F4EDE2;--card:#FBF7F0;--tinta:#221E18;--borde:#E8E0D2;--meta:#6E6457;--oro:#C9963F;--orot:#7A5A1E;--tor:#0E1726;background:var(--luz);color:var(--tinta);padding-bottom:64px}
+.top{background:var(--tor);color:var(--luz);padding:120px 22px 48px}
+.top>*{max-width:720px;margin-left:auto;margin-right:auto}
+.ey{font:600 13px 'Inter',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--orot);margin:0 0 10px}
+.top .ey{color:var(--oro)}
+h1{font:600 clamp(56px,15vw,96px)/1 'Fraunces',Georgia,serif;margin:0;color:var(--luz)}
+.bajada{font:400 italic 23px/1.4 'Newsreader',Georgia,serif;margin:14px auto 0}
+.indice{max-width:720px;margin:-24px auto 0;padding:0 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;position:relative}
+.indice a{background:var(--card);border:1px solid var(--borde);border-radius:16px;padding:14px;text-decoration:none;color:inherit;box-shadow:0 12px 26px -18px rgba(14,23,38,.5)}
+.indice b{display:block;font:600 20px 'Fraunces',Georgia,serif}
+.indice span{font:500 13px 'Inter',sans-serif;color:var(--meta)}
+.sec{max-width:720px;margin:0 auto;padding:44px 22px 0;scroll-margin-top:80px}
+h2{font:600 36px/1.1 'Fraunces',Georgia,serif;margin:0 0 14px}
+.sec ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.sec a{display:block;background:var(--card);border:1px solid var(--borde);border-radius:18px;padding:18px 20px;text-decoration:none;color:inherit}
+.sec a b{display:block;font:600 22px/1.2 'Fraunces',Georgia,serif;margin-bottom:6px}
+.sec a span{display:block;font:500 16px/1.45 'Inter',sans-serif;color:var(--meta)}
+.sec a small{display:block;margin-top:8px;font:600 12px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--orot)}
+.vacio{font:500 16px 'Inter',sans-serif;color:var(--meta);border:1px dashed var(--borde);border-radius:14px;padding:14px 16px;margin:0}
+</style>

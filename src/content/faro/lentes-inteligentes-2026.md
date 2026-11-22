@@ -1,7 +1,11 @@
 ---
+tipo: "ensayos"
 titulo: "Tu oficina ya no tiene escritorio: los dos lentes que recomendamos en 2026"
 descripcion: "Uno para crear y otro para viajar. Por qué EL ARKA recomienda dos lentes inteligentes en lugar de uno, y cómo elegir el tuyo."
 fecha: 2026-11-21
+autor: "EL ARKA"
+respuesta: "No existe un solo lente que lo haga todo. Para crear contenido conviene un lente con teleprompter y cámara; para trabajar fuera de la oficina, uno que funcione como monitor de la Mac."
+tema: "herramientas-del-lider"
 serie: "El Laboratorio"
 capa: "Nutrición"
 guia: "lentes-inteligentes"

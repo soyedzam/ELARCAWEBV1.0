@@ -30,6 +30,7 @@ export const NAV = [
   { numero: "IV",  corto: "La Flota",      titulo: "La Flota",        ruta: "/flota/" },
   { numero: "V",   corto: "Arquitectos",   titulo: "Los Arquitectos", ruta: "/arquitectos/" },
   { numero: "VI",  corto: "Bitácora",      titulo: "Bitácora",        ruta: "/bitacora/" },
+  { numero: "VII", corto: "EL FARO",       titulo: "EL FARO",         ruta: "/faro/" },
 ];
 
 /* ── LOS DOS NICHOS (Carta · sección III) ──

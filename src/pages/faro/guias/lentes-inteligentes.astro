@@ -7,8 +7,18 @@
    Mejora progresiva: sin JS todo el contenido se ve; el JS sólo suma gesto. */
 import Base from "../../../layouts/Base.astro";
 import { LENTES, CORTE } from "../../../config/lentes.js";
-import { GUIAS } from "../../../config/guias.js";
-const publicada = GUIAS.find((g) => g.slug === "lentes-inteligentes")?.publicada;
+import { GUIAS } from "../../../config/faro.js";
+const guia = GUIAS.find((g) => g.slug === "lentes-inteligentes");
+const publicada = guia?.publicada;
+import { migas, origen } from "../../../lib/faro.js";
+const ld = [
+  { "@context": "https://schema.org", "@type": "ItemList", name: guia.titulo, description: guia.descripcion,
+    url: origen + "/faro/guias/lentes-inteligentes/", dateModified: guia.actualizada,
+    itemListElement: LENTES.map((l, i) => ({ "@type": "ListItem", position: i + 1, name: l.nombre, url: l.url })) },
+  { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question",
+    name: "¿Qué lentes inteligentes conviene comprar en 2026?", acceptedAnswer: { "@type": "Answer", text: guia.respuesta } }] },
+  migas([["EL FARO", "/faro/"], ["Guías", "/faro/#guias"], [guia.titulo, "/faro/guias/lentes-inteligentes/"]]),
+];
 
 const crear = LENTES.filter((l) => l.uso === "crear");
 const viajar = LENTES.filter((l) => l.uso === "viajar");
@@ -23,11 +33,14 @@ const estrellas = (n) => {
 <Base
   titulo="Lentes inteligentes 2026: cuál comprar para crear y para viajar · EL ARKA"
   descripcion="Dos lentes, dos trabajos. Guía de EL ARKA con precios en México y reputación real: teleprompter y cámara para crear, monitor de Mac para viajar."
-  ruta="/bitacora/guias/lentes-inteligentes/"
+  ruta="/faro/guias/lentes-inteligentes/"
   claseMain="lentes-main"
 >
   <Fragment slot="head">
     {!publicada && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="alternate" type="text/markdown" href="/faro/guias/lentes-inteligentes.md" title="Versión para agentes (Markdown)" />
+    <link rel="alternate" type="application/json" href="/datos/lentes.json" title="Datos abiertos de la guía" />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   </Fragment>
 
@@ -130,7 +143,7 @@ const estrellas = (n) => {
         <li>¿El vendedor tiene buena reputación y garantía?</li>
         <li>¿Lo vas a usar más de 1 hora al día?</li>
       </ol>
-      <p class="meta">Estrellas: calificación real de compradores en tiendas de México, vista el {CORTE}. Ningún lente está probado como protección de la vista. EL ARKA los prueba 7 días antes de recomendarlos sin reservas.</p>
+      <p class="meta">Actualizado el {CORTE}. Estrellas: calificación real de compradores en tiendas de México, vista el {CORTE}. Ningún lente está probado como protección de la vista. EL ARKA los prueba 7 días antes de recomendarlos sin reservas.</p>
     </section>
 
     <!-- 4 · PERTENENCIA -->
