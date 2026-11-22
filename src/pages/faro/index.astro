@@ -1,5 +1,8 @@
 ---
-/* EL FARO · la casa de contenido público. Se ordena por la pregunta del visitante. */
+/* EL FARO · la casa de contenido público. Se ordena por la pregunta del visitante.
+   Movimiento con propósito (libro común · movimiento): el haz del faro barre la portada
+   y "enciende" cada sección al llegar a ella — dirige la atención a la pregunta.
+   Sin JS o con movimiento reducido, todo se ve quieto y completo. */
 import Base from "../../layouts/Base.astro";
 import { FARO, SECCIONES } from "../../config/faro.js";
 import { piezas, guiasVisibles, urlPieza, fechaLarga, migas, origen } from "../../lib/faro.js";
@@ -7,8 +10,17 @@ import { piezas, guiasVisibles, urlPieza, fechaLarga, migas, origen } from "../.
 const lista = await piezas();
 const guias = guiasVisibles();
 const porTipo = (t) => (t === "guias"
-  ? guias.map((g) => ({ url: `/faro/guias/${g.slug}/`, titulo: g.titulo, desc: g.descripcion, fecha: g.actualizada, borrador: !g.publicada }))
-  : lista.filter((p) => p.data.tipo === t).map((p) => ({ url: urlPieza(p), titulo: p.data.titulo, desc: p.data.descripcion, fecha: p.data.fecha, borrador: p.data.borrador })));
+  ? guias.map((g) => ({ url: `/faro/guias/${g.slug}/`, titulo: g.titulo, desc: g.descripcion, fecha: g.actualizada, borrador: !g.publicada, img: g.imagen, tipo: "Guía interactiva" }))
+  : lista.filter((p) => p.data.tipo === t).map((p) => ({ url: urlPieza(p), titulo: p.data.titulo, desc: p.data.descripcion, fecha: p.data.fecha, borrador: p.data.borrador, img: p.data.imagen, tipo: p.data.autor })));
+
+/* Un icono y una foto de ambiente por sección: humaniza sin inventar contenido. */
+const AMBIENTE = {
+  respuestas:  { icono: "💬", foto: null },
+  guias:       { icono: "🧭", foto: "/assets/lentes/xreal-uso-sofa.jpg" },
+  laboratorio: { icono: "🧪", foto: null },
+  ensayos:     { icono: "✒️", foto: "/assets/lentes/hero-meta-display-uso.jpg" },
+  glosario:    { icono: "📖", foto: null },
+};
 const ld = [
   { "@context": "https://schema.org", "@type": "CollectionPage", name: "EL FARO · EL ARKA", description: FARO.bajada, url: origen + "/faro/", inLanguage: "es-MX",
     publisher: { "@type": "Organization", name: "EL ARKA", url: origen } },
@@ -22,26 +34,64 @@ const ld = [
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   </Fragment>
   <div class="faro">
+    <!-- PORTADA: noche, faro y haz que barre -->
     <header class="top">
-      <p class="ey">EL ARKA · VII</p>
-      <h1>EL FARO</h1>
-      <p class="bajada">{FARO.bajada}</p>
+      <div class="cielo" aria-hidden="true">
+        {Array.from({ length: 28 }).map((_, i) => <i style={`left:${(i * 37) % 100}%;top:${(i * 23) % 58}%;animation-delay:${(i % 7) * 0.6}s`}></i>)}
+      </div>
+      <div class="faro-torre" aria-hidden="true">
+      <div class="haz"></div>
+      <svg class="torre" viewBox="0 0 120 260">
+        <defs><linearGradient id="t" x1="0" x2="1"><stop offset="0" stop-color="#F4EDE2"/><stop offset="1" stop-color="#C9CFD6"/></linearGradient></defs>
+        <circle class="luz" cx="60" cy="46" r="16" fill="#F7D78C"/>
+        <path d="M44 34 h32 v24 h-32z" fill="#0E1726" opacity=".35"/>
+        <path d="M38 30 L60 14 L82 30 Z" fill="#C9963F"/>
+        <rect x="40" y="30" width="40" height="30" rx="3" fill="none" stroke="#C9963F" stroke-width="3"/>
+        <path d="M44 60 L76 60 L88 238 L32 238 Z" fill="url(#t)"/>
+        <path d="M41 104 L79 104 L81 128 L39 128 Z M37 162 L83 162 L85 186 L35 186 Z" fill="#B54A3A" opacity=".9"/>
+        <rect x="26" y="236" width="68" height="10" rx="3" fill="#16243B"/>
+      </svg>
+      </div>
+      <svg class="mar" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 40 Q150 10 300 40 T600 40 T900 40 T1200 40 V80 H0Z" fill="#16243B"/>
+        <path d="M0 52 Q150 28 300 52 T600 52 T900 52 T1200 52 V80 H0Z" fill="#0A111C" opacity=".9"/>
+      </svg>
+      <div class="top-copy">
+        <p class="ey">EL ARKA · VII</p>
+        <h1>EL FARO</h1>
+        <p class="bajada">{FARO.bajada}</p>
+        <a class="cta" href="#guias">Empieza por una guía ↓</a>
+      </div>
     </header>
+
     <nav class="indice" aria-label="Secciones">
-      {SECCIONES.map((s) => <a href={`#${s.tipo}`}><b>{s.nombre}</b><span>{s.pregunta}</span></a>)}
+      {SECCIONES.map((s) => <a href={`#${s.tipo}`} class="rev"><em aria-hidden="true">{AMBIENTE[s.tipo].icono}</em><b>{s.nombre}</b><span>{s.pregunta}</span></a>)}
     </nav>
+
     {SECCIONES.map((s) => {
       const items = porTipo(s.tipo);
+      const amb = AMBIENTE[s.tipo];
       return (
-        <section class="sec" id={s.tipo}>
-          <p class="ey">{s.pregunta}</p>
-          <h2>{s.nombre}</h2>
-          {items.length === 0 ? <p class="vacio">Muy pronto.</p> : (
+        <section class="sec rev" id={s.tipo}>
+          <div class="sec-head">
+            <span class="ic" aria-hidden="true">{amb.icono}</span>
+            <div><p class="ey">{s.pregunta}</p><h2>{s.nombre}</h2></div>
+          </div>
+          {items.length === 0 ? (
+            <div class="vacio">
+              <span aria-hidden="true">{amb.icono}</span>
+              <p><b>Se está escribiendo.</b> Las primeras piezas de {s.nombre.toLowerCase()} llegan pronto.</p>
+            </div>
+          ) : (
             <ul>
               {items.map((i) => (
-                <li><a href={i.url}>
-                  <b>{i.titulo}</b><span>{i.desc}</span>
-                  <small>{fechaLarga(i.fecha)}{i.borrador && " · Borrador"}</small>
+                <li><a href={i.url} class="pieza">
+                  {(i.img || amb.foto) && <span class="foto" style={`background-image:url(${i.img || amb.foto})`}></span>}
+                  <span class="txt">
+                    <small class="t">{i.tipo}</small>
+                    <b>{i.titulo}</b><span class="d">{i.desc}</span>
+                    <small>{fechaLarga(i.fecha)}{i.borrador && " · Borrador"}</small>
+                  </span>
                 </a></li>
               ))}
             </ul>
@@ -53,23 +103,78 @@ const ld = [
 </Base>
 
 <style>
-.faro{--luz:#F4EDE2;--card:#FBF7F0;--tinta:#221E18;--borde:#E8E0D2;--meta:#6E6457;--oro:#C9963F;--orot:#7A5A1E;--tor:#0E1726;background:var(--luz);color:var(--tinta);padding-bottom:64px}
-.top{background:var(--tor);color:var(--luz);padding:120px 22px 48px}
-.top>*{max-width:720px;margin-left:auto;margin-right:auto}
+.faro{--luz:#F4EDE2;--card:#FBF7F0;--tinta:#221E18;--borde:#E8E0D2;--meta:#6E6457;--oro:#C9963F;--orot:#7A5A1E;--tor:#0E1726;background:var(--luz);color:var(--tinta);padding-bottom:72px;overflow-x:clip}
+
+/* portada nocturna */
+.top{position:relative;overflow:hidden;min-height:620px;padding:120px 22px 120px;color:var(--luz);
+  background:radial-gradient(120% 80% at 80% 20%,#1E3A5F 0%,#0E1726 55%,#0A111C 100%)}
+.cielo i{position:absolute;width:2px;height:2px;border-radius:50%;background:#F4EDE2;opacity:.5;animation:titila 4.2s ease-in-out infinite}
+@keyframes titila{50%{opacity:.08}}
+.faro-torre{position:absolute;right:max(4%,calc(50% - 360px));bottom:46px;width:96px}
+.torre{display:block;width:100%;height:auto;position:relative;filter:drop-shadow(0 0 22px rgba(247,215,140,.25))}
+.torre .luz{animation:late 2.4s ease-in-out infinite;transform-origin:60px 46px}
+@keyframes late{50%{opacity:.65;transform:scale(.88)}}
+/* el haz: un cono de luz que gira desde la linterna */
+.haz{position:absolute;left:50%;top:17.7%;width:1500px;height:1500px;translate:-50% -50%;pointer-events:none;
+  background:conic-gradient(from 0deg,transparent 0deg,rgba(247,215,140,.42) 8deg,rgba(247,215,140,.08) 24deg,transparent 30deg,transparent 360deg);
+  -webkit-mask:radial-gradient(circle,#000 0,#000 35%,transparent 70%);mask:radial-gradient(circle,#000 0,#000 35%,transparent 70%);
+  animation:barre 9s linear infinite;mix-blend-mode:screen}
+@keyframes barre{to{rotate:360deg}}
+.mar{position:absolute;left:0;bottom:0;width:200%;height:70px;animation:ola 14s linear infinite}
+@keyframes ola{to{transform:translateX(-50%)}}
+.top-copy{position:relative;max-width:720px;margin:0 auto}
 .ey{font:600 13px 'Inter',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--orot);margin:0 0 10px}
 .top .ey{color:var(--oro)}
-h1{font:600 clamp(56px,15vw,96px)/1 'Fraunces',Georgia,serif;margin:0;color:var(--luz)}
-.bajada{font:400 italic 23px/1.4 'Newsreader',Georgia,serif;margin:14px auto 0}
-.indice{max-width:720px;margin:-24px auto 0;padding:0 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;position:relative}
-.indice a{background:var(--card);border:1px solid var(--borde);border-radius:16px;padding:14px;text-decoration:none;color:inherit;box-shadow:0 12px 26px -18px rgba(14,23,38,.5)}
+h1{font:600 clamp(60px,16vw,104px)/1 'Fraunces',Georgia,serif;margin:0;color:var(--luz);text-shadow:0 0 40px rgba(247,215,140,.25)}
+.bajada{font:400 italic 24px/1.4 'Newsreader',Georgia,serif;margin:14px 0 0;max-width:30ch}
+.cta{display:inline-block;margin-top:26px;background:var(--oro);color:var(--tor);font:600 16px 'Inter',sans-serif;padding:14px 18px;border-radius:14px;text-decoration:none}
+
+/* índice */
+.indice{max-width:720px;margin:-46px auto 0;padding:0 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;position:relative;z-index:2}
+.indice a{background:var(--card);border:1px solid var(--borde);border-radius:18px;padding:14px;text-decoration:none;color:inherit;box-shadow:0 14px 30px -18px rgba(14,23,38,.55);transition:transform .25s}
+.indice a:hover{transform:translateY(-3px)}
+.indice em{font-style:normal;font-size:26px;display:block;margin-bottom:4px}
 .indice b{display:block;font:600 20px 'Fraunces',Georgia,serif}
 .indice span{font:500 13px 'Inter',sans-serif;color:var(--meta)}
-.sec{max-width:720px;margin:0 auto;padding:44px 22px 0;scroll-margin-top:80px}
-h2{font:600 36px/1.1 'Fraunces',Georgia,serif;margin:0 0 14px}
-.sec ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
-.sec a{display:block;background:var(--card);border:1px solid var(--borde);border-radius:18px;padding:18px 20px;text-decoration:none;color:inherit}
-.sec a b{display:block;font:600 22px/1.2 'Fraunces',Georgia,serif;margin-bottom:6px}
-.sec a span{display:block;font:500 16px/1.45 'Inter',sans-serif;color:var(--meta)}
-.sec a small{display:block;margin-top:8px;font:600 12px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--orot)}
-.vacio{font:500 16px 'Inter',sans-serif;color:var(--meta);border:1px dashed var(--borde);border-radius:14px;padding:14px 16px;margin:0}
+
+/* secciones */
+.sec{max-width:720px;margin:0 auto;padding:48px 22px 0;scroll-margin-top:80px}
+.sec-head{display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.ic{width:56px;height:56px;border-radius:18px;flex:none;display:flex;align-items:center;justify-content:center;font-size:28px;
+  background:radial-gradient(circle at 30% 25%,#FBF7F0,#EFDBBA);box-shadow:0 10px 22px -14px rgba(122,90,30,.8)}
+h2{font:600 36px/1.1 'Fraunces',Georgia,serif;margin:0}
+.sec ul{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.pieza{display:grid;grid-template-columns:112px 1fr;background:var(--card);border:1px solid var(--borde);border-radius:20px;overflow:hidden;text-decoration:none;color:inherit;
+  box-shadow:0 14px 30px -22px rgba(14,23,38,.55);transition:transform .25s,box-shadow .25s}
+.pieza:hover{transform:translateY(-3px);box-shadow:0 22px 40px -22px rgba(14,23,38,.6)}
+.foto{background:#0E1726 40% 30%/cover no-repeat;min-height:140px}
+.txt{padding:16px 18px}
+.pieza b{display:block;font:600 21px/1.2 'Fraunces',Georgia,serif;margin:4px 0 6px}
+.pieza .d{display:block;font:500 15px/1.45 'Inter',sans-serif;color:var(--meta)}
+.pieza small{display:block;margin-top:8px;font:600 11px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--orot)}
+.pieza small.t{margin:0;color:var(--meta)}
+.vacio{display:flex;gap:14px;align-items:center;border:1px dashed #D8CFBF;border-radius:18px;padding:16px 18px;background:rgba(251,247,240,.6)}
+.vacio span{font-size:30px;opacity:.6}
+.vacio p{margin:0;font:500 16px/1.45 'Inter',sans-serif;color:var(--meta)}
+.vacio b{color:var(--tinta)}
+
+/* encendido al llegar: sólo si hay JS y el visitante acepta movimiento */
+:global(html.faro-js) .rev{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+:global(html.faro-js) .rev.vis{opacity:1;transform:none}
+:global(html.faro-js) .sec.rev .ic{transition:box-shadow .9s ease .2s}
+:global(html.faro-js) .sec.rev.vis .ic{box-shadow:0 0 0 6px rgba(201,150,63,.18),0 10px 26px -10px rgba(201,150,63,.9)}
+
+@media (prefers-reduced-motion:reduce){.haz,.mar,.cielo i,.torre .luz{animation:none}.indice a,.pieza{transition:none}}
+@media (max-width:520px){.faro-torre{width:72px;right:16px}.pieza{grid-template-columns:96px 1fr}}
 </style>
+
+<script>
+/* Enciende cada sección cuando entra en pantalla. Sin JS: todo visible. */
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+  document.documentElement.classList.add("faro-js");
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("vis"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -10% 0px" });
+  document.querySelectorAll(".faro .rev").forEach((el) => io.observe(el));
+}
+</script>
