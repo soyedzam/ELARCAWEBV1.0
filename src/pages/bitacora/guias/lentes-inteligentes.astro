@@ -5,8 +5,10 @@
    preguntas antes de pagar) → pertenencia (criterio de la casa).
    Piel: Eje Rector v1.1 (Luz · Tormenta · Oro), acotada a .lentes.
    Mejora progresiva: sin JS todo el contenido se ve; el JS sólo suma gesto. */
-import Base from "../../layouts/Base.astro";
-import { LENTES, CORTE } from "../../config/lentes.js";
+import Base from "../../../layouts/Base.astro";
+import { LENTES, CORTE } from "../../../config/lentes.js";
+import { GUIAS } from "../../../config/guias.js";
+const publicada = GUIAS.find((g) => g.slug === "lentes-inteligentes")?.publicada;
 
 const crear = LENTES.filter((l) => l.uso === "crear");
 const viajar = LENTES.filter((l) => l.uso === "viajar");
@@ -21,10 +23,11 @@ const estrellas = (n) => {
 <Base
   titulo="Lentes inteligentes 2026: cuál comprar para crear y para viajar · EL ARKA"
   descripcion="Dos lentes, dos trabajos. Guía de EL ARKA con precios en México y reputación real: teleprompter y cámara para crear, monitor de Mac para viajar."
-  ruta="/bitacora/lentes-inteligentes"
+  ruta="/bitacora/guias/lentes-inteligentes/"
   claseMain="lentes-main"
 >
   <Fragment slot="head">
+    {!publicada && <meta name="robots" content="noindex, nofollow" />}
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   </Fragment>
 
@@ -228,7 +231,7 @@ const estrellas = (n) => {
 </style>
 
 <script>
-import { LENTES, recomendar } from "../../config/lentes.js";
+import { LENTES, recomendar } from "../../../config/lentes.js";
 
 /* Cuestionario: al completar las 3 respuestas, recomienda y resalta. */
 const quiz = document.getElementById("quiz");
