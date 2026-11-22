@@ -1,0 +1,61 @@
+---
+/* Layout de EL FARO · autónomo a propósito.
+   Producción (elarka.ong) es un despliegue directo que NO contiene las páginas del menú de Base
+   (diluvio, travesía, ciudadanía, flota, arquitectos, bitácora, prensa → 404 en vivo, 21·nov·2026).
+   EL FARO no enlaza a nada que no exista: casa, EL FARO y WhatsApp. Piel: Eje Rector v1.1. */
+import FirmaFlota from "../components/FirmaFlota.astro";
+import { SITIO, WA_CTA } from "../config/arka.js";
+const { titulo, descripcion, ruta = "/faro/", imagen = "/assets/lentes/hero-meta-display-uso.jpg" } = Astro.props;
+const url = `${SITIO.origen}${ruta}`;
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{titulo}</title>
+<meta name="description" content={descripcion} />
+<meta name="theme-color" content="#0E1726" />
+<link rel="canonical" href={url} />
+<link rel="icon" href="/assets/arka-simbolo-marfil.svg" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="EL ARKA" />
+<meta property="og:locale" content="es_MX" />
+<meta property="og:title" content={titulo} />
+<meta property="og:description" content={descripcion} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={`${SITIO.origen}${imagen}`} />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<slot name="head" />
+<style is:global>
+html,body{margin:0;background:#F4EDE2}
+.fh{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:rgba(14,23,38,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.fh a{color:#F4EDE2;text-decoration:none;font:600 14px 'Inter',system-ui,sans-serif}
+.fh .marca{display:flex;align-items:center;gap:10px;letter-spacing:.2em}
+.fh .marca img{width:26px;height:26px}
+.fh .lnk{display:flex;gap:16px;align-items:center}
+.fh .faro-l{color:#C9963F}
+.ff{background:#0E1726;color:#9BB4C5;padding:32px 22px 40px;font:500 14px/1.6 'Inter',system-ui,sans-serif}
+.ff .in{max-width:720px;margin:0 auto;display:grid;gap:14px}
+.ff a{color:#F4EDE2}
+.ff .wa{display:inline-block;background:#C9963F;color:#0E1726;font-weight:600;padding:12px 16px;border-radius:12px;text-decoration:none;width:max-content}
+</style>
+</head>
+<body>
+<header class="fh">
+  <a class="marca" href="/"><img src="/assets/arka-simbolo-marfil.svg" alt="" />EL ARKA</a>
+  <nav class="lnk" aria-label="Principal"><a class="faro-l" href="/faro/">EL FARO</a></nav>
+</header>
+<main><slot /></main>
+<footer class="ff">
+  <div class="in">
+    <p style="margin:0;color:#F4EDE2;font-size:17px">{SITIO.bandera}</p>
+    <a class="wa" href={WA_CTA} target="_blank" rel="noopener">Quiero subir a EL ARKA →</a>
+    <p style="margin:0">EL ARKA · organización sin fines de lucro · Mérida, Yucatán · <a href="/faro/llms.txt">Índice para IA</a></p>
+    <FirmaFlota />
+  </div>
+</footer>
+</body>
+</html>

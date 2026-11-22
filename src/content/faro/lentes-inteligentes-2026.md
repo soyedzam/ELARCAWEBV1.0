@@ -10,7 +10,7 @@ serie: "El Laboratorio"
 capa: "Nutrición"
 guia: "lentes-inteligentes"
 imagen: "/assets/lentes/hero-meta-display-uso.jpg"
-borrador: true
+borrador: false
 ---
 
 Quien dirige agentes de IA ya no necesita estar sentado frente al teclado. Necesita ver, grabar y hablar con orden, donde esté.

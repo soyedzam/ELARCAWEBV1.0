@@ -29,7 +29,7 @@ export const GUIAS = [
     actualizada: "2026-11-21",
     imagen: "/assets/lentes/hero-meta-display-uso.jpg",
     datos: "/datos/lentes.json",
-    publicada: false,
+    publicada: true,
   },
 ];
 
