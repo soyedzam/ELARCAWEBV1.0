@@ -92,3 +92,40 @@ export function diagnosticar(respuestas) {
   const plan = [...hallazgos, ...RELLENO].slice(0, 4);
   return { exp, prep, clave, ...RESULTADOS[clave], hallazgos: hallazgos.slice(0, 5), plan };
 }
+
+/* ── Lo que lo vuelve inteligente sin servidor: el giro del negocio ──
+   La persona elige su giro; el resultado le muestra qué podría hacer la IA en SU negocio
+   y por dónde empezar. Ejemplos de oficio, no cifras: nada que verificar. */
+export const GIROS = [
+  { id: "servicios", nombre: "Servicios profesionales (despacho, consultoría, agencia)",
+    empieza: "tus propuestas y cotizaciones",
+    ideas: ["Un agente que arme la primera versión de cada propuesta con tus precios y tu estilo.", "Resúmenes y minutas de cada junta con los compromisos de cada cliente.", "Seguimiento a prospectos que no contestaron, con tu voz."] },
+  { id: "comercio", nombre: "Comercio o tienda (física o en línea)",
+    empieza: "las preguntas que te hacen los clientes por WhatsApp",
+    ideas: ["Respuestas inmediatas a precio, existencia y horarios, a cualquier hora.", "Descripciones y fotos de producto ordenadas para vender en línea.", "Aviso automático de qué se está acabando y qué no se mueve."] },
+  { id: "alimentos", nombre: "Restaurante, cafetería o alimentos",
+    empieza: "pedidos y reservaciones",
+    ideas: ["Tomar pedidos y reservaciones por WhatsApp sin perder ninguno.", "Saber qué platillos dejan más margen y cuáles sobran.", "Responder reseñas con tu tono, todos los días."] },
+  { id: "salud", nombre: "Salud o bienestar (consultorio, clínica, terapia)",
+    empieza: "citas, confirmaciones y recordatorios",
+    ideas: ["Agenda, confirmaciones y recordatorios sin que nadie llame.", "Preguntas frecuentes de pacientes respondidas con tu criterio.", "Notas de seguimiento ordenadas (cuidando siempre la privacidad del paciente)."] },
+  { id: "educacion", nombre: "Educación, formación o coaching",
+    empieza: "dudas repetidas de tus alumnos",
+    ideas: ["Un asistente que responda dudas con tu material, a cualquier hora.", "Ejercicios y evaluaciones a la medida de cada alumno.", "Convertir tus clases en guías y contenido que trabajen sin ti."] },
+  { id: "eventos", nombre: "Eventos, producción o turismo",
+    empieza: "cotizaciones y coordinación con proveedores",
+    ideas: ["Cotizar un evento en minutos con tu tabla de precios.", "Seguimiento a cada proveedor y a cada invitado sin hojas sueltas.", "El programa y la logística del día, siempre al día para todos."] },
+  { id: "industria", nombre: "Manufactura, construcción o industria",
+    empieza: "reportes, órdenes y control de avance",
+    ideas: ["Reportes de avance que se arman solos con lo que captura tu equipo.", "Cotizaciones técnicas a partir de tus fichas y costos.", "Detectar retrasos o mermas antes de que cuesten."] },
+  { id: "otro", nombre: "Otro giro",
+    empieza: "la tarea que más repites cada semana",
+    ideas: ["Un agente que haga la primera versión de lo que más repites.", "Responder a tus clientes con tu criterio, a cualquier hora.", "Ordenar tu información para decidir con datos y no de memoria."] },
+];
+
+/* Índice 0–100: qué tan listo estás para dirigir a la IA frente a lo expuesto que está tu negocio. */
+export function indice(exp, prep) {
+  const n = Math.max(0, Math.min(100, Math.round(50 + (prep - exp) * 5)));
+  const banda = n < 35 ? "En riesgo" : n < 65 ? "En transición" : "Listo para liderar";
+  return { n, banda };
+}

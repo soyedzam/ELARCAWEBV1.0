@@ -3,7 +3,7 @@
    10 preguntas, dos ejes, un primer paso. Todo corre en el teléfono de quien contesta (E24):
    ninguna respuesta sale del dispositivo. Sin JS: se ven las preguntas y los cuatro resultados. */
 import Base from "../../../layouts/Faro.astro";
-import { PREGUNTAS, RESULTADOS } from "../../../config/diagnostico.js";
+import { PREGUNTAS, RESULTADOS, GIROS } from "../../../config/diagnostico.js";
 import { GUIAS } from "../../../config/faro.js";
 import { WA_CTA } from "../../../config/arka.js";
 import { migas, origen } from "../../../lib/faro.js";
@@ -31,6 +31,13 @@ const ld = [
 
     <form id="dx" class="s" onsubmit="return false">
       <div class="barra" aria-hidden="true"><i id="avance"></i></div>
+      <fieldset class="preg giro">
+        <legend><b>0</b>¿A qué se dedica tu negocio?</legend>
+        <select name="giro" id="giro" required>
+          <option value="">Elige tu giro…</option>
+          {GIROS.map((g) => <option value={g.id}>{g.nombre}</option>)}
+        </select>
+      </fieldset>
       {PREGUNTAS.map((p, i) => (
         <fieldset class="preg" data-i={i}>
           <legend><b>{i + 1}</b>{p.q}</legend>
@@ -43,6 +50,10 @@ const ld = [
 
     <section class="s res" id="resultado" aria-live="polite" hidden>
       <p class="ey">Tu resultado</p>
+      <div class="score">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" class="pista"/><circle cx="60" cy="60" r="52" class="valor" id="r-arco"/></svg>
+        <div><b id="r-indice">0</b><span>/100</span><small id="r-banda"></small></div>
+      </div>
       <h2 id="r-titulo"></h2>
       <p class="big" id="r-texto"></p>
 
@@ -65,6 +76,9 @@ const ld = [
 
       <h3>Lo que encontramos en tus respuestas</h3>
       <ul class="hallazgos" id="r-hallazgos"></ul>
+
+      <h3>Lo que la IA podría hacer en tu negocio</h3>
+      <ul class="ideas" id="r-ideas"></ul>
 
       <h3>Tu plan de 4 semanas</h3>
       <ol class="plan" id="r-plan"></ol>
@@ -136,13 +150,25 @@ h1 em{font-style:normal;color:var(--oro)}
 .plan :global(li){counter-increment:s;background:#F7EDD9;color:var(--tinta);border-radius:16px;padding:14px 16px 14px 16px;font:500 17px/1.4 'Inter',sans-serif}
 .plan :global(li):before{content:"Semana " counter(s);display:block;font:600 12px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--orot);margin-bottom:4px}
 .dx.listo #dx{display:none}
+.giro select{width:100%;font:500 18px 'Inter',sans-serif;padding:14px 16px;border:2px solid var(--borde);border-radius:16px;background:var(--card);color:var(--tinta)}
+.score{display:flex;align-items:center;gap:18px;margin:4px 0 14px}
+.score svg{width:120px;height:120px;flex:none;transform:rotate(-90deg)}
+.score circle{fill:none;stroke-width:10}
+.score .pista{stroke:#1E3A5F}
+.score .valor{stroke:var(--oro);stroke-linecap:round;stroke-dasharray:327;stroke-dashoffset:327;transition:stroke-dashoffset 1.2s cubic-bezier(.2,.8,.2,1)}
+.score b{font:600 56px/1 'Fraunces',Georgia,serif;color:var(--luz)}
+.score span{font:600 18px 'Inter',sans-serif;color:var(--niebla)}
+.score small{display:block;margin-top:6px;font:600 13px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--oro)}
+.ideas{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.ideas :global(li){background:rgba(201,150,63,.12);border:1px solid rgba(201,150,63,.45);border-radius:12px;padding:12px 14px;font:500 16px/1.4 'Inter',sans-serif}
+.ideas :global(li):before{content:"✦ ";color:var(--oro)}
 .meta{font:500 15px/1.5 'Inter',sans-serif;color:var(--meta)}
 .volver{font:600 15px 'Inter',sans-serif;color:var(--orot);text-decoration:none}
 @media (prefers-reduced-motion:reduce){.barra i{transition:none}}
 </style>
 
 <script>
-import { PREGUNTAS, diagnosticar } from "../../../config/diagnostico.js";
+import { PREGUNTAS, diagnosticar, GIROS, indice } from "../../../config/diagnostico.js";
 import { WA_CTA } from "../../../config/arka.js";
 const raiz = document.querySelector(".dx");
 const f = document.getElementById("dx");
@@ -156,6 +182,16 @@ const esc = (t) => t.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">":
 let resumen = "";
 function mostrar(d) {
   document.getElementById("r-titulo").textContent = d.titulo;
+  const g = GIROS.find((x) => x.id === document.getElementById("giro").value) || GIROS[GIROS.length - 1];
+  const ix = indice(d.exp, d.prep);
+  document.getElementById("r-banda").textContent = ix.banda;
+  const arco = document.getElementById("r-arco");
+  arco.style.strokeDashoffset = "327"; requestAnimationFrame(() => requestAnimationFrame(() => { arco.style.strokeDashoffset = String(327 * (1 - ix.n / 100)); }));
+  const num = document.getElementById("r-indice"); const t0 = performance.now();
+  const sube = (t) => { const k = Math.min(1, (t - t0) / 1100); num.textContent = String(Math.round(ix.n * (suave ? k : 1))); if (k < 1 && suave) requestAnimationFrame(sube); };
+  requestAnimationFrame(sube);
+  const I = document.getElementById("r-ideas"); I.replaceChildren(); g.ideas.forEach((x) => I.append(li(esc(x))));
+  d.plan = d.plan.map((x, i) => (i === 0 ? { ...x, accion: `Empieza por ${g.empieza}. ${x.accion}` } : x));
   document.getElementById("r-texto").textContent = d.texto;
   document.getElementById("r-exp").textContent = `${d.exp}/10`;
   document.getElementById("r-prep").textContent = `${d.prep}/10`;
@@ -166,16 +202,18 @@ function mostrar(d) {
   d.hallazgos.forEach((x) => H.append(li(`<small>${x.peso === 3 ? "Urgente" : x.peso === 2 ? "Importante" : "A cuidar"}</small>${esc(x.hallazgo)}`, "p" + x.peso)));
   const P = document.getElementById("r-plan"); P.replaceChildren();
   d.plan.forEach((x) => P.append(li(esc(x.accion))));
-  resumen = `Mi diagnóstico en EL FARO: ${d.titulo} (exposición ${d.exp}/10, preparación ${d.prep}/10).\nMi plan de 4 semanas:\n` +
+  resumen = `Mi diagnóstico en EL FARO: índice ${ix.n}/100 · ${d.titulo} (exposición ${d.exp}/10, preparación ${d.prep}/10).\nMi plan de 4 semanas:\n` +
     d.plan.map((x, i) => `${i + 1}. ${x.accion}`).join("\n");
   document.getElementById("r-wa").href = WA_CTA.split("?")[0] + "?text=" + encodeURIComponent(
-    `Hola, hice el diagnóstico de EL FARO y salió «${d.titulo}». Quiero acompañamiento con mi plan:\n` + d.plan.map((x, i) => `${i + 1}. ${x.accion}`).join("\n"));
+    `Hola, hice el diagnóstico de EL FARO: índice ${ix.n}/100, «${d.titulo}», giro ${g.nombre}. Quiero acompañamiento con mi plan:\n` + d.plan.map((x, i) => `${i + 1}. ${x.accion}`).join("\n"));
   raiz.classList.add("listo"); res.hidden = false; ir(res);
 }
 f.addEventListener("change", (e) => {
   const r = leer(); const hechas = r.filter((x) => x !== null).length;
   av.style.width = (hechas / PREGUNTAS.length) * 100 + "%";
-  if (hechas === PREGUNTAS.length) return mostrar(diagnosticar(r));
+  if (hechas === PREGUNTAS.length && document.getElementById("giro").value) return mostrar(diagnosticar(r));
+  if (e.target.id === "giro") return ir(f.querySelector('.preg[data-i="0"]'));
+  if (hechas === PREGUNTAS.length) return ir(f.querySelector(".giro"));
   const i = +e.target.closest(".preg").dataset.i;
   const sig = f.querySelector(`.preg[data-i="${i + 1}"]`) || f.querySelector(".preg:not(:has(input:checked))");
   if (sig) ir(sig);
