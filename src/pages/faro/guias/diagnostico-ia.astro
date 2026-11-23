@@ -25,7 +25,7 @@ const ld = [
     <header class="top">
       <p class="ey">EL FARO · Guía · 3 minutos</p>
       <h1>¿Qué tanto puede la IA cambiar <em>tu negocio?</em></h1>
-      <p class="big">10 preguntas. Un resultado honesto. Tu primer paso.</p>
+      <p class="big">10 preguntas. Tu mapa, lo que encontramos y tu plan de 4 semanas.</p>
       <p class="priv">🔒 Tus respuestas no salen de tu teléfono.</p>
     </header>
 
@@ -44,14 +44,34 @@ const ld = [
     <section class="s res" id="resultado" aria-live="polite" hidden>
       <p class="ey">Tu resultado</p>
       <h2 id="r-titulo"></h2>
+      <p class="big" id="r-texto"></p>
+
+      <figure class="mapa" aria-label="Tu posición en el mapa de exposición y preparación">
+        <svg viewBox="0 0 300 300" role="img">
+          <rect x="0" y="0" width="150" height="150" fill="#16243B"/><rect x="150" y="0" width="150" height="150" fill="#1E3A5F"/>
+          <rect x="0" y="150" width="150" height="150" fill="#1E3A5F"/><rect x="150" y="150" width="150" height="150" fill="#16243B"/>
+          <text x="8" y="20" class="q">Con tiempo,</text><text x="8" y="34" class="q">sin rumbo</text>
+          <text x="158" y="20" class="q">El Diluvio te</text><text x="158" y="34" class="q">alcanza primero</text>
+          <text x="8" y="282" class="q">Ventaja</text><text x="8" y="294" class="q">para tomar</text>
+          <text x="158" y="282" class="q">Listo para</text><text x="158" y="294" class="q">liderar</text>
+          <circle id="r-punto" cx="150" cy="150" r="11" fill="#C9963F" stroke="#F4EDE2" stroke-width="3"/>
+        </svg>
+        <figcaption><span>→ más expuesto a la IA</span><span>↓ más preparado</span></figcaption>
+      </figure>
       <div class="ejes">
         <div><span>Exposición</span><b id="r-exp"></b><small>cuánto de tu negocio ya puede hacerlo la IA</small></div>
         <div><span>Preparación</span><b id="r-prep"></b><small>cuánto estás listo para dirigirla</small></div>
       </div>
-      <p class="big" id="r-texto"></p>
-      <div class="paso"><span>Tu primer paso, esta semana</span><p id="r-paso"></p></div>
-      <a class="btn" href={WA_CTA} target="_blank" rel="noopener">Quiero recorrer el camino con EL ARKA →</a>
-      <button class="otra" type="button" id="reiniciar">Volver a contestar</button>
+
+      <h3>Lo que encontramos en tus respuestas</h3>
+      <ul class="hallazgos" id="r-hallazgos"></ul>
+
+      <h3>Tu plan de 4 semanas</h3>
+      <ol class="plan" id="r-plan"></ol>
+
+      <a class="btn" id="r-wa" href={WA_CTA} target="_blank" rel="noopener">Recibe acompañamiento de EL ARKA con tu plan →</a>
+      <button class="otra" type="button" id="copiar">Copiar mi plan</button>
+      <button class="otra" type="button" id="reiniciar">Cambiar mis respuestas</button>
     </section>
 
     <noscript>
@@ -102,6 +122,20 @@ h1 em{font-style:normal;color:var(--oro)}
 .paso p{margin:0;font:500 19px/1.45 'Inter',sans-serif}
 .btn{display:block;text-align:center;background:var(--oro);color:var(--tor);font:600 18px 'Inter',sans-serif;padding:17px;border-radius:16px;margin-top:22px;text-decoration:none}
 .otra{display:block;width:100%;margin-top:10px;background:none;border:2px solid rgba(201,150,63,.6);color:var(--oro);font:600 16px 'Inter',sans-serif;padding:13px;border-radius:14px;cursor:pointer}
+.mapa{margin:22px 0 10px}
+.mapa svg{width:100%;height:auto;border-radius:18px;display:block}
+.mapa .q{font:600 12px 'Inter',sans-serif;fill:#9BB4C5}
+.mapa circle{transition:cx .8s cubic-bezier(.2,.8,.2,1),cy .8s cubic-bezier(.2,.8,.2,1)}
+.mapa figcaption{display:flex;justify-content:space-between;font:500 12px 'Inter',sans-serif;color:var(--niebla);margin-top:6px}
+.res h3{font:600 24px/1.2 'Fraunces',Georgia,serif;margin:26px 0 10px;color:var(--luz)}
+.hallazgos{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.hallazgos :global(li){background:rgba(255,255,255,.06);border-left:4px solid var(--oro);border-radius:12px;padding:12px 14px;font:500 16px/1.4 'Inter',sans-serif}
+.hallazgos :global(li.p3){border-left-color:#E0705A}
+.hallazgos :global(li small){display:block;font:600 11px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--oro);margin-bottom:3px}
+.plan{list-style:none;padding:0;margin:0;counter-reset:s;display:grid;gap:10px}
+.plan :global(li){counter-increment:s;background:#F7EDD9;color:var(--tinta);border-radius:16px;padding:14px 16px 14px 16px;font:500 17px/1.4 'Inter',sans-serif}
+.plan :global(li):before{content:"Semana " counter(s);display:block;font:600 12px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--orot);margin-bottom:4px}
+.dx.listo #dx{display:none}
 .meta{font:500 15px/1.5 'Inter',sans-serif;color:var(--meta)}
 .volver{font:600 15px 'Inter',sans-serif;color:var(--orot);text-decoration:none}
 @media (prefers-reduced-motion:reduce){.barra i{transition:none}}
@@ -109,29 +143,48 @@ h1 em{font-style:normal;color:var(--oro)}
 
 <script>
 import { PREGUNTAS, diagnosticar } from "../../../config/diagnostico.js";
+import { WA_CTA } from "../../../config/arka.js";
+const raiz = document.querySelector(".dx");
 const f = document.getElementById("dx");
 const res = document.getElementById("resultado");
 const av = document.getElementById("avance");
 const suave = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+const ir = (el) => el.scrollIntoView({ behavior: suave ? "smooth" : "auto", block: "start" });
 const leer = () => PREGUNTAS.map((_, i) => { const v = f.querySelector(`input[name=p${i}]:checked`); return v ? +v.value : null; });
+const li = (html, cls = "") => { const e = document.createElement("li"); if (cls) e.className = cls; e.innerHTML = html; return e; };
+const esc = (t) => t.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+let resumen = "";
+function mostrar(d) {
+  document.getElementById("r-titulo").textContent = d.titulo;
+  document.getElementById("r-texto").textContent = d.texto;
+  document.getElementById("r-exp").textContent = `${d.exp}/10`;
+  document.getElementById("r-prep").textContent = `${d.prep}/10`;
+  // mapa: x = exposición (0→10 izquierda→derecha), y = preparación (0 arriba → 10 abajo)
+  const pt = document.getElementById("r-punto");
+  pt.setAttribute("cx", String(20 + d.exp * 26)); pt.setAttribute("cy", String(20 + d.prep * 26));
+  const H = document.getElementById("r-hallazgos"); H.replaceChildren();
+  d.hallazgos.forEach((x) => H.append(li(`<small>${x.peso === 3 ? "Urgente" : x.peso === 2 ? "Importante" : "A cuidar"}</small>${esc(x.hallazgo)}`, "p" + x.peso)));
+  const P = document.getElementById("r-plan"); P.replaceChildren();
+  d.plan.forEach((x) => P.append(li(esc(x.accion))));
+  resumen = `Mi diagnóstico en EL FARO: ${d.titulo} (exposición ${d.exp}/10, preparación ${d.prep}/10).\nMi plan de 4 semanas:\n` +
+    d.plan.map((x, i) => `${i + 1}. ${x.accion}`).join("\n");
+  document.getElementById("r-wa").href = WA_CTA.split("?")[0] + "?text=" + encodeURIComponent(
+    `Hola, hice el diagnóstico de EL FARO y salió «${d.titulo}». Quiero acompañamiento con mi plan:\n` + d.plan.map((x, i) => `${i + 1}. ${x.accion}`).join("\n"));
+  raiz.classList.add("listo"); res.hidden = false; ir(res);
+}
 f.addEventListener("change", (e) => {
   const r = leer(); const hechas = r.filter((x) => x !== null).length;
   av.style.width = (hechas / PREGUNTAS.length) * 100 + "%";
+  if (hechas === PREGUNTAS.length) return mostrar(diagnosticar(r));
   const i = +e.target.closest(".preg").dataset.i;
-  const sig = f.querySelector(`.preg[data-i="${i + 1}"]`);
-  if (hechas === PREGUNTAS.length) {
-    const d = diagnosticar(r);
-    document.getElementById("r-titulo").textContent = d.titulo;
-    document.getElementById("r-exp").textContent = `${d.exp}/10`;
-    document.getElementById("r-prep").textContent = `${d.prep}/10`;
-    document.getElementById("r-texto").textContent = d.texto;
-    document.getElementById("r-paso").textContent = d.paso;
-    res.hidden = false;
-    res.scrollIntoView({ behavior: suave ? "smooth" : "auto", block: "start" });
-  } else if (sig) sig.scrollIntoView({ behavior: suave ? "smooth" : "auto", block: "start" });
+  const sig = f.querySelector(`.preg[data-i="${i + 1}"]`) || f.querySelector(".preg:not(:has(input:checked))");
+  if (sig) ir(sig);
+});
+document.getElementById("copiar").addEventListener("click", async (e) => {
+  try { await navigator.clipboard.writeText(resumen); e.target.textContent = "Copiado ✓"; }
+  catch { e.target.textContent = "No se pudo copiar"; }
 });
 document.getElementById("reiniciar").addEventListener("click", () => {
-  f.reset(); av.style.width = "0"; res.hidden = true;
-  f.querySelector(".preg").scrollIntoView({ behavior: suave ? "smooth" : "auto" });
+  raiz.classList.remove("listo"); res.hidden = true; ir(f);
 });
 </script>
