@@ -6,7 +6,10 @@ import "../styles/tokens.css";
 import { WA_CTA, NAV, SITIO } from "../config/arka.js";
 import FirmaFlota from "../components/FirmaFlota.astro";
 
-const { titulo, descripcion, ruta = "/", claseMain = "" } = Astro.props;
+const { titulo, descripcion, ruta = "/", claseMain = "", autonomo = false } = Astro.props;
+/* autonomo: página suelta publicada en producción (direct-upload) donde las páginas de NAV
+   aún no existen (404 en vivo, 23·nov·2026). Solo enlaza a lo que existe: casa, La Proa y WhatsApp. */
+const nav = autonomo ? [] : NAV;
 const url = `${SITIO.origen}${ruta}`;
 ---
 <!DOCTYPE html>
@@ -32,7 +35,7 @@ const url = `${SITIO.origen}${ruta}`;
 <meta name="twitter:card" content="summary_large_image" />
 
 <!-- Capa legible por máquinas -->
-<link rel="alternate" type="application/json" href="/brand.json" title="EL ARKA · marca legible por máquinas" />
+{!autonomo && <link rel="alternate" type="application/json" href="/brand.json" title="EL ARKA · marca legible por máquinas" />}
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -167,20 +170,20 @@ main{position:relative;z-index:1}
   </a>
 
   <nav class="enlaces" aria-label="Secciones">
-    {NAV.map((n) => (
+    {nav.map((n) => (
       <a href={n.ruta} aria-current={ruta === n.ruta ? "page" : undefined}>{n.corto}</a>
     ))}
   </nav>
 
   <div style="display:flex;gap:10px;align-items:center">
     <a class="cta-nav" href={WA_CTA} target="_blank" rel="noopener">Solicitar abordar</a>
-    <button class="abrir-menu" id="abrir-menu" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+    {!autonomo && <button class="abrir-menu" id="abrir-menu" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
       <span></span><span></span><span></span>
-    </button>
+    </button>}
   </div>
 </header>
 
-<div class="menu" id="menu" aria-hidden="true">
+{!autonomo && <div class="menu" id="menu" aria-hidden="true">
   {NAV.map((n) => (
     <a href={n.ruta}><span class="n">{n.numero}</span>{n.titulo}</a>
   ))}
@@ -188,7 +191,7 @@ main{position:relative;z-index:1}
     <a class="boton principal" href={WA_CTA} target="_blank" rel="noopener">Solicitar abordar</a>
     <a class="boton contorno" href="/prensa/">Prensa y marca</a>
   </div>
-</div>
+</div>}
 
 <main id="contenido" class={claseMain}>
   <slot />
@@ -201,25 +204,25 @@ main{position:relative;z-index:1}
       <p class="nota">Comunidad y organización sin fines de lucro que forma a emprendedores
         y empresarios de habla hispana para liderar la era de la Inteligencia Artificial.</p>
     </div>
-    <div>
+    {!autonomo && <div>
       <h4>La travesía</h4>
       <ul>
         {NAV.map((n) => <li><a href={n.ruta}>{n.titulo}</a></li>)}
       </ul>
-    </div>
+    </div>}
     <div>
       <h4>La flota</h4>
       <ul>
         <li><a class="externo" href="https://techovenezuela.elarka.ong" target="_blank" rel="noopener">Techo Venezuela</a></li>
         <li><a class="externo" href="https://clubconectate.elarka.ong" target="_blank" rel="noopener">Club Conéctate</a></li>
         <li><a href="/conectate/">La Proa</a></li>
-        <li><a href="/prensa/">Prensa y marca</a></li>
+        {!autonomo && <li><a href="/prensa/">Prensa y marca</a></li>}
       </ul>
     </div>
   </div>
   <div class="cierre">
     <span>EL ARKA · nodo cero · organización sin fines de lucro · Mérida, Yucatán</span>
-    <span>Ed Zam y Val Mosquera · <a href="/arquitectos/">Los Arquitectos</a></span>
+    <span>Ed Zam y Val Mosquera{!autonomo && <> · <a href="/arquitectos/">Los Arquitectos</a></>}</span>
     <FirmaFlota />
   </div>
 </footer>
@@ -238,6 +241,7 @@ main{position:relative;z-index:1}
 
   /* Menú móvil */
   var btn=document.getElementById('abrir-menu'), menu=document.getElementById('menu');
+  if(btn&&menu){
   function cerrar(){btn.setAttribute('aria-expanded','false');menu.classList.remove('abierto');
     menu.setAttribute('aria-hidden','true');document.body.style.overflow=''}
   btn.addEventListener('click',function(){
@@ -249,6 +253,7 @@ main{position:relative;z-index:1}
   });
   menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',cerrar)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrar()});
+  }
 
   /* Reveal — con red de seguridad: si el observador no dispara,
      el contenido se muestra igual. Nunca una pantalla en blanco. */
