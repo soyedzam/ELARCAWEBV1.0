@@ -21,6 +21,16 @@ export const SECCIONES = [
 /* Guías interactivas: herramientas que se actualizan con la misma URL. */
 export const GUIAS = [
   {
+    slug: "diagnostico-ia",
+    titulo: "¿Qué tanto puede la IA cambiar tu negocio?",
+    descripcion: "Diagnóstico de 10 preguntas: tu exposición, tu preparación y tu primer paso. Tus respuestas no salen de tu teléfono.",
+    respuesta: "Depende de dos cosas: cuánto de tu negocio ya puede hacerlo la IA (exposición) y cuánto estás listo para dirigirla (preparación). Este diagnóstico mide las dos en 10 preguntas y te da un primer paso.",
+    tema: "liderar-la-era-de-la-ia",
+    actualizada: "2026-11-23",
+    imagen: "/assets/lentes/hero-meta-display-uso.jpg",
+    publicada: false,
+  },
+  {
     slug: "lentes-inteligentes",
     titulo: "Lentes inteligentes: cuál comprar para crear y para viajar",
     descripcion: "Tres preguntas, dos recomendaciones. Precios en México y reputación real.",
